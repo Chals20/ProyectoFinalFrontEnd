@@ -5,15 +5,17 @@
                 <button class="btnBuscar">Buscar</button>
             </div>
             <div class="container__nav">
-                <nav id="nav">
+                <nav id="nav" [ngClass]="{'move_nav':flagMenu}">
                     <ul>
                         <li><a href="#" class="select">Inicio</a></li>
-                        <li><a href="#" >Singin/Singup</a></li>
-                        <li><a href="#"><img style="width: 50px;"
+                        <li [ngClass]="{'disable':(flagUser)}"><a href="#" >Singin/Singup</a></li>
+                        <li [ngClass]="{'disable':!(flagUser)}"><a href="#"><img style="width: 50px;"
                             src="https://i.ibb.co/4tSrt7F/image.png" alt="image" border="0"></a></li>
                     </ul>
                 </nav>
-                <div class="btn__menu" id="btn_menu"><i class="fas fa-bars"></i></div>
+                <div class="btn__menu" [ngClass]="{'move_nav':flagMenu}" id="btn_menu" (click)="mostrarMenu()">
+                    <img src="https://i.ibb.co/t88SNPJ/image.png" alt="image" border="0" style="width:30px;"></div>
             </div>
         </div>
     </header>
+

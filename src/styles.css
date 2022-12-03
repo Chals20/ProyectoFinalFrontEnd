@@ -25,6 +25,7 @@ header{
     z-index: 100;
     transition: all 300ms;
     border-bottom: solid;
+    background-color: #2196f3;
 }
 
 .move_content{
@@ -111,10 +112,6 @@ nav ul li a{
     transition: all 300ms;
     display: none;
 }
-
-.btn__menu:hover{
-    background: #f5f5f5;
-}
 .bg_color{
     width: 100%;
     height: 70%;
@@ -164,6 +161,8 @@ nav ul li a{
 
     .btn__menu{
         display: flex;
+        margin-right: 20px;
+        z-index: 1;
     }
 
     nav{
