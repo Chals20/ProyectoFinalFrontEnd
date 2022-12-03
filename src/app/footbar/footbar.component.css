@@ -12,6 +12,9 @@ footer {
     display: flex;
     justify-content: space-evenly;
 }
+.juntos{
+    margin-right: 200px;
+}
 a{
     text-decoration: none;
 }
@@ -29,5 +32,8 @@ a{
         width: 70%;
         margin: auto;
         text-align: center;
+    }
+    .juntos{
+        margin-right: 5px;
     }
 }
