@@ -7,4 +7,16 @@ import { Component } from '@angular/core';
 })
 export class NabvarComponent {
 
+flagMenu: boolean = false;
+flagUser: boolean = false;
+mostrarMenu():void {
+    if(!this.flagMenu) this.flagMenu = true;
+    else this.flagMenu =  false;
+}
+
+userInside(): void{
+this.flagUser = true;
+}
+
+
 }
