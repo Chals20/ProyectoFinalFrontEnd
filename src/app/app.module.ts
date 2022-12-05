@@ -8,6 +8,9 @@ import { IntroIndexComponent } from './intro-index/intro-index.component';
 import { FootbarComponent } from './footbar/footbar.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
+import { CardComponent } from './card/card.component';
+import { BuscadorComponent } from './buscador/buscador.component';
+
 
 @NgModule({
   declarations: [
@@ -17,6 +20,8 @@ import { RegisterComponent } from './register/register.component';
     FootbarComponent,
     LoginComponent,
     RegisterComponent
+    CardComponent,
+    BuscadorComponent
   ],
   imports: [
     BrowserModule,
