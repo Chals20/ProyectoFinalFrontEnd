@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { NabvarComponent } from './nabvar/nabvar.component';
 import { IntroIndexComponent } from './intro-index/intro-index.component';
 import { FootbarComponent } from './footbar/footbar.component';
+import { CardComponent } from './card/card.component';
 import { BuscadorComponent } from './buscador/buscador.component';
 
 @NgModule({
@@ -14,6 +15,7 @@ import { BuscadorComponent } from './buscador/buscador.component';
     NabvarComponent,
     IntroIndexComponent,
     FootbarComponent,
+    CardComponent,
     BuscadorComponent
   ],
   imports: [
