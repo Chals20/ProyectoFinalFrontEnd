@@ -1,0 +1,59 @@
+.alergeno{
+    width: 45px;
+    height: 45px;
+    margin: 3px 0px;
+}
+
+.tarjeta {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 350px;
+    height: max-content;
+    border: 1px solid lightgray;
+    box-shadow: 2px 2px 8px 4px #d3d3d3d1;
+    border-radius: 25px;
+    font-family: sans-serif;
+    background: #FEBA0B;
+}
+
+.plato {
+    font-size: 24px;
+    margin-top: 5px;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.images{
+    display: block;
+    border: solid;
+}
+.cuerpo {
+    display: flex;
+    padding: 0px 10px 0 10px;
+    justify-content: space-around;
+}
+
+.pie {
+    padding: 5px;
+    text-align: center;
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 0px;
+
+}
+
+button{
+    height: 30px;
+    background-color: #47B39D;
+    border-radius: 40px;
+    width: 100px;
+    font-size: 15px;
+}
+
+.precio{
+    margin-top: 0px;
+    font-size: 20px;
+}
+
+

@@ -7,11 +7,15 @@ import { Component } from '@angular/core';
 })
 export class CardComponent {
 
+    addCarrito(name:string,price:number):void{
+        alert(name + " - " + price);
+    }
+
   json:any = [
     {
         "id": 1,
         "name": "Arroz con Pollo",
-        "img": "URL im1",
+        "img": "https://i.ibb.co/pXRcYcC/image.png",
         "price": 10.5,
         "category": {
             "id": 2,
@@ -27,7 +31,7 @@ export class CardComponent {
     {
         "id": 2,
         "name": "Patatas Bravas",
-        "img": "URL",
+        "img": "https://i.ibb.co/sPnNyYT/image.png",
         "price": 7.3,
         "category": {
             "id": 1,
@@ -43,7 +47,7 @@ export class CardComponent {
     {
         "id": 3,
         "name": "Pan con Alioli",
-        "img": "URL",
+        "img": "https://i.ibb.co/5K3b0qL/image.png",
         "price": 3.0,
         "category": {
             "id": 1,
@@ -59,7 +63,7 @@ export class CardComponent {
     {
         "id": 4,
         "name": "Aceitunas",
-        "img": "URL",
+        "img": "https://i.ibb.co/MBK6Rxg/image.png",
         "price": 2.0,
         "category": {
             "id": 1,
@@ -75,7 +79,7 @@ export class CardComponent {
     {
         "id": 5,
         "name": "Pizza Margarita",
-        "img": "URL img2",
+        "img": "https://i.ibb.co/QrJyVSD/image.png",
         "price": 11.0,
         "category": {
             "id": 2,
@@ -91,7 +95,7 @@ export class CardComponent {
     {
         "id": 6,
         "name": "Pizza 4 Quesos",
-        "img": "URL img3",
+        "img": "https://i.ibb.co/rQN6BRD/image.png",
         "price": 14.0,
         "category": {
             "id": 2,
@@ -107,7 +111,7 @@ export class CardComponent {
     {
         "id": 7,
         "name": "Pizza Vegana",
-        "img": "URL img2",
+        "img": "https://i.ibb.co/JdnHCqD/image.png",
         "price": 11.0,
         "category": {
             "id": 2,
@@ -123,7 +127,7 @@ export class CardComponent {
     {
         "id": 8,
         "name": "Pizza Sin Glutten",
-        "img": "URL img2",
+        "img": "https://i.ibb.co/KsN5kY3/image.png",
         "price": 11.0,
         "category": {
             "id": 2,
@@ -139,7 +143,7 @@ export class CardComponent {
     {
         "id": 9,
         "name": "Empanda Jamon y Queso",
-        "img": "URl",
+        "img": "https://i.ibb.co/5KLRspW/image.png",
         "price": 2.0,
         "category": {
             "id": 1,
@@ -155,7 +159,7 @@ export class CardComponent {
     {
         "id": 10,
         "name": "Empanda de Carne",
-        "img": "URl",
+        "img": "https://i.ibb.co/5KLRspW/image.png",
         "price": 2.0,
         "category": {
             "id": 1,
@@ -171,7 +175,7 @@ export class CardComponent {
     {
         "id": 11,
         "name": "Empanda Vegana",
-        "img": "URl",
+        "img": "https://i.ibb.co/5KLRspW/image.png",
         "price": 2.0,
         "category": {
             "id": 2,
@@ -187,7 +191,7 @@ export class CardComponent {
     {
         "id": 12,
         "name": "ChesseCake",
-        "img": "URL img3",
+        "img": "https://i.ibb.co/sQ0KR2Q/image.png",
         "price": 8.0,
         "category": {
             "id": 3,
@@ -203,7 +207,7 @@ export class CardComponent {
     {
         "id": 13,
         "name": "Helado de Vainilla",
-        "img": "URL img3",
+        "img": "https://i.ibb.co/GPpT2Q7/image.png",
         "price": 5.0,
         "category": {
             "id": 3,
@@ -219,7 +223,7 @@ export class CardComponent {
     {
         "id": 14,
         "name": "Tiramizu vegano",
-        "img": "URL img3",
+        "img": "https://i.ibb.co/1rZqsFT/image.png",
         "price": 6.3,
         "category": {
             "id": 3,
