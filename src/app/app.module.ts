@@ -6,13 +6,17 @@ import { AppComponent } from './app.component';
 import { NabvarComponent } from './nabvar/nabvar.component';
 import { IntroIndexComponent } from './intro-index/intro-index.component';
 import { FootbarComponent } from './footbar/footbar.component';
+import { LoginComponent } from './login/login.component';
+import { RegisterComponent } from './register/register.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NabvarComponent,
     IntroIndexComponent,
-    FootbarComponent
+    FootbarComponent,
+    LoginComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
