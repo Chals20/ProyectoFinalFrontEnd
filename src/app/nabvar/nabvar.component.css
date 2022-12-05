@@ -1,1 +1,50 @@
 .disable{display: none;}
+.buscador{
+    z-index: 1;
+    position: fixed;
+    border: solid;
+    width: 300px;
+    height: max-content;
+    left: 150px;
+    top: 90px;
+    background-color: #FEBA0B;
+    text-align: center;
+    border-radius: 5px;
+    padding: 10px;
+}
+.input-buscar{
+background-color: white;
+border-radius: 5px;
+color: #FEBA0B;
+
+}
+.btn-buscar{
+    background-color: #2196f3;
+}
+.carrito{
+    z-index: 1;
+    position: fixed;
+    border: solid;
+    width: 300px;
+    height: max-content;
+    right: 110px;
+    top: 90px;
+    background-color: #FEBA0B;
+    text-align: center;
+    border-radius: 5px;
+    padding: 10px;
+}
+.item-carro{
+    display: flex;
+    border: solid;
+    height: 30px;
+    justify-content: space-around;
+}
+@media screen and (max-width: 760px){
+    .buscador{
+        left: 20px;
+    }  
+    .carrito{
+        left:20px;
+    }
+}
