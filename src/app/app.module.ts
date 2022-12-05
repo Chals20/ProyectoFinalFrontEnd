@@ -7,6 +7,7 @@ import { NabvarComponent } from './nabvar/nabvar.component';
 import { IntroIndexComponent } from './intro-index/intro-index.component';
 import { FootbarComponent } from './footbar/footbar.component';
 import { CardComponent } from './card/card.component';
+import { BuscadorComponent } from './buscador/buscador.component';
 
 @NgModule({
   declarations: [
@@ -14,7 +15,8 @@ import { CardComponent } from './card/card.component';
     NabvarComponent,
     IntroIndexComponent,
     FootbarComponent,
-    CardComponent
+    CardComponent,
+    BuscadorComponent
   ],
   imports: [
     BrowserModule,
