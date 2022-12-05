@@ -6,13 +6,15 @@ import { AppComponent } from './app.component';
 import { NabvarComponent } from './nabvar/nabvar.component';
 import { IntroIndexComponent } from './intro-index/intro-index.component';
 import { FootbarComponent } from './footbar/footbar.component';
+import { BuscadorComponent } from './buscador/buscador.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NabvarComponent,
     IntroIndexComponent,
-    FootbarComponent
+    FootbarComponent,
+    BuscadorComponent
   ],
   imports: [
     BrowserModule,

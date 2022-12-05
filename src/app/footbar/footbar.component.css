@@ -6,11 +6,13 @@ font-size: 12px;
 }
 footer {
     width: 100%;
-    position: absolute;
+    position: fixed;
     bottom: 0;
     left: 0;
     display: flex;
     justify-content: space-evenly;
+    border: solid;
+    max-height: 70px;
 }
 .juntos{
     margin-right: 200px;
@@ -22,6 +24,8 @@ a{
     footer{
         display: block;
         border-top: solid;
+        max-height: max-content;
+        position: relative;
     }
     .imgFooter{
         width: 70%;
