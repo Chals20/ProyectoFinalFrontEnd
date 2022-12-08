@@ -1,45 +1,70 @@
 <div class="container containerGeneral">
 
-  <form class="p-5">
 
-    <h1>Register </h1>
+  <div class="row contacto">
+    <div class="col">
+      <h1>Register</h1>
+    </div>
+  </div>
 
 
-    <!-- Username -->
-    <div class="form-outline mb-4">
-      <input type="username" id="formUsername" class="form-control" />
-      <label class="form-label" for="formUsername">Username</label>
+  <div class="row contacto">
+
+    <div class="col-1 input">
+      <i class="bi bi-person-fill" style="font-size:24px;"></i>
+    </div>
+    <div class="col-11">
+      <input type="text" id="username" class="form-control" placeholder="Username" />
     </div>
 
-    <!-- Email -->
-    <div class="form-outline mb-4">
-      <input type="email" id="formEmail" class="form-control" />
-      <label class="form-label" for="formEmail">Email address</label>
+    <div class="col-1 input">
+      <i class="bi bi-mailbox" style="font-size:24px;"></i>
+    </div>
+    <div class="col-11">
+      <input type="email" id="email" class="form-control" placeholder="Email address" />
     </div>
 
-    <!-- Email2 -->
-    <div class="form-outline mb-4">
-      <input type="email" id="formEmail2" class="form-control" />
-      <label class="form-label" for="formEmail2">Email address</label>
+    <div class="col-1 input">
+      <i class="bi bi-mailbox" style="font-size:24px;"></i>
     </div>
-
-    <!-- Password -->
-    <div class="form-outline mb-4">
-      <input type="password" id="formPassword" class="form-control" />
-      <label class="form-label" for="formPassword">Password</label>
-    </div>
-
-    <!-- Password2 -->
-    <div class="form-outline mb-4">
-      <input type="password" id="formPassword2" class="form-control" />
-      <label class="form-label" for="formPassword2">Repetir Password</label>
+    <div class="col-11">
+      <input type="email" id="email" class="form-control" placeholder="Repeat email address" />
     </div>
 
 
+    <div class="col-1 input">
+      <i class="bi bi-telephone-plus-fill" style="font-size:24px;"></i>
+    </div>
+    <div class="col-11">
+      <input type="text" id="phone" class="form-control" placeholder="Phone" />
+    </div>
 
-    <!-- Submit button -->
-    <button type="button" class="btn btn-primary btn-block mb-4">Register</button>
 
-  </form>
+    <div class="col-1 input">
+      <i class="bi bi-lock" style="font-size:24px;"></i>
+    </div>
+    <div class="col-11">
+      <input type="password" id="password" class="form-control" placeholder="Password" />
+    </div>
+
+    <div class="col-1 input">
+      <i class="bi bi-lock" style="font-size:24px;"></i>
+    </div>
+    <div class="col-11">
+      <input type="password" id="password2" class="form-control" placeholder="Repeat password" />
+    </div>
+
+    <div class="col-11 d-flex justify-content-end">
+      <button type="button" class="btn btn-primary btn-block mb-4 " onclick="register()">Register</button>
+    </div>
+
+
+
+
+  </div>
+
+
+
+
 
 </div>

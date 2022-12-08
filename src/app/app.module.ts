@@ -19,7 +19,7 @@ import { BuscadorComponent } from './buscador/buscador.component';
     IntroIndexComponent,
     FootbarComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
     CardComponent,
     BuscadorComponent
   ],
