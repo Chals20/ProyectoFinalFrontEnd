@@ -16,8 +16,15 @@
 background-color: white;
 border-radius: 5px;
 color: #FEBA0B;
-
 }
+.input-buscar2{
+  background-color: white;
+  text-align: center;
+  border-radius: 6px;
+  color: black;
+  width: 70%;
+  }
+
 .btn-buscar{
     background-color: #2196f3;
 }
@@ -43,7 +50,7 @@ color: #FEBA0B;
 @media screen and (max-width: 760px){
     .buscador{
         left: 20px;
-    }  
+    }
     .carrito{
         left:20px;
     }

@@ -10,10 +10,9 @@ export class NabvarComponent {
   flagUser: boolean = true;
   flagBuscar: boolean = false;
   flagCarrito: boolean = false;
-  //platoSel:  any;
-  platoSel: string[] = ['Apple', 'Orange', 'Banana'];
 
   // Variables selector
+  nombrePlato: string= "";
   tipoPlato: string = '';
   pMin: string = '';
   pMax: string = '';
@@ -48,17 +47,18 @@ export class NabvarComponent {
   json: any;
 
   filtrarPlatos(): void {
-    this.tipoPlato += '';
-    console.log('Tipo de plato ' + this.tipoPlato);
-    console.log('Precio minimo ' + this.pMin);
-    console.log('Precio maximo ' + this.pMax);
-    console.log('Check celiaco ' + this.celiaco);
-    console.log('Check lactosa ' + this.lactosa);
-    console.log('Check vegano ' + this.vegano);
+    console.log('Tipo de plato: ' + this.tipoPlato);
+    console.log("Nombre del plato: " + this.nombrePlato);
+    console.log('Precio minimo: ' + this.pMin);
+    console.log('Precio maximo: ' + this.pMax);
+    console.log('Check celiaco: ' + this.celiaco);
+    console.log('Check lactosa: ' + this.lactosa);
+    console.log('Check vegano: ' + this.vegano);
 
     this.json = [
       {
         tipoPlato: this.tipoPlato,
+        nombrePlato: this.nombrePlato,
         pMin: this.pMin,
         pMax: this.pMax,
         celiaco: this.celiaco,
@@ -66,5 +66,7 @@ export class NabvarComponent {
         vegano: this.vegano
       },
     ];
+    console.log('JSON ' + this.json);
+
   }
 }

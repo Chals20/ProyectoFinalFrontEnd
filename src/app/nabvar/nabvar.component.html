@@ -1,7 +1,8 @@
 <header id="header">
   <div class="container__header">
     <div class="logo">
-      <input type="text" placeholder="Buscar" class="input-buscar" (click)="buscar()">
+      <!-- <input type="text" placeholder="Buscar" class="input-buscar" (click)="buscar()"> -->
+      <button class="btn btn-warning" (click)="buscar()">Filtrar</button>
       <div class="buscador" [ngClass]="{'disable':!flagBuscar}">
         <section style="display: flex; justify-content: space-around; margin-top: 20px;">
           <button style="background-color: #FEBA0B; border: none;">
@@ -16,6 +17,9 @@
             <option value="3">Postre</option>
           </select>
         </section>
+        <br>
+        <input type="text" class="input-buscar2" id="nombrePlato" placeholder="Nombre del plato" [(ngModel)]="nombrePlato">
+
         <section style="display: flex; justify-content: space-around; margin: 20px;">
           <section>
             <label>
