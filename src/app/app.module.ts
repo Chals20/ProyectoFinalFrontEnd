@@ -10,6 +10,7 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { CardComponent } from './card/card.component';
 import { BuscadorComponent } from './buscador/buscador.component';
+import { AboutComponent } from './about/about.component';
 
 
 @NgModule({
@@ -19,9 +20,10 @@ import { BuscadorComponent } from './buscador/buscador.component';
     IntroIndexComponent,
     FootbarComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
     CardComponent,
-    BuscadorComponent
+    BuscadorComponent,
+    AboutComponent
   ],
   imports: [
     BrowserModule,
