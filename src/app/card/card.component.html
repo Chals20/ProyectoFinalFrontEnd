@@ -1,20 +1,21 @@
+
         <div class="tarjeta">
-            <p class="plato">{{dish.name}}</p>
-            <div class="cuerpo">
-                <section class="images">
+            <p class="plato"><strong>{{dish.name}}</strong></p>
+            <div class="images">
+                <section class="alergenos">
                     <img class="alergeno" *ngIf="dish.alergeno.gluten == 1" src="https://i.ibb.co/SQVHcGg/image.png"
-                        alt="image" border="0" style="background-color: white; border: solid; border-radius: 50%;">
-                    <img class="alergeno" *ngIf="dish.alergeno.vegan == 0" src="https://i.ibb.co/9gVXgd1/vegano.png"
-                        alt="vegano" border="0">
-                    <img class="alergeno" *ngIf="dish.alergeno.lacteos == 1" src="https://i.ibb.co/tzPS5s9/leche.png"
-                        alt="leche" border="0">
+                    alt="image" border="0" style="background-color: white; border: solid; border-radius: 50%;">
+                <img class="alergeno" *ngIf="dish.alergeno.vegan == 0" src="https://i.ibb.co/9gVXgd1/vegano.png"
+                    alt="vegano" border="0">
+                <img class="alergeno" *ngIf="dish.alergeno.lacteos == 1" src="https://i.ibb.co/tzPS5s9/leche.png"
+                    alt="leche" border="0">
                 </section>
-                <section class="comida">
-                    <img src="{{dish.img}}" width="245px" height="160px">
+                <section class="photo">
+                    <img src="{{dish.img}}" alt="">
                 </section>
             </div>
-            <div class="pie">
-                <p class="precio"><strong>€{{dish.price}}</strong></p>
-                <button class="btnComprar" type="submit" (click)="addCarrito(dish.id,dish.name,dish.price)"><strong>AÑADIR</strong></button>
+            <div class="foot">
+                <p><strong>{{dish.price}}€</strong></p>
+                <button (click)="addCarrito(dish.id,dish.name,dish.price)">Añadir</button>
             </div>
         </div>
