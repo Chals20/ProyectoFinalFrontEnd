@@ -1,5 +1,3 @@
-<div class="container border" style="display: block;">
-    <div *ngFor="let dish of json" style="border: solid;">
         <div class="tarjeta">
             <p class="plato">{{dish.name}}</p>
             <div class="cuerpo">
@@ -17,8 +15,6 @@
             </div>
             <div class="pie">
                 <p class="precio"><strong>€{{dish.price}}</strong></p>
-                <button class="btnComprar" type="submit" (click)="addCarrito(dish.name,dish.price)"><strong>AÑADIR</strong></button>
+                <button class="btnComprar" type="submit" (click)="addCarrito(dish.id,dish.name,dish.price)"><strong>AÑADIR</strong></button>
             </div>
         </div>
-    </div>
-</div>

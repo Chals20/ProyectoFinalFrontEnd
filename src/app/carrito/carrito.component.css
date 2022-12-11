@@ -1,31 +1,34 @@
-.disable{display: none;}
-.buscador{
+.carrito{
     z-index: 1;
     position: fixed;
     border: solid;
     width: 300px;
     height: max-content;
-    left: 150px;
+    right: 110px;
     top: 90px;
     background-color: #FEBA0B;
     text-align: center;
     border-radius: 5px;
     padding: 10px;
 }
-.input-buscar{
-background-color: white;
-border-radius: 5px;
-color: #FEBA0B;
-
+.item-carro{
+    display: flex;
+    border: solid;
+    border-radius: 10px;
+    height: 30px;
+    justify-content: space-around;
+    margin-bottom: 10px;
 }
-.btn-buscar{
+.btn-masmenos{
+    width: 40%;
+    height: 100%;
+    border: none;
+    border-radius: 30px;
+    margin-right: 3px;
     background-color: #2196f3;
+    color: white;
 }
-
 @media screen and (max-width: 760px){
-    .buscador{
-        left: 20px;
-    }  
     .carrito{
         left:20px;
     }

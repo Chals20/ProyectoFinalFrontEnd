@@ -26,7 +26,6 @@
 
 .images{
     display: block;
-    border: solid;
 }
 .cuerpo {
     display: flex;

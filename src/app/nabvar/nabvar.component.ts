@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component,OnInit } from '@angular/core';
+import { CarritoserviceService } from '../service/carritoservice.service';
 
 @Component({
   selector: 'app-nabvar',
@@ -6,12 +7,16 @@ import { Component } from '@angular/core';
   styleUrls: ['./nabvar.component.css']
 })
 
-export class NabvarComponent {
+export class NabvarComponent  {
+
+
 
 flagMenu: boolean = false;
 flagUser: boolean = true;
 flagBuscar: boolean = false;
 flagCarrito: boolean = false;
+
+
 mostrarMenu():void {
     if(!this.flagMenu) this.flagMenu = true;
     else this.flagMenu =  false;

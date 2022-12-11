@@ -8,6 +8,10 @@ import { IntroIndexComponent } from './intro-index/intro-index.component';
 import { FootbarComponent } from './footbar/footbar.component';
 import { CardComponent } from './card/card.component';
 import { BuscadorComponent } from './buscador/buscador.component';
+import { GraficasComponent } from './graficas/graficas.component';
+import { HomeComponent } from './home/home.component';
+import { CarritoComponent } from './carrito/carrito.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -16,11 +20,15 @@ import { BuscadorComponent } from './buscador/buscador.component';
     IntroIndexComponent,
     FootbarComponent,
     CardComponent,
-    BuscadorComponent
+    BuscadorComponent,
+    GraficasComponent,
+    HomeComponent,
+    CarritoComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
