@@ -11,8 +11,10 @@ footer {
     left: 0;
     display: flex;
     justify-content: space-evenly;
-    border: solid;
+    border-top: solid;
     max-height: 70px;
+    background-color: white;
+    opacity: 70%;
 }
 .juntos{
     margin-right: 200px;

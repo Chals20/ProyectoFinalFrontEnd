@@ -53,18 +53,7 @@
                 src="https://i.ibb.co/4tSrt7F/image.png" alt="image" border="0"></a></li>
           <li [ngClass]="{'disable':!(flagUser)}"><a href="#"><img (click)="carrito()" style="width: 50px;"
                 src="https://i.ibb.co/SNQkR6n/image.png" alt="image" border="0"></a></li>
-          <div class="carrito" [ngClass]="{'disable':!flagCarrito}">
-            <section class="item-carro">
-              <p style="font-size: 13px; margin-top: 3px;">nombre del producto</p>
-              <input type="number" style="width: 40px; height: 20px; margin-top: 3px;">
-              <a href="#">
-                <img style="margin-bottom: 50px;" width="30px" src="https://i.ibb.co/sbV2wMN/image.png" alt="image"
-                  border="0">
-              </a>
-            </section>
-            <p>Total: $$$$</p>
-            <button class="btn btn-primary btn-buscar">Realizar Pedido</button>
-          </div>
+        <div [ngClass]="{'disable':!flagCarrito}"><app-carrito></app-carrito></div>
         </ul>
       </nav>
       <div class="btn__menu" [ngClass]="{'move_nav':flagMenu}" id="btn_menu" (click)="mostrarMenu()">

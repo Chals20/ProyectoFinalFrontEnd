@@ -1,0 +1,26 @@
+<div class="carrito" >
+        <section class="item-carro" *ngFor="let item of jsonCarrito">
+            <p style="font-size: 13px; margin-top: 3px; width: 60%;">{{item.name}}</p>
+            <section style="display: flex;  width: 30%; justify-content: space-around;">
+                <p>{{item.amount}}</p>
+                <section style="width: 80%;">
+                    <button class="btn-masmenos" (click)="sum(item.id)">+</button>
+                    <button class="btn-masmenos" (click)="rest(item.id)">-</button>
+                </section>
+            </section>
+        </section>
+        <p *ngIf="jsonCarrito.length == 0" style="margin-top: 10px;">
+            El carrito es vacío
+        </p>
+        <div *ngIf="jsonCarrito.length != 0">
+            <p>Total: {{total}}</p>
+            <div class="hora-fecha">
+                <select name="select" style="width: 80px;" [(ngModel)]="time">
+                    <option *ngFor="let hs of times" value="{{hs}}">{{hs}}</option>
+                  </select>
+            </div>
+            <button class="btn btn-primary btn-buscar" (click)="makeTransfer()" routerLink="/ticket" >Realizar Pedido</button>
+             <div *ngIf="jsonCarrito.length == 0">
+                <p>El carrito esta vacío</p>
+            </div>
+</div>

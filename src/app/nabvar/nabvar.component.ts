@@ -1,10 +1,12 @@
-import { Component } from '@angular/core';
+import { Component,OnInit } from '@angular/core';
+import { CarritoserviceService } from '../service/carritoservice.service';
 
 @Component({
   selector: 'app-nabvar',
   templateUrl: './nabvar.component.html',
   styleUrls: ['./nabvar.component.css'],
 })
+
 export class NabvarComponent {
   flagMenu: boolean = false;
   flagUser: boolean = true;
@@ -20,6 +22,7 @@ export class NabvarComponent {
   celiaco: boolean = false;
   lactosa: boolean = false;
   vegano: boolean = false;
+
 
   mostrarMenu(): void {
     if (!this.flagMenu) this.flagMenu = true;
