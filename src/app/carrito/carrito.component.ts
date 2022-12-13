@@ -2,6 +2,7 @@ import { Component,OnInit } from '@angular/core';
 import { Dish } from '../models/Dish';
 import { Pedido } from '../models/Pedido';
 import { CarritoserviceService } from '../service/carritoservice.service';
+import { LocalStorageService } from '../service/local-storage.service';
 import { TicketserviceService } from '../service/ticketservice.service';
 
 @Component({
@@ -10,7 +11,8 @@ import { TicketserviceService } from '../service/ticketservice.service';
   styleUrls: ['./carrito.component.css']
 })
 export class CarritoComponent implements OnInit{
-  constructor(private carritoService: CarritoserviceService,private ticketService: TicketserviceService){}
+  constructor(private carritoService: CarritoserviceService,private ticketService: TicketserviceService,
+              private localStorage: LocalStorageService){}
   jsonCarrito: Dish[] = [];
   total: number = 0;
   time: number = 12.00;
@@ -65,10 +67,7 @@ export class CarritoComponent implements OnInit{
 
   //load transfer that as in carrito
   makeTransfer():void{
-    console.log(this.jsonCarrito);
-    this.ticketService.disparadorTicket.emit({
-      data:this.jsonCarrito});
-    //this.jsonCarrito = [];
+    this.localStorage.setItem("carrito",this.jsonCarrito);
   }
 
 }

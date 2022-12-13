@@ -1,18 +1,28 @@
 <app-nabvar></app-nabvar>
-<p style="margin-top: 100px;">Hola</p>
-<p>{{jsonCarrito.length}}</p>
-<div class="container solid">   
-
+<div class="container">
+    <h1 style="margin-top: 80px;">Carrito</h1>
+    <div class="content" *ngIf="jsonCarrito.length != 0">   
+        <div class="box" *ngFor="let dish of jsonCarrito">
+            <img src="{{dish.img}}" alt="">
+            <p>{{dish.price}}€  X  {{dish.amount}}  =  {{dish.price*dish.amount}}€</p>
+            <section style="justify-content: space-around;">
+                <button class="btn-masmenos" (click)="sum(dish.id)">+</button>
+                <button class="btn-masmenos" (click)="rest(dish.id)">-</button>
+            </section> 
+        </div>
+    </div>
+    <p>
+       Total = {{total}}€
+    </p>
+    <button class="btn btn-primary">Realiza Compra</button>
+    <button class="btn btn-danger" (click)="cancel()">Cancelar Compra</button>
 </div>
+
 <!--
     {{dish.price}}€  X {{dish.amount}}  = {{dish.price*dish.amount}}
     {{(dish.price*dish.amount)}}
-        <div style="display: flex; border: solid; width: 100%;" *ngFor="let dish of json">
-        <img style="width: 300px;" src="{{dish.img}}" alt="">
-        <p>{{dish.price}}€  X  {{dish.amount}}  = </p>
-        <button class="btn-masmenos" >+</button>
-        <button class="btn-masmenos" >-</button>
-    </div>
+
     (click)="sum(item.id)"
     (click)="rest(item.id)"
+
 -->
