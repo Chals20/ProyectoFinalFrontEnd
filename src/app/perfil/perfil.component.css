@@ -1,0 +1,53 @@
+body {
+    background: #2196f3
+}
+
+.form-control:focus {
+    box-shadow: none;
+    border-color: #2196f3
+}
+
+.profile-button {
+    background: #47B39D;
+    box-shadow: none;
+    border: none
+}
+
+.profile-button:hover {
+    background: #2196f3
+}
+
+.profile-button:focus {
+    background: #47B39D;
+    box-shadow: none
+}
+
+.back:hover {
+    color: #2196f3;
+    cursor: pointer
+}
+
+.labels {
+    font-size: 11px
+}
+
+.cardPedido{
+    border: 1px solid #2196f3;
+    padding: 15px;
+    border-radius: 25px;
+}
+
+.order-button {
+    background: #47B39D;
+    box-shadow: none;
+    border: none
+}
+
+.order-button:hover {
+    background: #2196f3
+}
+
+.no-border {
+    border: 0;
+    text-align: center;
+}
