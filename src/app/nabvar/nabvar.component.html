@@ -18,7 +18,8 @@
           </select>
         </section>
         <br>
-        <input type="text" class="input-buscar2" id="nombrePlato" placeholder="Nombre del plato" [(ngModel)]="nombrePlato">
+        <input type="text" class="input-buscar2" id="nombrePlato" placeholder="Nombre del plato"
+          [(ngModel)]="nombrePlato">
 
         <section style="display: flex; justify-content: space-around; margin: 20px;">
           <section>
@@ -51,9 +52,12 @@
           <li [ngClass]="{'disable':(flagUser)}"><a href="#">Singin/Singup</a></li>
           <li [ngClass]="{'disable':!(flagUser)}"><a href="#"><img style="width: 50px;"
                 src="https://i.ibb.co/4tSrt7F/image.png" alt="image" border="0"></a></li>
-          <li [ngClass]="{'disable':!(flagUser)}"><a href="#"><img (click)="carrito()" style="width: 50px;"
-                src="https://i.ibb.co/SNQkR6n/image.png" alt="image" border="0"></a></li>
-        <div [ngClass]="{'disable':!flagCarrito}"><app-carrito></app-carrito></div>
+          <li [ngClass]="{'disable':!(flagUser)}"> <button style="border:none; background: transparent;"><img
+                (click)="carrito()" style="width: 50px;" src="https://i.ibb.co/SNQkR6n/image.png" alt="image"
+                border="0"></button></li>
+          <div [ngClass]="{'disable':!flagCarrito}">
+            <app-carrito></app-carrito>
+          </div>
         </ul>
       </nav>
       <div class="btn__menu" [ngClass]="{'move_nav':flagMenu}" id="btn_menu" (click)="mostrarMenu()">

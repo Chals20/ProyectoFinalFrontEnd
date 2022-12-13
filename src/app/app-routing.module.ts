@@ -7,6 +7,8 @@ const routes: Routes = [
   {path:'home', component: HomeComponent},
   {path:'ticket',component: TicketComponent},
   {path: '', redirectTo: '/home', pathMatch: 'full'},
+  {path:'**',component: HomeComponent}
+
 ];
 
 @NgModule({
