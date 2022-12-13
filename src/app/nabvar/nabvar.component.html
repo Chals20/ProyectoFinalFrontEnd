@@ -1,61 +1,64 @@
 <header id="header">
-        <div class="container__header">
-            <div class="logo">
-                <input type="text" placeholder="Buscar" class="input-buscar" (click)="buscar()">
-                <div class="buscador" [ngClass]="{'disable':!flagBuscar}">
-                    <section style="display: flex; justify-content: space-around; margin-top: 20px;">
-                        <button style="background-color: #FEBA0B; border: none;">
-                            <img (click)="buscar()" style="width: 30px;" src="https://i.ibb.co/CzC9sP1/image.png" alt="image" border="0">
-                        </button>
-                        <select name="select" style="width: 150px;">
-                            <option value="0" selected>Todos</option>
-                            <option value="1">Entrante</option>
-                            <option value="2">Principal</option>
-                            <option value="3">Postre</option>
-                          </select>
-                    </section>
-                    <section style="display: flex; justify-content: space-around; margin: 20px;">
-                        <section>
-                            <label>
-                                <input type="checkbox" name="alergeno" value=1 checked>Celiaco 
-                            </label>
-                            <br>
-                            <label>
-                                <input type="checkbox" name="alergeno" value=2>Lactosa
-                            </label>
-                            <br>
-                            <label>
-                                <input type="checkbox" name="alergeno" value=3>Vegano
-                            </label>
-                        </section>
-                        <section >
-                            <input style="width: 100px;" type="number" placeholder="Pmin">
-                            <br>
-                            <br>
-                            <input style="width: 100px;" type="number" placeholder="Pmax">
-                        </section>
-                    </section>
-                    <button class="btn btn-primary btn-buscar">Buscar</button>
-                </div>
-            </div>
-            <div class="container__nav">
-                <nav id="nav" [ngClass]="{'move_nav':flagMenu}">
-                    <ul>
-                        <li><a href="#" class="select">Inicio</a></li>
-                        <li [ngClass]="{'disable':(flagUser)}"><a href="#" >Singin/Singup</a></li>
-                        <li [ngClass]="{'disable':!(flagUser)}"><a href="#"><img style="width: 50px;"
-                            src="https://i.ibb.co/4tSrt7F/image.png" alt="image" border="0"></a></li>
-                        <li [ngClass]="{'disable':!(flagUser)}"><button style="background-color: transparent; border: none;">
-                            <img (click)="carrito()" 
-                            style="width: 50px;"
-                            src="https://i.ibb.co/SNQkR6n/image.png" alt="image" border="0">
-                        </button></li>
-                        <div [ngClass]="{'disable':!flagCarrito}"><app-carrito></app-carrito></div>
-                    </ul>
-                </nav>
-                <div class="btn__menu" [ngClass]="{'move_nav':flagMenu}" id="btn_menu" (click)="mostrarMenu()">
-                    <img src="https://i.ibb.co/t88SNPJ/image.png" alt="image" border="0" style="width:30px;"></div>
-            </div>
-        </div>
-    </header>
+  <div class="container__header">
+    <div class="logo">
+      <!-- <input type="text" placeholder="Buscar" class="input-buscar" (click)="buscar()"> -->
+      <button class="btn btn-warning" (click)="buscar()">Filtrar</button>
+      <div class="buscador" [ngClass]="{'disable':!flagBuscar}">
+        <section style="display: flex; justify-content: space-around; margin-top: 20px;">
+          <button style="background-color: #FEBA0B; border: none;">
+            <img (click)="buscar()" style="width: 30px;" src="https://i.ibb.co/CzC9sP1/image.png" alt="image"
+              border="0">
+          </button>
+          <!-- Selector de tipo de plato -->
+          <select name="select" id="tipoPlato" style="width: 150px;" [(ngModel)]="tipoPlato">
+            <option value="0" selected>Todos</option>
+            <option value="1">Entrante</option>
+            <option value="2">Principal</option>
+            <option value="3">Postre</option>
+          </select>
+        </section>
+        <br>
+        <input type="text" class="input-buscar2" id="nombrePlato" placeholder="Nombre del plato" [(ngModel)]="nombrePlato">
 
+        <section style="display: flex; justify-content: space-around; margin: 20px;">
+          <section>
+            <label>
+              <input type="checkbox" id="celiaco" name="alergeno" value=1 [(ngModel)]="celiaco">Celiaco
+            </label>
+            <br>
+            <label>
+              <input type="checkbox" id="lactosa" name="alergeno" value=2 [(ngModel)]="lactosa">Lactosa
+            </label>
+            <br>
+            <label>
+              <input type="checkbox" id="vegano" name="alergeno" value=3 [(ngModel)]="vegano">Vegano
+            </label>
+          </section>
+          <section>
+            <input style="width: 100px;" id="pMin" type="number" min="0" placeholder="Pmin" [(ngModel)]="pMin">
+            <br>
+            <br>
+            <input style="width: 100px;" id="pMax" type="number" min="0" placeholder="Pmax" [(ngModel)]="pMax">
+          </section>
+        </section>
+        <button class="btn btn-primary btn-buscar" (click)="filtrarPlatos()">Buscar</button>
+      </div>
+    </div>
+    <div class="container__nav">
+      <nav id="nav" [ngClass]="{'move_nav':flagMenu}">
+        <ul>
+          <li><a href="#" class="select">Inicio</a></li>
+          <li [ngClass]="{'disable':(flagUser)}"><a href="#">Singin/Singup</a></li>
+          <li [ngClass]="{'disable':!(flagUser)}"><a href="#"><img style="width: 50px;"
+                src="https://i.ibb.co/4tSrt7F/image.png" alt="image" border="0"></a></li>
+          <li [ngClass]="{'disable':!(flagUser)}"><a href="#"><img (click)="carrito()" style="width: 50px;"
+                src="https://i.ibb.co/SNQkR6n/image.png" alt="image" border="0"></a></li>
+        <div [ngClass]="{'disable':!flagCarrito}"><app-carrito></app-carrito></div>
+        </ul>
+      </nav>
+      <div class="btn__menu" [ngClass]="{'move_nav':flagMenu}" id="btn_menu" (click)="mostrarMenu()">
+        <img src="https://i.ibb.co/t88SNPJ/image.png" alt="image" border="0" style="width:30px;">
+      </div>
+    </div>
+  </div>
+</header>
