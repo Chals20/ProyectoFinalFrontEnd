@@ -1,0 +1,15 @@
+.col-lg-4{
+  border: 1px solid black;
+
+}
+
+.btn{
+  background-color: #FEBA0B;
+  color: black;
+}
+
+.btn:hover{
+  background-color: #a07405;
+
+}
+

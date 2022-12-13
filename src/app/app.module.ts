@@ -10,8 +10,10 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { CardComponent } from './card/card.component';
 import { BuscadorComponent } from './buscador/buscador.component';
+import { AboutComponent } from './about/about.component';
 import { PerfilComponent } from './perfil/perfil.component';
 import { FormsModule } from '@angular/forms';
+
 
 
 @NgModule({
@@ -24,6 +26,7 @@ import { FormsModule } from '@angular/forms';
     RegisterComponent,
     CardComponent,
     BuscadorComponent,
+    AboutComponent,
     PerfilComponent
   ],
   imports: [
