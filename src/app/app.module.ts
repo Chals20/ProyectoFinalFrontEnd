@@ -11,6 +11,9 @@ import { RegisterComponent } from './register/register.component';
 import { CardComponent } from './card/card.component';
 import { BuscadorComponent } from './buscador/buscador.component';
 import { AboutComponent } from './about/about.component';
+import { PerfilComponent } from './perfil/perfil.component';
+import { FormsModule } from '@angular/forms';
+
 
 
 @NgModule({
@@ -23,11 +26,13 @@ import { AboutComponent } from './about/about.component';
     RegisterComponent,
     CardComponent,
     BuscadorComponent,
-    AboutComponent
+    AboutComponent,
+    PerfilComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
