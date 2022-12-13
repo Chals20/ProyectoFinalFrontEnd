@@ -12,6 +12,7 @@ import { GraficasComponent } from './graficas/graficas.component';
 import { HomeComponent } from './home/home.component';
 import { CarritoComponent } from './carrito/carrito.component';
 import { FormsModule } from '@angular/forms';
+import { TicketComponent } from './ticket/ticket.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { FormsModule } from '@angular/forms';
     BuscadorComponent,
     GraficasComponent,
     HomeComponent,
-    CarritoComponent
+    CarritoComponent,
+    TicketComponent
   ],
   imports: [
     BrowserModule,

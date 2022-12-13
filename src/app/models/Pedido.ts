@@ -1,17 +1,17 @@
-import { Producto } from "./Producto"
+import { Dish } from "./Dish";
 
 export class Pedido {
     id: number;
     time: number;
     total: number;
     clienteId: number;
-    listProductos: Producto[];
+    listDish: Dish[];
     
-    constructor(id: number,time: number,total: number,clienteId: number,listProductos: Producto[]){
+    constructor(id: number,time: number,total: number,clienteId: number,listProductos: Dish[]){
         this.id= id;
         this.time= time;
         this.total= total;
         this.clienteId= clienteId;
-        this.listProductos= listProductos;
+        this.listDish= listProductos;
     }
 }

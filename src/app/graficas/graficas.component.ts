@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import * as e from 'express';
 import {Chart,registerables} from 'node_modules/chart.js';
 Chart.register(...registerables);
 

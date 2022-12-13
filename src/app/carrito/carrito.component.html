@@ -15,11 +15,11 @@
         <div *ngIf="jsonCarrito.length != 0">
             <p>Total: {{total}}</p>
             <div class="hora-fecha">
-                <select name="select" style="width: 150px;">
-                    <option *ngFor="let hs of times" value="{{hs}}" >{{hs}}</option>
+                <select name="select" style="width: 80px;" [(ngModel)]="time">
+                    <option *ngFor="let hs of times" value="{{hs}}">{{hs}}</option>
                   </select>
             </div>
-            <button class="btn btn-primary btn-buscar" (click)="makeTransfer()">Realizar Pedido</button>
+            <button class="btn btn-primary btn-buscar" (click)="makeTransfer()" routerLink="/ticket" >Realizar Pedido</button>
              <div *ngIf="jsonCarrito.length == 0">
                 <p>El carrito esta vacío</p>
             </div>

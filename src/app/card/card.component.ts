@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { CarritoserviceService } from '../service/carritoservice.service';
-import { Producto } from 'src/app/models/Producto';
+import { Dish } from '../models/Dish';
 @Component({
   selector: 'app-card',
   templateUrl: './card.component.html',
@@ -11,17 +11,12 @@ export class CardComponent {
 @Input() dish : any;
 
 constructor(private carritoService: CarritoserviceService) {}
-    addCarrito(id:number,name:string,price:number):void{
-        const producto: Producto = {
-          id : id,
-          name : name,
-          amount : 1,
-          price : price
-        }
+    addCarrito(dish:any):void{
+      const alergenos = [dish.alergeno.lacteos,dish.alergeno.gluten,dish.alergeno.vegan];
+      const data = new Dish(dish.id,dish.name,dish.img,dish.price,dish.category.name,alergenos,1);
         this.carritoService.disparadorCarrito.emit({
-          data:producto
+          data:data
         });
     }
 
-  
 }

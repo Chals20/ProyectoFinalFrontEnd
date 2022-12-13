@@ -1,6 +1,8 @@
 import { Component,OnInit } from '@angular/core';
+import { Dish } from '../models/Dish';
 import { Pedido } from '../models/Pedido';
 import { CarritoserviceService } from '../service/carritoservice.service';
+import { TicketserviceService } from '../service/ticketservice.service';
 
 @Component({
   selector: 'app-carrito',
@@ -8,8 +10,8 @@ import { CarritoserviceService } from '../service/carritoservice.service';
   styleUrls: ['./carrito.component.css']
 })
 export class CarritoComponent implements OnInit{
-  constructor(private carritoService: CarritoserviceService){}
-  jsonCarrito: any = [];
+  constructor(private carritoService: CarritoserviceService,private ticketService: TicketserviceService){}
+  jsonCarrito: Dish[] = [];
   total: number = 0;
   time: number = 12.00;
   clientId: number = 0;
@@ -24,7 +26,6 @@ export class CarritoComponent implements OnInit{
       }
 
     });
-    
   }
   //control of exist a element inside carrito
   isExists(id:number){
@@ -43,7 +44,9 @@ export class CarritoComponent implements OnInit{
     this.jsonCarrito.forEach((e:any) => {
       if(e.id == id){
         e.amount++; 
-        this.total += e.price;}
+        const n: number = this.total + e.price; 
+        this.total = parseFloat(n.toFixed(2));
+      }
     });
   }
 
@@ -51,8 +54,9 @@ export class CarritoComponent implements OnInit{
   rest(id:number){
     this.jsonCarrito.forEach((e:any) => {
       if(e.id == id){
-          e.amount--; 
-          this.total -= e.price;
+          e.amount--;
+          const n: number = this.total - e.price; 
+          this.total = parseFloat(n.toFixed(2));
 }
  // if(e.amout == 0) hay que utilizar el filter para que cuando llegue a 0 se elimine;
    this.jsonCarrito = this.jsonCarrito.filter((item:any) => item.amount !== 0);
@@ -61,9 +65,10 @@ export class CarritoComponent implements OnInit{
 
   //load transfer that as in carrito
   makeTransfer():void{
-    const pedido = new Pedido(0,this.time,this.total,this.clientId,this.jsonCarrito);
-    console.log(pedido);
-    this.jsonCarrito = [];
+    console.log(this.jsonCarrito);
+    this.ticketService.disparadorTicket.emit({
+      data:this.jsonCarrito});
+    //this.jsonCarrito = [];
   }
 
 }
