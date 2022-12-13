@@ -11,6 +11,9 @@ import { RegisterComponent } from './register/register.component';
 import { CardComponent } from './card/card.component';
 import { BuscadorComponent } from './buscador/buscador.component';
 import { FormsModule } from '@angular/forms';
+import { AboutComponent } from './about/about.component';
+import { PerfilComponent } from './perfil/perfil.component';
+
 
 
 @NgModule({
@@ -22,11 +25,11 @@ import { FormsModule } from '@angular/forms';
     LoginComponent,
     RegisterComponent,
     CardComponent,
-    BuscadorComponent
+    BuscadorComponent,
+    AboutComponent,
+    PerfilComponent
   ],
   imports: [
-    BrowserModule,
-    AppRoutingModule,
     BrowserModule,
     AppRoutingModule,
     FormsModule

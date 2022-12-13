@@ -1,0 +1,61 @@
+<div class="container rounded bg-white mt-5 mb-5">
+    <div class="row">
+        <div class="col-md-3 border-right">
+            <div class="d-flex flex-column align-items-center text-center p-3 py-5">
+                <img class="rounded-circle mt-5" width="150px"
+                    src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg">
+                <input type="text" class="no-border" value="" [(ngModel)]="user.userName">
+                <input type="text" class="no-border" value="" [(ngModel)]="user.rol">
+            </div>
+        </div>
+        <div class="col-md-5 border-right">
+            <div class="p-3 py-5">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <h4 class="text-right">Perfil</h4>
+                </div>
+                <div class="row mt-2">
+                    <div class="col-md-6">
+                        <label class="labels">Username</label>
+                        <input type="text" class="form-control" placeholder="user.username" value=""
+                            [(ngModel)]="user.userName">
+                    </div>
+                    <div class="col-md-6">
+                        <label class="labels">Contraseña</label>
+                        <input type="password" class="form-control" value="" placeholder="user.password"
+                            [(ngModel)]="user.password">
+                    </div>
+                </div>
+                <div class="row mt-3">
+                    <div class="col-md-12"><label class="labels">Email</label><input type="text" class="form-control"
+                            placeholder="user.email" value="" [(ngModel)]="user.email" disabled></div>
+                </div>
+                <div class="mt-4 text-center">
+                    <button class="btn btn-primary profile-button" type="button">Guardar Perfil</button>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="p-3 py-5">
+                <div class="d-flex justify-content-between align-items-center experience">
+                    <h4>Últimos Pedidos</h4>
+                </div>
+                <br>
+                <div class="col-md">
+                    <div class="cardPedido">
+                        <div class="card-body">
+                            <h5 class="card-title">Pedido #1</h5>
+                            <br>
+                            <p class="fecha"><b>Fecha:</b> XX/XX/XXXX</p>
+                            <ul type="A" class="listaPlatos">
+                                <li>Pizza Margarita (unidades)</li>
+                                <li>Empanada (unidades)</li>
+                            </ul>
+                            <p><b>Precio:</b> X €</p>
+                            <a href="#" class="btn btn-primary order-button">Repetir pedido</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

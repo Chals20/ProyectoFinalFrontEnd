@@ -1,18 +1,34 @@
 .containerGeneral {
-  background-image: url("/src/images/hand-painted-watercolor-background-with-sky-and-clouds-shape.jpg");
-  background-repeat: repeat;
-  margin-top: 150px;
+  background-image: url("../../images/hand-painted-watercolor-background-with-sky-and-clouds-shape.jpg");
+  background-color: #b8fff9; /* Used if the image is unavailable */
+  margin-top: 5vh;
+  padding-bottom: 3vh;
 }
 
 .form-control{
-  width: 300px;
+  width: 90%;
+}
+
+.contacto{
+  margin-top: 2vh;
+  margin-left: 1vh;
+  display: flex;
+}
+
+.input{
+  margin-bottom: 3vh;
 }
 
 
 .container{
-  background-color: rgb(144, 213, 245);
+  /* background-color: rgb(172, 225, 253); */
   width: 600px;
   border-radius: 2rem;
+  border: solid black 1px;
+}
+
+.error-msn{
+  color: red;
 }
 
 
