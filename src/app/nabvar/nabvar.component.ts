@@ -9,7 +9,7 @@ import { CarritoserviceService } from '../service/carritoservice.service';
 
 export class NabvarComponent {
   flagMenu: boolean = false;
-  flagUser: boolean = true;
+  flagUser: boolean = false;
   flagBuscar: boolean = false;
   flagCarrito: boolean = false;
 
