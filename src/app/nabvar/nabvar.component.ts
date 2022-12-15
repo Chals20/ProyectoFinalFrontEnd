@@ -1,5 +1,6 @@
 import { Component,OnInit } from '@angular/core';
 import { CarritoserviceService } from '../service/carritoservice.service';
+import { LocalStorageService } from '../service/local-storage.service';
 
 @Component({
   selector: 'app-nabvar',
@@ -7,11 +8,18 @@ import { CarritoserviceService } from '../service/carritoservice.service';
   styleUrls: ['./nabvar.component.css'],
 })
 
-export class NabvarComponent {
-  flagMenu: boolean = false;
-  flagUser: boolean = true;
-  flagBuscar: boolean = false;
-  flagCarrito: boolean = false;
+export class NabvarComponent implements OnInit{
+constructor( private localstorage: LocalStorageService){}
+flagMenu: boolean = false;
+flagUser: boolean = false;
+flagBuscar: boolean = false;
+flagCarrito: boolean = false;
+
+ngOnInit(): void {
+  const aux = JSON.parse(this.localstorage.getItem("user"));
+  this.flagUser = (aux.id == 0)?false:true;
+  }
+
 
   // Variables selector
   nombrePlato: string= "";

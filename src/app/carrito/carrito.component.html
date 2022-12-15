@@ -13,7 +13,7 @@
             El carrito es vacío
         </p>
         <div *ngIf="jsonCarrito.length != 0">
-            <p>Total: {{total}}</p>
+            <p>Total: {{total}}€</p>
             <button class="btn btn-primary btn-buscar" (click)="makeTransfer()" routerLink="/ticket" >Realizar Pedido</button>
              <div *ngIf="jsonCarrito.length == 0">
                 <p>El carrito esta vacío</p>

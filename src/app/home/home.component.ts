@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ConnectionService } from '../service/api/connection.service';
+import { LocalStorageService } from '../service/local-storage.service';
 
 @Component({
   selector: 'app-home',

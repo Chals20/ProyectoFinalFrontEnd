@@ -20,13 +20,13 @@ export class CarritoComponent implements OnInit{
 
     //service transfer data from card inside carrito
   ngOnInit():void {
-    this.carritoService.disparadorCarrito.subscribe(data => {
-      if(!this.isExists(data.data.id)){
-        this.jsonCarrito.push(data.data);
-        this.total += (data.data.amount * data.data.price); 
-      }
-
-    });
+      this.carritoService.disparadorCarrito.subscribe(data => {
+        if(!this.isExists(data.data.id)){
+          this.jsonCarrito.push(data.data);
+          this.total += (data.data.amount * data.data.price); 
+        }
+      });
+       this.updateCarrito();
   }
   //control of exist a element inside carrito
   isExists(id:number){
@@ -49,6 +49,7 @@ export class CarritoComponent implements OnInit{
         this.total = parseFloat(n.toFixed(2));
       }
     });
+    this.updateCarrito();
   }
 
   //decrement in 1 the amout of carrito;
@@ -62,11 +63,29 @@ export class CarritoComponent implements OnInit{
  // if(e.amout == 0) hay que utilizar el filter para que cuando llegue a 0 se elimine;
    this.jsonCarrito = this.jsonCarrito.filter((item:any) => item.amount !== 0);
     });
+    this.updateCarrito();
   }
 
   //load transfer that as in carrito
   makeTransfer():void{
-    this.localStorage.setItem("carrito",this.jsonCarrito);
+    this.updateCarrito();
+
   }
 
+  updateCarrito():void{
+    this.localStorage.setItem("carrito",this.jsonCarrito);
+  }
 }
+
+/**
+ 
+ngOnInit():void {
+    this.carritoService.disparadorCarrito.subscribe(data => {
+      if(!this.isExists(data.data.id)){
+        this.jsonCarrito.push(data.data);
+        this.total += (data.data.amount * data.data.price); 
+      }
+      this.updateCarrito();
+    });
+  }
+ */
