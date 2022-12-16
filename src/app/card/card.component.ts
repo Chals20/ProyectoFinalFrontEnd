@@ -1,22 +1,42 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { CarritoserviceService } from '../service/carritoservice.service';
 import { Dish } from '../models/Dish';
+import { LocalStorageService } from '../service/local-storage.service';
+import Swal  from 'sweetalert2';
 @Component({
   selector: 'app-card',
   templateUrl: './card.component.html',
   styleUrls: ['./card.component.css']
 })
-export class CardComponent {
+export class CardComponent implements OnInit{
   
 @Input() dish : any;
 
-constructor(private carritoService: CarritoserviceService) {}
+constructor(private carritoService: CarritoserviceService, private localstorage: LocalStorageService) {}
+flagUser:boolean = false;
+
+ngOnInit(): void {
+  const aux = JSON.parse(this.localstorage.getItem("user"));
+  this.flagUser = (aux.id == 0)?false:true;
+}
+
     addCarrito(dish:any):void{
-      const alergenos = [dish.alergeno.lacteos,dish.alergeno.gluten,dish.alergeno.vegan];
-      const data = new Dish(dish.id,dish.name,dish.img,dish.price,dish.category.name,alergenos,1);
-        this.carritoService.disparadorCarrito.emit({
-          data:data
-        });
+      if(this.flagUser){
+        const alergenos = [dish.alergeno.lacteos,dish.alergeno.gluten,dish.alergeno.vegan];
+        const data = new Dish(dish.id,dish.name,dish.img,dish.price,dish.category.name,alergenos,1);
+          this.carritoService.disparadorCarrito.emit({
+            data:data
+          });
+      }else{
+        const Swal = require('sweetalert2');
+        Swal.fire({
+          title: 'Error!',
+          text: 'Inicie Sesión para Agregar ítems al Carro',
+          icon: 'question',
+          confirmButtonText: 'Aceptar'
+        })
+      } 
+
     }
 
 }

@@ -1,21 +1,43 @@
 <app-nabvar></app-nabvar>
-<div class="container">
-    <h1 style="margin-top: 80px;">Carrito</h1>
+<div class="container" *ngIf="flagUser">
+    <h1 style="margin-top: 80px;">Ticket de  Tu Comida</h1>
     <div class="content" *ngIf="jsonCarrito.length != 0">   
         <div class="box" *ngFor="let dish of jsonCarrito">
-            <img src="{{dish.img}}" alt="">
-            <p>{{dish.price}}€  X  {{dish.amount}}  =  {{dish.price*dish.amount}}€</p>
-            <section style="justify-content: space-around;">
+            <section class="foto">
+                <img src="{{dish.img}}" alt=""> 
+            </section>
+            
+            <section class="texto-card">
+                <p>{{dish.name}} : </p>
+                 <p> {{dish.price}}€  X  {{dish.amount}} </p>
+                 <p> = {{dish.price*dish.amount}}€</p>
+            </section>
+            <section style="justify-content: space-around; width: 30%;">
                 <button class="btn-masmenos" (click)="sum(dish.id)">+</button>
                 <button class="btn-masmenos" (click)="rest(dish.id)">-</button>
             </section> 
         </div>
     </div>
-    <p>
-       Total = {{total}}€
-    </p>
-    <button class="btn btn-primary">Realiza Compra</button>
-    <button class="btn btn-danger" (click)="cancel()">Cancelar Compra</button>
+    <div class="box box2">
+        <p class="d1" style="margin: 0px;"><strong>Fecha y Hora</strong></p>
+        <div class="hora-fecha">
+            <p class="d2" style="margin: 0px;"><strong>Fecha y Hora</strong></p>
+            <select name="select" style="width: 80px;" [(ngModel)]="time" >
+                <option *ngFor="let hs of times" value="{{hs}}">{{hs}}</option>
+              </select>
+              <input type="date" (change)="SendDataonChange($event)" style="margin: 5px 0px 0px 10px;" />
+        </div>
+        <section>
+            <p class="total">Total = {{total}}€</p>
+        </section>
+    
+        <section class="buttons">
+            <button class="btn btn-primary" (click)="makeOrder()">Realiza Compra</button>
+            <button class="btn btn-danger" (click)="cancel()">Cancelar Compra</button>
+        </section>
+    </div>
+
+
 </div>
 
 <!--
