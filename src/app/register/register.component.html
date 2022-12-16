@@ -1,6 +1,7 @@
+<app-nabvar></app-nabvar>
+<app-intro-index></app-intro-index>
+
 <div class="container containerGeneral">
-
-
   <div class="row contacto">
     <div class="col">
       <h1>Register</h1>
@@ -14,14 +15,14 @@
       <i class="bi bi-person-fill" style="font-size:24px;"></i>
     </div>
     <div class="col-11">
-      <input type="text" id="username" class="form-control" placeholder="Username" [(ngModel)]="username"/>
+      <input type="text" id="username" class="form-control" placeholder="Username" [(ngModel)]="username" />
     </div>
 
     <div class="col-1 input">
       <i class="bi bi-mailbox" style="font-size:24px;"></i>
     </div>
     <div class="col-11">
-      <input type="email" id="email" class="form-control" placeholder="Email address" [(ngModel)]="email1"/>
+      <input type="email" id="email" class="form-control" placeholder="Email address" [(ngModel)]="email1" />
       <p *ngIf=""></p>
     </div>
 
@@ -29,7 +30,7 @@
       <i class="bi bi-mailbox" style="font-size:24px;"></i>
     </div>
     <div class="col-11">
-      <input type="email" id="email2" class="form-control" placeholder="Repeat email address" [(ngModel)]="email2"/>
+      <input type="email" id="email2" class="form-control" placeholder="Repeat email address" [(ngModel)]="email2" />
       <p *ngIf="(email1 !== email2) && (email2.length !== 0)" class="error-msn">El email no coincide</p>
 
     </div>
@@ -39,7 +40,7 @@
       <i class="bi bi-telephone-plus-fill" style="font-size:24px;"></i>
     </div>
     <div class="col-11">
-      <input type="text" id="phone" class="form-control" placeholder="Phone" [(ngModel)]="phone"/>
+      <input type="text" id="phone" class="form-control" placeholder="Phone" [(ngModel)]="phone" />
     </div>
 
 
@@ -47,7 +48,7 @@
       <i class="bi bi-lock" style="font-size:24px;"></i>
     </div>
     <div class="col-11">
-      <input type="password" id="password" class="form-control" placeholder="Password" [(ngModel)]="pass1"/>
+      <input type="password" id="password" class="form-control" placeholder="Password" [(ngModel)]="pass1" />
     </div>
 
     <div class="col-1 input">
@@ -60,16 +61,12 @@
     </div>
 
     <div class="col-11 d-flex justify-content-end">
-      <button type="button" class="btn btn-primary btn-block mb-4 " (click)="register()">Register</button>
+      <button type="button" class="btn btn-primary btn-block mb-4" [disabled]="btnDeshabilitado"
+        (click)="register()">Register</button>
     </div>
-
-
-
 
   </div>
 
-
-
-
-
 </div>
+
+<app-footbar></app-footbar>

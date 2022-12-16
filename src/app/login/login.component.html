@@ -1,47 +1,65 @@
+<app-nabvar></app-nabvar>
+<app-intro-index></app-intro-index>
+<h1>Login </h1>
 
 
-  <div class="container containerGeneral">
+<div class="container containerGeneral">
 
-    <form class="p-5">
+  <form class="p-5 mb-5" #form="ngForm" (ngSubmit)="handleSubmit()">
 
-      <h1>Login </h1>
+    <h1>Login </h1>
 
-      <!-- Email -->
-      <div class="form-outline mb-4 my-5">
-        <input type="email" id="formEmail" class="form-control" />
-        <label class="form-label" for="formEmail">Email address</label>
+    <!-- Email -->
+    <div class="form-outline mb-4 my-5">
+      <input type="username" name="username" id="formUsername" class="form-control" [(ngModel)]="username" value="username" />
+      <label class="form-label" for="formEmail">Username</label>
+    </div>
+
+    <!-- Email -->
+    <div class="form-outline mb-4 my-5">
+      <input type="email" name="email" id="formEmail" class="form-control" [(ngModel)]="email" value="email" />
+      <label class="form-label" for="formEmail">Email address</label>
+    </div>
+
+    <!-- Password -->
+    <div class="form-outline mb-4">
+      <input type="password" name="password" id="form2Example2" class="form-control" [(ngModel)]="pass" required=""
+        value="password" />
+      <label class="form-label" for="form2Example2">Password</label>
+    </div>
+
+    <!-- 2 column grid layout for inline styling -->
+    <div class="row mb-4">
+      <div class="col d-flex justify-content-center">
+        <!-- Checkbox -->
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" value="" id="form2Example31" checked />
+          <label class="form-check-label" for="form2Example31"> Remember me </label>
+        </div>
       </div>
 
-      <!-- Password -->
-      <div class="form-outline mb-4">
-        <input type="password" id="form2Example2" class="form-control" />
-        <label class="form-label" for="form2Example2">Password</label>
+      <div class="col">
+        <!-- Simple link -->
+        <a href="#!">Forgot password?</a>
       </div>
 
-      <!-- 2 column grid layout for inline styling -->
-      <div class="row mb-4">
-        <div class="col d-flex justify-content-center">
-          <!-- Checkbox -->
-          <div class="form-check">
-            <input class="form-check-input" type="checkbox" value="" id="form2Example31" checked />
-            <label class="form-check-label" for="form2Example31"> Remember me </label>
-          </div>
-        </div>
-
-        <div class="col">
-          <!-- Simple link -->
-          <a href="#!">Forgot password?</a>
-        </div>
-
-        <div class="col">
-          <!-- Simple link -->
-          <a href="#!">Don't have an account?</a>
-        </div>
+      <div class="col">
+        <!-- Simple link -->
+        <a routerLink="/register">Don't have an account?</a>
       </div>
 
-      <!-- Submit button -->
-      <button type="button" class="btn btn-primary btn-block mb-4">Sign in</button>
 
-    </form>
+    </div>
 
-  </div>
+
+    <button type="submit" class="btn btn-primary btn-block mb-4" value="Sing in submit" [disabled]="!form.valid">Prueba
+      submit</button>
+    <!-- Submit button -->
+    <button type="button" class="btn btn-primary btn-block mb-4">Sign in</button>
+
+  </form>
+
+</div>
+
+
+<app-footbar></app-footbar>

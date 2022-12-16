@@ -10,6 +10,7 @@ import { SearchService } from '../service/search.service';
   styleUrls: ['./nabvar.component.css'],
 })
 
+
 export class NabvarComponent implements OnInit{
 constructor( private localstorage: LocalStorageService,
   private search: SearchService){}
