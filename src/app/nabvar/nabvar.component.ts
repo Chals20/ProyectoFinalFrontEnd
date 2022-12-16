@@ -1,6 +1,8 @@
 import { Component,OnInit } from '@angular/core';
+import { Search } from '../models/Search';
 import { CarritoserviceService } from '../service/carritoservice.service';
 import { LocalStorageService } from '../service/local-storage.service';
+import { SearchService } from '../service/search.service';
 
 @Component({
   selector: 'app-nabvar',
@@ -9,7 +11,8 @@ import { LocalStorageService } from '../service/local-storage.service';
 })
 
 export class NabvarComponent implements OnInit{
-constructor( private localstorage: LocalStorageService){}
+constructor( private localstorage: LocalStorageService,
+  private search: SearchService){}
 flagMenu: boolean = false;
 flagUser: boolean = false;
 flagBuscar: boolean = false;
@@ -23,9 +26,9 @@ ngOnInit(): void {
 
   // Variables selector
   nombrePlato: string= "";
-  tipoPlato: string = '';
-  pMin: string = '';
-  pMax: string = '';
+  tipoPlato: number = 0;
+  pMin: number = 0;
+  pMax: number = 0;
   //booleanos selector
   celiaco: boolean = false;
   lactosa: boolean = false;
@@ -55,29 +58,11 @@ ngOnInit(): void {
     } else this.flagCarrito = false;
   }
 
-  json: any;
 
   filtrarPlatos(): void {
-    console.log('Tipo de plato: ' + this.tipoPlato);
-    console.log("Nombre del plato: " + this.nombrePlato);
-    console.log('Precio minimo: ' + this.pMin);
-    console.log('Precio maximo: ' + this.pMax);
-    console.log('Check celiaco: ' + this.celiaco);
-    console.log('Check lactosa: ' + this.lactosa);
-    console.log('Check vegano: ' + this.vegano);
-
-    this.json = [
-      {
-        tipoPlato: this.tipoPlato,
-        nombrePlato: this.nombrePlato,
-        pMin: this.pMin,
-        pMax: this.pMax,
-        celiaco: this.celiaco,
-        lactosa: this.lactosa,
-        vegano: this.vegano
-      },
-    ];
-    console.log('JSON ' + this.json);
-
+    const PMAX = (this.pMax == 0)?100:this.pMax;
+    const busqueda: Search = new Search(this.tipoPlato,this.nombrePlato,this.pMin,PMAX,
+    this.celiaco,this.lactosa,this.vegano);
+      this.search.disparador.emit({data:busqueda});
   }
 }
