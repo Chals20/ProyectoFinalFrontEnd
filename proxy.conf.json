@@ -1,0 +1,7 @@
+{
+    "/appi/*":{
+        "targert":"http://proyectofinalbackend-production.up.railway.app",
+        "secure":false,
+        "logLevel": "debug"
+    }
+}

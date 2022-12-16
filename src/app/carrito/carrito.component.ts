@@ -15,19 +15,18 @@ export class CarritoComponent implements OnInit{
               private localStorage: LocalStorageService){}
   jsonCarrito: Dish[] = [];
   total: number = 0;
-  time: number = 12.00;
+ 
   clientId: number = 0;
-  times = ["12.00","12.15","12.30","12.45","13.00","13.15",
-  "13.30","13.45","14.00","14.15","14.30","14.45","15.00","15.15","15.30","15.45","16.00"];
+
     //service transfer data from card inside carrito
   ngOnInit():void {
-    this.carritoService.disparadorCarrito.subscribe(data => {
-      if(!this.isExists(data.data.id)){
-        this.jsonCarrito.push(data.data);
-        this.total += (data.data.amount * data.data.price); 
-      }
-
-    });
+      this.carritoService.disparadorCarrito.subscribe(data => {
+        if(!this.isExists(data.data.id)){
+          this.jsonCarrito.push(data.data);
+          this.total += (data.data.amount * data.data.price); 
+        }
+      });
+       this.updateCarrito();
   }
   //control of exist a element inside carrito
   isExists(id:number){
@@ -50,6 +49,7 @@ export class CarritoComponent implements OnInit{
         this.total = parseFloat(n.toFixed(2));
       }
     });
+    this.updateCarrito();
   }
 
   //decrement in 1 the amout of carrito;
@@ -63,11 +63,29 @@ export class CarritoComponent implements OnInit{
  // if(e.amout == 0) hay que utilizar el filter para que cuando llegue a 0 se elimine;
    this.jsonCarrito = this.jsonCarrito.filter((item:any) => item.amount !== 0);
     });
+    this.updateCarrito();
   }
 
   //load transfer that as in carrito
   makeTransfer():void{
-    this.localStorage.setItem("carrito",this.jsonCarrito);
+    this.updateCarrito();
+
   }
 
+  updateCarrito():void{
+    this.localStorage.setItem("carrito",this.jsonCarrito);
+  }
 }
+
+/**
+ 
+ngOnInit():void {
+    this.carritoService.disparadorCarrito.subscribe(data => {
+      if(!this.isExists(data.data.id)){
+        this.jsonCarrito.push(data.data);
+        this.total += (data.data.amount * data.data.price); 
+      }
+      this.updateCarrito();
+    });
+  }
+ */
