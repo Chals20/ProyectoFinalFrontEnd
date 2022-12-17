@@ -1,0 +1,22 @@
+<div class="container" style="border: solid;">
+    <h1>Seleccione La Fecha para ver las Ordenes</h1>
+    <input type="date" (change)="SendDataonChange($event)" style="margin: 5px 0px 0px 10px;" />
+    <button class="btn btn-primary" style="margin-left: 20px;" (click)="search()">Buscar</button>
+    <br>
+    <div class="container">
+        <div class="row" style="justify-content: space-around; margin: 100px auto;">
+            <div class="cardPedido col-4"  *ngFor="let order of json; let index" style="background-color: #FEBA0B; margin-top: 10px;">
+                <div class="card-body">
+                    <h5 class="card-title"><strong>Fecha: {{order.date}} <br> Hora: {{order.hora}} </strong></h5>
+                    <br>
+                    <ul type="A" class="listaPlatos">
+                        <li *ngFor="let p of order.listDish"><strong>{{p.name}} - {{p.price}}€ x{{p.amount}}
+                            = {{p.price*p.amount}}€ </strong></li>
+                    </ul>
+                    <h5><strong>Total: {{order.total}} €</strong></h5>
+                    <a href="#" class="btn btn-primary">Repetir pedido</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

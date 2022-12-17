@@ -13,7 +13,7 @@ export class AppComponent implements OnInit {
   constructor(private localstorage: LocalStorageService){}
   ngOnInit(): void {
     this.localstorage.setItem("carrito",null);
-    const user : User = new User(0,"","","","USER"); 
+    const user : User = new User(1,"","","","USER"); 
     this.localstorage.setItem("user",user);
   }
 }

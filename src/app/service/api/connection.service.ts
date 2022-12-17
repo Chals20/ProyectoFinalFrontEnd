@@ -29,4 +29,19 @@ export class ConnectionService {
     const send = this.url + "/dishes/buscador"
     return this.http.post<any>(send,body);
   }
+
+  getDishOrder(id:number):Observable<any>{
+    const send = this.url + "/dishes/findByOrder/"+id;
+    return this.http.get<any>(send);
+  }
+
+  getOrderByUser(id:number,date:string):Observable<any>{
+    const send = this.url + "/orders/searchOrder/" +id + "/ "+ date;
+    return this.http.get<any>(send);
+  }
+
+  getOrderByDate(date:string):Observable<any>{
+    const send = this.url + "/orders/searchOrderByDate/"+ date;
+    return this.http.get<any>(send);
+  }
 }
