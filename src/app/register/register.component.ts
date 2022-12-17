@@ -1,5 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
+import { waitForAsync } from '@angular/core/testing';
+import { delay } from 'rxjs';
 import { User } from '../models/User';
 import { ConnectionService } from '../service/api/connection.service';
 import { LocalStorageService } from '../service/local-storage.service';
@@ -35,48 +37,59 @@ export class RegisterComponent {
     );
   }
 
-  handleSubmit() {
-    const form = {
-      username: this.username,
-      email: this.email1,
-      password: this.pass1,
-      rol: {
-        id: 2,
-      },
-    };
-
+  async comprobacion(form: any) {
     //Primero comprobamos si el email o el username estan cogidos:
+
+    //Esta email?
     this.connection.getIfExistsByEmail(form.email).subscribe((res: any) => {
       console.log('Esto es respuesta de getIfExistsbyEmail ' + res);
       this.respuestaSearchEmail = res;
     });
 
-    if (this.respuestaSearchEmail === true) {
-      this.connection
-        .getIfExistsByUsername(form.username)
-        .subscribe((res: any) => {
-          console.log('Esto es respuesta de getIfExistsByUsername ' + res);
-          this.respuestaSearchUser = res;
-        });
-    }
-
-    //Si no ha encontrado NINGUNO de ellos significa que podemos crear el usuario nuevo
-    if (!this.respuestaSearchUser && !this.respuestaSearchEmail) {
-      this.connection.postUser(form).subscribe((res: any) => {
-        console.log('Esto es la respuesta de postUser ' + res);
-        this.respuestaPostUser = res;
+    this.connection
+      .getIfExistsByUsername(form.username)
+      .subscribe((res: any) => {
+        console.log('Esto es respuesta de getIfExistsByUsername ' + res);
+        this.respuestaSearchUser = res;
       });
+  }
 
-      //Volvemos a buscar el usuario que ahora si que estara en la base de datos para obtener todos los datos
-      //incluido el ID que depende del backend
-      if (this.respuestaSearchEmail === true) {
-        this.connection
-          .getIfExistsByUsername(form.username)
-          .subscribe((res: any) => {
-            console.log('Esto es respuesta de getIfExistsByUsername ' + res);
-            this.respuestaSearchUser = res;
-          });
+  async registro(form: any) {
+    this.connection.postUser(form).subscribe((res: any) => {
+      console.log('Esto es la respuesta de postUser ' + res);
+      this.respuestaPostUser = res;
+    });
+  }
+
+  async login(form: any) {
+    const Swal = require('sweetalert2');
+    this.connection.getIfExistsByUsername(form.username).subscribe(
+      (res: any) => {
+        console.log('Esto es respuesta de getIfExistsByUsername ' + res);
+        this.respuestaSearchUser = res;
+        Swal.fire({
+          title: 'success',
+          text: 'Session iniciada correctamente',
+          icon: 'success',
+          confirmButtonText: 'Aceptar',
+        });
+      },
+      (error: any) => {
+        console.log(error);
+        Swal.fire({
+          text: 'Login incorrecto',
+          icon: 'error',
+        });
       }
+    );
+
+    await this.crearUserLocal();
+
+  }
+
+  async crearUserLocal(){
+    console.log("Crear user Local");
+
       const user: User = new User(
         this.respuestaSearchUser.id,
         this.respuestaSearchUser.username,
@@ -86,6 +99,32 @@ export class RegisterComponent {
       );
       console.log('Este es el USER');
       console.log(user);
+
+  }
+
+  async handleSubmit() {
+    const form = {
+      username: this.username,
+      email: this.email1,
+      password: this.pass1,
+      rol: {
+        id: 2,
+      },
+    };
+
+    await this.comprobacion(form);
+
+    //Si no ha encontrado NINGUNO de ellos significa que podemos crear el usuario nuevo
+    if (!this.respuestaSearchUser && !this.respuestaSearchEmail) {
+      //Hacemos el post del nuevo usuario.
+      await this.registro(form);
+
+      //Volvemos a buscar el usuario que ahora si que estara en la base de datos para obtener todos los datos
+      //incluido el ID que depende del backend
+      await this.login(form);
+
+
+
     }
   }
 }
