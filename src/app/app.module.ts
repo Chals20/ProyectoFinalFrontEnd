@@ -19,6 +19,7 @@ import { TicketComponent } from './ticket/ticket.component';
 import { FormsModule } from '@angular/forms';
 import { AboutComponent } from './about/about.component';
 import { PerfilComponent } from './perfil/perfil.component';
+import { ShowOrdersComponent } from './show-orders/show-orders.component';
 
 
 @NgModule({
@@ -36,7 +37,8 @@ import { PerfilComponent } from './perfil/perfil.component';
     CarritoComponent,
     TicketComponent,
     AboutComponent,
-    PerfilComponent
+    PerfilComponent,
+    ShowOrdersComponent
   ],
   imports: [
     BrowserModule,

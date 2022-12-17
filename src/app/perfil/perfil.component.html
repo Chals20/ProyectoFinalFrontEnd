@@ -1,3 +1,4 @@
+<app-nabvar></app-nabvar>
 <div class="container rounded bg-white mt-5 mb-5">
     <div class="row">
         <div class="col-md-3 border-right">
@@ -15,9 +16,7 @@
                 </div>
                 <div class="row mt-2">
                     <div class="col-md-6">
-                        <label class="labels">Username</label>
-                        <input type="text" class="form-control" placeholder="user.username" value=""
-                            [(ngModel)]="user.userName">
+                        <h4>Username: {{user.userName}}</h4>
                     </div>
                     <div class="col-md-6">
                         <label class="labels">Contraseña</label>
@@ -26,32 +25,30 @@
                     </div>
                 </div>
                 <div class="row mt-3">
-                    <div class="col-md-12"><label class="labels">Email</label><input type="text" class="form-control"
-                            placeholder="user.email" value="" [(ngModel)]="user.email" disabled></div>
+                    <h4>Email: {{user.email}}</h4>
                 </div>
                 <div class="mt-4 text-center">
-                    <button class="btn btn-primary profile-button" type="button">Guardar Perfil</button>
+                    <button class="btn btn-primary" type="button">Guardar Perfil</button>
                 </div>
             </div>
         </div>
         <div class="col-md-4">
             <div class="p-3 py-5">
                 <div class="d-flex justify-content-between align-items-center experience">
-                    <h4>Últimos Pedidos</h4>
+                    <button class="btn btn-primary" (click)="loadPedidos()">Ver pedidos</button>
                 </div>
                 <br>
-                <div class="col-md">
-                    <div class="cardPedido">
+                <div class="col-md" >
+                    <div class="cardPedido"  *ngFor="let order of json; let index" style="background-color: #FEBA0B; margin-top: 10px;">
                         <div class="card-body">
-                            <h5 class="card-title">Pedido #1</h5>
+                            <h5 class="card-title"><strong>Fecha: {{order.date}} <br> Hora: {{order.hora}} </strong></h5>
                             <br>
-                            <p class="fecha"><b>Fecha:</b> XX/XX/XXXX</p>
                             <ul type="A" class="listaPlatos">
-                                <li>Pizza Margarita (unidades)</li>
-                                <li>Empanada (unidades)</li>
+                                <li *ngFor="let p of order.listDish"><strong>{{p.name}} - {{p.price}}€ x{{p.amount}}
+                                    = {{p.price*p.amount}}€ </strong></li>
                             </ul>
-                            <p><b>Precio:</b> X €</p>
-                            <a href="#" class="btn btn-primary order-button">Repetir pedido</a>
+                            <h5><strong>Total: {{order.total}} €</strong></h5>
+                            <a href="#" class="btn btn-primary">Repetir pedido</a>
                         </div>
                     </div>
                 </div>
