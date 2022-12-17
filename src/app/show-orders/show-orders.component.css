@@ -36,6 +36,8 @@ body {
     padding: 15px;
     border-radius: 25px;
     text-align: center;
+    height: max-content;
+    width: max-content;
 }
 
 .order-button {

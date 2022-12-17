@@ -4,7 +4,7 @@ export class Search {
     name:string;
     pmin:number;
     pmax:number;
-    gluten:boolean;
+    glutten:boolean;
     lactosa:boolean;
     vegan:boolean;
     constructor(type:number,name:string,pmin:number,pmax:number,gluten:boolean,
@@ -13,7 +13,7 @@ export class Search {
         this.name = name;
         this.pmin = pmin;
         this.pmax = pmax;
-        this.gluten = gluten;
+        this.glutten = gluten;
         this.lactosa = lactosa;
         this.vegan = vegan;
     }

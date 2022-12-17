@@ -11,9 +11,11 @@ export class AppComponent implements OnInit {
   title = 'Menjador';
  
   constructor(private localstorage: LocalStorageService){}
+
   ngOnInit(): void {
     this.localstorage.setItem("carrito",null);
-    const user : User = new User(0,"","","","USER"); 
+    const user : User = new User(2,"","","","ADMIN"); 
     this.localstorage.setItem("user",user);
+    
   }
 }

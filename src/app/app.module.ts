@@ -20,6 +20,8 @@ import { FormsModule } from '@angular/forms';
 import { AboutComponent } from './about/about.component';
 import { PerfilComponent } from './perfil/perfil.component';
 import { EditorComponent } from './editor/editor.component';
+import { ShowOrdersComponent } from './show-orders/show-orders.component';
+
 
 
 @NgModule({
@@ -38,7 +40,8 @@ import { EditorComponent } from './editor/editor.component';
     TicketComponent,
     AboutComponent,
     PerfilComponent,
-    EditorComponent
+    EditorComponent,
+    ShowOrdersComponent
   ],
   imports: [
     BrowserModule,
