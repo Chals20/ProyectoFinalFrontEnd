@@ -48,8 +48,8 @@
     <div class="container__nav">
       <nav id="nav" [ngClass]="{'move_nav':flagMenu}">
         <ul>
-          <li><a href="#" class="select">Inicio</a></li>
-          <li [ngClass]="{'disable':(flagUser)}"><a href="login">Singin/Singup</a></li>
+          <li><a routerLink="/home" class="select">Inicio</a></li>
+          <li [ngClass]="{'disable':(flagUser)}"><a routerLink="/login">Singin/Singup</a></li>
           <li [ngClass]="{'disable':!(flagUser)}"><a href="#"><img style="width: 50px;"
                 src="https://i.ibb.co/4tSrt7F/image.png" alt="image" border="0"></a></li>
           <li [ngClass]="{'disable':!(flagUser)}"> <button style="border:none; background: transparent;"><img

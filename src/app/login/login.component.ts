@@ -21,6 +21,9 @@ export class LoginComponent {
   url2 = 'https://httpbin.org/post';
 
   respuestaSearch: any;
+  respuestaSearchUser: any;
+  respuestaSearchEmail: any;
+  respuestaLoginUser: any;
 
   json: any;
 
@@ -33,26 +36,75 @@ export class LoginComponent {
     private connection: ConnectionService
   ) {}
 
-  login(): void {
-    console.log(this.email + '\n' + this.pass);
+  async login(form: any) {
+
+    this.connection
+      .getUsernameLogin(form.email, form.pass)
+      .subscribe((res: any) => {
+        console.log('Esto es respuesta de getUsernameLogin(login) ' + res);
+        this.respuestaLoginUser = res;
+      });
+
   }
 
-  handleSubmit() {
+  //Usando respuestaLoginUser que previamente ha guardado el usuario creamos un User.
+  async crearUserLocal() {
+    const Swal = require('sweetalert2');
+    console.log('Crear user Local + datos a continuacion');
+    console.log(this.respuestaLoginUser.id);
+    console.log(this.respuestaLoginUser.username);
+    console.log(this.respuestaLoginUser.email);
+    console.log(this.respuestaLoginUser.password);
+    console.log(this.respuestaLoginUser.rol.name);
+
+    const user: User = new User(
+      this.respuestaLoginUser.id,
+      this.respuestaLoginUser.username,
+      this.respuestaLoginUser.email,
+      this.respuestaLoginUser.password,
+      this.respuestaLoginUser.rol.name
+    );
+    console.log('Este es el USER');
+    console.log(user);
+
+
+    this.localStorage.setItem('user', user);
+    //Mostramos el SWAL con el check
+    Swal.fire({
+      title: 'success',
+      text: 'Session iniciada correctamente',
+      icon: 'success',
+      confirmButtonText: 'Aceptar',
+    });
+  }
+
+  //Comprueba tanto si el email como el username estan cogidos
+  async comprobacion(form: any) {
+    //Primero comprobamos si el email o el username estan cogidos:
+    //Esta email?
+    this.connection.getIfExistsByEmail(form.email).subscribe((res: any) => {
+      console.log('Esto es respuesta de getIfExistsbyEmail ' + res);
+      this.respuestaSearchEmail = res;
+    });
+
+    //Damos la opcion al usuario de usar tambien el Username
+    this.connection.getIfExistsByUsername(form.email).subscribe((res: any) => {
+      console.log('Esto es respuesta de getIfExistsByUsername ' + res);
+      this.respuestaSearchUser = res;
+    });
+  }
+
+  async handleSubmit() {
     const form = {
       email: this.email,
       pass: this.pass,
     };
-    console.log('LOGIN');
-    //Comprobamos si username existe (da booleano)
-    this.connection.getIfExistsByEmail(form.email).subscribe((res: any) => {
-      console.log('Esto es respuesta de getUsername1 ' + res);
-      this.respuestaSearch = res;
-    });
 
-    console.log('Esto es respuestaSearch ' + this.respuestaSearch);
-    //Si hay algun fallo con la conexión a la base de datos
+    await this.comprobacion(form);
+
+    //Si hay algun fallo con la conexión a la base de datos (SWAL NEGATIVO)
     const Swal = require('sweetalert2');
-    if (this.respuestaSearch == false) {
+    if (!this.respuestaSearchEmail && !this.respuestaSearchUser) {
       Swal.fire({
         title: 'Error!',
         text: 'Datos aportados incorrectos.',
@@ -62,59 +114,14 @@ export class LoginComponent {
     }
 
     //Si nos devuelve que es correcto
-
     //NECESITAMOS ESTAR DE ACUERDO SI INICIAMOS SESION CON EL USERNAME O CON EL CORREO
     else {
-      this.connection
-        .getUsernameLogin(form.email, form.pass)
-        .subscribe((res: any) => {
-          console.log('Esto es respuesta de getUsername2 ' + res);
-          this.respuestaSearch = res;
-        });
+      await this.login(form);
 
-        //llenamos el objeto usuario
-      if (this.respuestaSearch !== null) {
-        const user: User = new User(
-          this.respuestaSearch.id,
-          this.respuestaSearch.username,
-          this.respuestaSearch.email,
-          this.respuestaSearch.password,
-          this.respuestaSearch.rol.id
-        );
-        console.log('Este es el USER');
-        console.log(user);
-        this.localStorage.setItem("user2",user);
-        //Mostramos el SWAL con el check
-        Swal.fire({
-          title: 'success',
-          text: 'Session iniciada correctamente',
-          icon: 'success',
-          confirmButtonText: 'Aceptar',
-        });
-      }
-      else{
-
-      }
-
-      //  const pedido: Pedido = new Pedido(1,this.time,this.total,1,this.jsonCarrito);
-      //const user: User = new User(this.respuestaSearch.id, this.respuestaSearch.username, this.respuestaSearch.email,this.respuestaSearch.password,this.respuestaSearch.rol.id);
-      //console.log("Este es el USER");
-      //console.log(user);
+      await this.crearUserLocal();
     }
-
-    /*
-    POST REGISTER
-    if (this.respuestaSearch !== null) {
-      this.connection.postUser(form).subscribe((res: any) => {
-        console.log(res);
-      });
-    }
-
-    */
 
     //Guardar objeto usuario con los datos devueltos por el backend
-
-    //console.log(this.connection.getUsername("pepe"));
 
     // this.connection.postUser(form);
     // this.http.post(this.url2, form).toPromise().then((data:any) => {

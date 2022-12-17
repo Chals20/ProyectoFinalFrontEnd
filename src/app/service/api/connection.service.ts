@@ -45,7 +45,7 @@ export class ConnectionService {
   }
 
   getUsernameLogin(user: String, pass: String):Observable<any>{
-    const send = this.url + `/user/findByUsername/${user}/${pass}`;
+    const send = this.url + `/user/logIn/${user}/${pass}`;
     return  this.http.get<any>(send);
   }
 
