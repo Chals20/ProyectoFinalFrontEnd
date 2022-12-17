@@ -37,7 +37,7 @@ export class ConnectionService {
   }
 
   getOrderByUser(id:number,date:string):Observable<any>{
-    const send = this.url + "/orders/searchOrder/" +id + "/ "+ date;
+    const send = this.url + "/orders/searchOrder/" +id + "/"+ date;
     return this.http.get<any>(send);
   }
 
