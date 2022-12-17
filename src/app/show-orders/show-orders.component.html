@@ -1,4 +1,4 @@
-<div class="container" style="border: solid;">
+<div class="container" style="text-align: center; margin-top: 20px;">
     <h1>Seleccione La Fecha para ver las Ordenes</h1>
     <input type="date" (change)="SendDataonChange($event)" style="margin: 5px 0px 0px 10px;" />
     <button class="btn btn-primary" style="margin-left: 20px;" (click)="search()">Buscar</button>
@@ -14,7 +14,8 @@
                             = {{p.price*p.amount}}€ </strong></li>
                     </ul>
                     <h5><strong>Total: {{order.total}} €</strong></h5>
-                    <a href="#" class="btn btn-primary">Repetir pedido</a>
+                    <h5><strong>Cliente: {{order.user.name}}</strong></h5>
+                    <a href="#" class="btn btn-primary">Ver Cliente</a>
                 </div>
             </div>
         </div>

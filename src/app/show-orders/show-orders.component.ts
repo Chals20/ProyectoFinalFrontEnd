@@ -17,33 +17,37 @@ export class ShowOrdersComponent {
 
   SendDataonChange(event: any) {
     this.fecha=event.target.value;
-    console.log(this.fecha);
     }
 
   search():void{
-    /*if(this.fecha == null){
+    if(this.fecha == null){
       const Swal = require('sweetalert2');
       Swal.fire({
         title: 'Ingrese una Fecha para Realizar la Busqueda',
         icon: 'error',
         confirmButtonText: 'Aceptar'
       })
-    }
-    else{*/
-      this.connection.getOrderByDate("2022-03-12").subscribe((res:any) => {
-        //await res;
-        this.response = res;
-        console.log(res);
-      })
+    }else{
+      this.loadOrders();
       this.loadPedidos();
-    //} 
+    }
   }
 
-  loadPedidos():void{
-    this.response.forEach((e:any) => {
-    this.json.push(new Order(e.id,this.chanceDate(e.date),e.hora,this.getDish(e.id),e.total));
-    });
-    console.log(this.json);
+ loadOrders():void {
+  let aux : any;
+   this.connection.getOrderByDate(this.fecha).subscribe((res:any)  => {
+    this.response = res;
+   });
+    return aux;
+  }
+
+  loadPedidos = async() => {
+      this.response.forEach((e:any) => {
+        const order = new Order(e.id,this.chanceDate(e.date),e.hora,this.getDish(e.id),e.total);
+        order.setUser(e.user.id,e.user.username,e.user.email);
+       this.json.push(order);
+       });
+
   }
 
   getDish(id:number):Dish[]{

@@ -14,10 +14,12 @@ export class CardComponent implements OnInit{
 
 constructor(private carritoService: CarritoserviceService, private localstorage: LocalStorageService) {}
 flagUser:boolean = false;
+flagType:boolean = false;
 
 ngOnInit(): void {
   const aux = JSON.parse(this.localstorage.getItem("user"));
   this.flagUser = (aux.id == 0)?false:true;
+  this.flagType = (aux.rol == "USER")?false:true;
 }
 
     addCarrito(dish:any):void{
@@ -36,7 +38,9 @@ ngOnInit(): void {
           confirmButtonText: 'Aceptar'
         })
       } 
-
     }
 
+    edit(dish:any){
+      console.log(dish);
+    }
 }
