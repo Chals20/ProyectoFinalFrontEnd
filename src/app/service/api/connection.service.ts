@@ -30,6 +30,7 @@ export class ConnectionService {
     return this.http.post<any>(send,body);
   }
 
+
   getDishOrder(id:number):Observable<any>{
     const send = this.url + "/dishes/findByOrder/"+id;
     return this.http.get<any>(send);
@@ -44,4 +45,28 @@ export class ConnectionService {
     const send = this.url + "/orders/searchOrderByDate/"+ date;
     return this.http.get<any>(send);
   }
+
+  //Login
+
+  getIfExistsByUsername(user: String):Observable<any>{
+    const send = this.url + `/user/findByUsername/${user}`;
+    return  this.http.get<any>(send);
+  }
+
+  getIfExistsByEmail(email: String):Observable<any>{
+    const send = this.url + `/user/findByEmail/${email}`;
+    return  this.http.get<any>(send);
+  }
+
+  getUsernameLogin(user: String, pass: String):Observable<any>{
+    const send = this.url + `/user/findByUsername/${user}/${pass}`;
+    return  this.http.get<any>(send);
+  }
+
+  postUser(body: any):Observable<any>{
+    const send = this.url + "/user/save"
+    return this.http.post<any>(send,body);
+  }
+
+
 }
