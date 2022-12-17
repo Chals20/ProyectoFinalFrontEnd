@@ -28,6 +28,7 @@ export class ShowOrdersComponent {
         confirmButtonText: 'Aceptar'
       })
     }else{
+      this.json=[];
       this.loadOrders();
       this.loadPedidos();
     }

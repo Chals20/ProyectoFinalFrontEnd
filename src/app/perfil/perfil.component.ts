@@ -3,6 +3,7 @@ import { Dish } from '../models/Dish';
 import { Order } from '../models/Order';
 import { User } from '../models/User';
 import { ConnectionService } from '../service/api/connection.service';
+import { LocalStorageService } from '../service/local-storage.service';
 
 @Component({
   selector: 'app-perfil',
@@ -10,21 +11,21 @@ import { ConnectionService } from '../service/api/connection.service';
   styleUrls: ['./perfil.component.css']
 })
 export class PerfilComponent implements OnInit {
-  constructor(private connection: ConnectionService){}
-  user:User = {
-    id : 2,
-    userName : "Chals",
-    email : "chals@gmail.com",
-    password : "1234",
-    rol : "USER"
-  }
+  constructor(private connection: ConnectionService, private localStorage: LocalStorageService){}
+  user:User = new User(0,"","","","USER");
   response:any;
   json:Order[] = [];
 
   ngOnInit(): void {
-    this.connection.getOrderByUser(2,"2020-03-03").subscribe((res:any)  =>{
+    const aux = JSON.parse(this.localStorage.getItem("user"));
+    this.user = aux;
+    const date = new Date();
+    const sendDate = ""+ date.getFullYear() + "-" + (date.getMonth()+1) + "-" + (date.getDay()+7);
+    console.log(date + "-" + sendDate + "-" +aux.id + " " + date.getDay());
+    this.connection.getOrderByUser(2,"2022-12-18").subscribe((res:any)  =>{
         this.response = res;
     });
+   console.log(this.response);
   }
 
   loadPedidos():void{
