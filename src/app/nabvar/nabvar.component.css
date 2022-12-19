@@ -1,4 +1,10 @@
 .disable{display: none;}
+.btn-Inicio{
+    border: none;
+    background-color: transparent;
+    color: white;
+    font-size: 20px;
+}
 .buscador{
     z-index: 1;
     position: fixed;

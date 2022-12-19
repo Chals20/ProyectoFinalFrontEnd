@@ -1,5 +1,6 @@
-<div class="container" style="text-align: center; margin-top: 20px;">
-    <h1>Seleccione La Fecha para ver las Ordenes</h1>
+<app-nabvar></app-nabvar>
+<div class="container" style="text-align: center; margin-top: 100px;">
+    <h1>Seleccione la Fecha para ver las Ordenes</h1>
     <input type="date" (change)="SendDataonChange($event)" style="margin: 5px 0px 0px 10px;" />
     <button class="btn btn-primary" style="margin-left: 20px;" (click)="search()">Buscar</button>
     <br>

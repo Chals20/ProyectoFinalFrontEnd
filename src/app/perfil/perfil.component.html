@@ -9,7 +9,7 @@
                 <p>{{user.rol}}</p>
             </div>
         </div>
-        <div class="col-md-5 border-right">
+        <div class="col-md-5 border-right perfil">
             <div class="p-3 py-5">
                 <div class="d-flex justify-content-between align-items-center mb-3">
                     <h4 class="text-right">Perfil</h4>
@@ -28,19 +28,19 @@
                     <h4>Email: {{user.email}}</h4>
                 </div>
                 <div class="mt-4 text-center">
-                    <button class="btn btn-primary" type="button">Guardar Perfil</button>
+                    <button class="btn btn-primary" type="button">Cambiar Contraseña</button>
                 </div>
             </div>
         </div>
         <div class="col-md-4">
             <div class="p-3 py-5">
-                <div class="d-flex justify-content-between align-items-center experience">
+                <div class="d-flex justify-content-between align-items-center experience mt-5">
                     <button class="btn btn-primary" style="margin: auto;" (click)="loadPedidos()">Ver pedidos</button>
                 </div>
                 <br>
-                <div class="col-md" style="overflow:scroll;height:600px;padding: 10px; border: solid;" 
+                <div class="col-md" style="overflow:scroll;height:400px;padding: 10px;" 
                     *ngIf="!(json.length == 0)">
-                    <div class="cardPedido"  *ngFor="let order of json; let index" style="background-color: #FEBA0B; margin-top: 10px;">
+                    <div class="cardPedido"  *ngFor="let order of json; let index">
                         <div class="card-body">
                             <h5 class="card-title"><strong>Fecha: {{order.date}} <br> Hora: {{order.hora}} </strong></h5>
                             <br>
@@ -57,4 +57,3 @@
         </div>
     </div>
 </div>
-<app-footbar></app-footbar>
