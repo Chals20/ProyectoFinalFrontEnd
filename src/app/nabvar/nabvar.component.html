@@ -49,7 +49,7 @@
       <nav id="nav" [ngClass]="{'move_nav':flagMenu}">
         <ul>
           <li><Button class="btn-Inicio" routerLink="/Home">Inicio</Button></li>
-          <li [ngClass]="{'disable':(flagUser)}"><a href="login">Singin/Singup</a></li>
+          <li [ngClass]="{'disable':(flagUser)}"><a routerLink="/login">Singin/Singup</a></li>
           <li [ngClass]="{'disable':!(flagUser)}"><button style="border:none; background: transparent;"
             routerLink="/profile"><img style="width: 50px;"
                 src="https://i.ibb.co/4tSrt7F/image.png" alt="image" border="0"></button></li>

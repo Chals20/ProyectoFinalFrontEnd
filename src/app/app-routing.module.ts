@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { EditorComponent } from './editor/editor.component';
 import { HomeComponent } from './home/home.component';
 import { PerfilComponent } from './perfil/perfil.component';
 import { ShowOrdersComponent } from './show-orders/show-orders.component';
@@ -15,9 +16,12 @@ const routes: Routes = [
   {path: 'showOrders',component: ShowOrdersComponent},
   {path: 'register', component: RegisterComponent},
   {path: 'login', component: LoginComponent},
+  {path: 'editor', component: EditorComponent},
   {path: 'graficas',component: GraficasComponent},
   {path: '', redirectTo: '/home', pathMatch: 'full'},
-  {path:'**',component: HomeComponent}
+  {path:'**',component: HomeComponent} //Este siempre al final de todo
+
+
 
 
 ];
