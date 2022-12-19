@@ -21,6 +21,7 @@ import { AboutComponent } from './about/about.component';
 import { PerfilComponent } from './perfil/perfil.component';
 import { EditorComponent } from './editor/editor.component';
 import { ShowOrdersComponent } from './show-orders/show-orders.component';
+import { CrearPlatoComponent } from './crear-plato/crear-plato.component';
 
 
 
@@ -41,7 +42,8 @@ import { ShowOrdersComponent } from './show-orders/show-orders.component';
     AboutComponent,
     PerfilComponent,
     EditorComponent,
-    ShowOrdersComponent
+    ShowOrdersComponent,
+    CrearPlatoComponent
   ],
   imports: [
     BrowserModule,
