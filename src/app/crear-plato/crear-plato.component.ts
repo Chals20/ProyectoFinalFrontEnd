@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { delay } from 'rxjs';
 import { ConnectionService } from '../service/api/connection.service';
 import { EditDishService } from '../service/edit-dish.service';
-import { SearchService } from '../service/search.service';
 
 @Component({
   selector: 'app-crear-plato',
@@ -12,7 +10,6 @@ import { SearchService } from '../service/search.service';
 })
 export class CrearPlatoComponent implements OnInit {
 
-  json: any = [];
   id: String = '';
   img: String = '';
   name: String = '';
@@ -20,7 +17,7 @@ export class CrearPlatoComponent implements OnInit {
   category: String = '';
   alergeno: String = '';
 
-  vegano: boolean = false;
+  vegano: boolean = true;
   lacteo: boolean = false;
   celiaco: boolean = false;
 
@@ -38,9 +35,14 @@ export class CrearPlatoComponent implements OnInit {
     return condicion ? '1' : '0'
   }
 
+  cambioVariableVeg(condicion:boolean): String{
+    return condicion ? '0' : '1'
+  }
   cambioVegano(){
     this.vegano = !this.vegano;
-    this.veg = this.cambioVariable(this.vegano);
+    this.veg = this.cambioVariableVeg(this.vegano);
+    console.log(this.vegano," bool vegano")
+    console.log(this.veg,"veg")
   }
 
   cambioCeliaco(){
@@ -73,28 +75,24 @@ export class CrearPlatoComponent implements OnInit {
     else if (this.lacteo && !this.celiaco && this.vegano){
       this.alergeno = "6";
     }
-
     console.log("vegano " + this.vegano)
     console.log("celiaco " + this.celiaco)
     console.log("lacteo " + this.lacteo)
     console.log("alergeno " + this.alergeno)
   }
 
-
-
-
   async create(form: any) {
     const Swal = require('sweetalert2');
-    //Cambiar servicio
     this.connection.postNewDish(form).subscribe(
       (res: any) => {
         console.log('Esto es respuesta de postNewDish ' + res);
         Swal.fire({
           title: 'success',
-          text: 'Plato actualizado correctamente',
+          text: 'Plato creado correctamente',
           icon: 'success',
           confirmButtonText: 'Aceptar',
         });
+        this.router.navigate(['/home']);
       },
       (error: any) => {
         console.log(error);
@@ -105,9 +103,6 @@ export class CrearPlatoComponent implements OnInit {
       }
     );
   }
-
-
-
 
   async handleSubmit() {
     this.alergenos();
@@ -122,22 +117,13 @@ export class CrearPlatoComponent implements OnInit {
         id: this.alergeno,
       },
     };
-
     console.log(form);
-
-
-
-    await this.create(form); //Funciona
+    await this.create(form);
   }
 
   ngOnInit(): void {
-    this.id = this.dishService.dish.id;
-    this.img = this.dishService.dish.img;
-    this.name = this.dishService.dish.name;
-    this.price = this.dishService.dish.price;
-    this.category = this.dishService.dish.category;
-    this.veg = this.dishService.dish.alergeno.vegan;
-    this.lac = this.dishService.dish.alergeno.lacteos;
-    this.cel = this.dishService.dish.alergeno.gluten;
+    this.veg = 0;
+    this.lac = 0;
+    this.cel = 0;
   }
 }

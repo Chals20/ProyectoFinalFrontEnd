@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { delay } from 'rxjs';
 import { ConnectionService } from '../service/api/connection.service';
 import { EditDishService } from '../service/edit-dish.service';
-import { SearchService } from '../service/search.service';
 
 @Component({
   selector: 'app-editor',
@@ -12,7 +10,6 @@ import { SearchService } from '../service/search.service';
 })
 export class EditorComponent implements OnInit {
 
-  json: any = [];
   id: String = '';
   img: String = '';
   name: String = '';
@@ -20,7 +17,7 @@ export class EditorComponent implements OnInit {
   category: String = '';
   alergeno: String = '';
 
-  vegano: boolean = false;
+  vegano: boolean = true;
   lacteo: boolean = false;
   celiaco: boolean = false;
 
@@ -38,9 +35,14 @@ export class EditorComponent implements OnInit {
     return condicion ? '1' : '0'
   }
 
+  cambioVariableVeg(condicion:boolean): String{
+    return condicion ? '0' : '1'
+  }
   cambioVegano(){
     this.vegano = !this.vegano;
-    this.veg = this.cambioVariable(this.vegano);
+    this.veg = this.cambioVariableVeg(this.vegano);
+    console.log(this.vegano," bool vegano")
+    console.log(this.veg,"veg")
   }
 
   cambioCeliaco(){
@@ -80,35 +82,10 @@ export class EditorComponent implements OnInit {
     console.log("alergeno " + this.alergeno)
   }
 
-
-
-
-  async create(form: any) {
-    const Swal = require('sweetalert2');
-    //Cambiar servicio
-    this.connection.postNewDish(form).subscribe(
-      (res: any) => {
-        console.log('Esto es respuesta de postNewDish ' + res);
-        Swal.fire({
-          title: 'success',
-          text: 'Plato actualizado correctamente',
-          icon: 'success',
-          confirmButtonText: 'Aceptar',
-        });
-      },
-      (error: any) => {
-        console.log(error);
-        Swal.fire({
-          text: 'Fallo al conectar a la base de datos',
-          icon: 'error',
-        });
-      }
-    );
-  }
-
   async update(form: any) {
     const Swal = require('sweetalert2');
     //Cambiar servicio (Introducir id de forma dinamica)
+    console.log(form);
     this.connection.updateDishFromId(this.id,form).subscribe(
       (res: any) => {
         console.log('Esto es respuesta de updateDishFromId ' + res);
@@ -118,7 +95,15 @@ export class EditorComponent implements OnInit {
           icon: 'success',
           confirmButtonText: 'Aceptar',
         });
+        this.router.navigate(['/home']);
       },
+      (error: any) => {
+        console.log(error);
+        Swal.fire({
+          text: 'Fallo al conectar a la base de datos',
+          icon: 'error',
+        });
+      }
     );
   }
 
@@ -135,12 +120,16 @@ export class EditorComponent implements OnInit {
           icon: 'success',
           confirmButtonText: 'Aceptar',
         });
-        setTimeout (() => {
-          this.router.navigate(['/home']);
-        }, 5100);
+        this.router.navigate(['/home']);
       },
+      (error: any) => {
+        console.log(error);
+        Swal.fire({
+          text: 'Fallo al conectar a la base de datos',
+          icon: 'error',
+        });
+      }
     );
-
   }
 
 
@@ -158,12 +147,7 @@ export class EditorComponent implements OnInit {
         id: this.alergeno,
       },
     };
-
-    console.log(form);
-
     await this.update(form);
-
-
     //await this.create(form); //Funciona
   }
 
@@ -173,8 +157,8 @@ export class EditorComponent implements OnInit {
     this.name = this.dishService.dish.name;
     this.price = this.dishService.dish.price;
     this.category = this.dishService.dish.category;
-    this.veg = this.dishService.dish.alergeno.vegan;
-    this.lac = this.dishService.dish.alergeno.lacteos;
-    this.cel = this.dishService.dish.alergeno.gluten;
+    this.veg = 0;
+    this.lac = 0;
+    this.cel = 0;
   }
 }
