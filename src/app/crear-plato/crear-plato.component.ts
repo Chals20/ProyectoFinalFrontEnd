@@ -6,11 +6,11 @@ import { EditDishService } from '../service/edit-dish.service';
 import { SearchService } from '../service/search.service';
 
 @Component({
-  selector: 'app-editor',
-  templateUrl: './editor.component.html',
-  styleUrls: ['./editor.component.css'],
+  selector: 'app-crear-plato',
+  templateUrl: './crear-plato.component.html',
+  styleUrls: ['./crear-plato.component.css']
 })
-export class EditorComponent implements OnInit {
+export class CrearPlatoComponent implements OnInit {
 
   json: any = [];
   id: String = '';
@@ -106,42 +106,6 @@ export class EditorComponent implements OnInit {
     );
   }
 
-  async update(form: any) {
-    const Swal = require('sweetalert2');
-    //Cambiar servicio (Introducir id de forma dinamica)
-    this.connection.updateDishFromId(this.id,form).subscribe(
-      (res: any) => {
-        console.log('Esto es respuesta de updateDishFromId ' + res);
-        Swal.fire({
-          title: 'success',
-          text: 'Plato actualizado correctamente',
-          icon: 'success',
-          confirmButtonText: 'Aceptar',
-        });
-      },
-    );
-  }
-
-
-  async eliminar() {
-    const Swal = require('sweetalert2');
-    //Cambiar servicio (Introducir id de forma dinamica)
-    this.connection.deleteDishFromId(this.id).subscribe(
-      (res: any) => {
-        console.log('Esto es respuesta de deleteDishFromId ' + res);
-        Swal.fire({
-          title: 'success',
-          text: 'Plato eliminado correctamente',
-          icon: 'success',
-          confirmButtonText: 'Aceptar',
-        });
-        setTimeout (() => {
-          this.router.navigate(['/home']);
-        }, 5100);
-      },
-    );
-
-  }
 
 
 
@@ -161,10 +125,9 @@ export class EditorComponent implements OnInit {
 
     console.log(form);
 
-    await this.update(form);
 
 
-    //await this.create(form); //Funciona
+    await this.create(form); //Funciona
   }
 
   ngOnInit(): void {
