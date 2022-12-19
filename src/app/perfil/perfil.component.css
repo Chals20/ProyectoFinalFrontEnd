@@ -1,12 +1,17 @@
 body {
     background: #2196f3
 }
-
+.perfil{
+    margin-top: 50px;
+}
 .form-control:focus {
     box-shadow: none;
     border-color: #2196f3
 }
-
+.cardPedido{
+    background-color: hsla(43, 99%, 52%, 0.897);
+    margin-top: 10px;
+}
 .profile-button {
     background: #47B39D;
     box-shadow: none;
@@ -55,5 +60,8 @@ body {
 @media screen and (max-width: 760px){
     .cardPedido{
         width: 300px;
+    }
+    .perfil{
+        margin-top: 0px;
     }
 }

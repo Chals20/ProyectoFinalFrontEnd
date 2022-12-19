@@ -6,14 +6,16 @@ import { ShowOrdersComponent } from './show-orders/show-orders.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { TicketComponent } from './ticket/ticket.component';
+import { GraficasComponent } from './graficas/graficas.component';
 
 const routes: Routes = [
   {path:'home', component: HomeComponent},
   {path:'ticket',component: TicketComponent},
   {path: 'profile',component: PerfilComponent},
   {path: 'showOrders',component: ShowOrdersComponent},
-   {path: 'register', component: RegisterComponent},
+  {path: 'register', component: RegisterComponent},
   {path: 'login', component: LoginComponent},
+  {path: 'graficas',component: GraficasComponent},
   {path: '', redirectTo: '/home', pathMatch: 'full'},
   {path:'**',component: HomeComponent}
 

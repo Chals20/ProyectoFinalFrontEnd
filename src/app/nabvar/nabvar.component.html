@@ -1,4 +1,4 @@
-<header id="header">
+<header id="header" style="border: none;">
   <div class="container__header">
     <div class="logo">
       <!-- <input type="text" placeholder="Buscar" class="input-buscar" (click)="buscar()"> -->
@@ -48,7 +48,7 @@
     <div class="container__nav">
       <nav id="nav" [ngClass]="{'move_nav':flagMenu}">
         <ul>
-          <li><a href="#" class="select">Inicio</a></li>
+          <li><Button class="btn-Inicio" routerLink="/Home">Inicio</Button></li>
           <li [ngClass]="{'disable':(flagUser)}"><a href="login">Singin/Singup</a></li>
           <li [ngClass]="{'disable':!(flagUser)}"><button style="border:none; background: transparent;"
             routerLink="/profile"><img style="width: 50px;"
