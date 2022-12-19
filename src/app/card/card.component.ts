@@ -3,16 +3,18 @@ import { CarritoserviceService } from '../service/carritoservice.service';
 import { Dish } from '../models/Dish';
 import { LocalStorageService } from '../service/local-storage.service';
 import Swal  from 'sweetalert2';
+import { EditDishService } from '../service/edit-dish.service';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-card',
   templateUrl: './card.component.html',
   styleUrls: ['./card.component.css']
 })
 export class CardComponent implements OnInit{
-  
+
 @Input() dish : any;
 
-constructor(private carritoService: CarritoserviceService, private localstorage: LocalStorageService) {}
+constructor(private carritoService: CarritoserviceService,private router:Router ,private localstorage: LocalStorageService, public dishService: EditDishService) {}
 flagUser:boolean = false;
 flagType:boolean = false;
 
@@ -37,10 +39,12 @@ ngOnInit(): void {
           icon: 'question',
           confirmButtonText: 'Aceptar'
         })
-      } 
+      }
     }
 
-    edit(dish:any){
-      console.log(dish);
+    edit(){
+      this.dishService.setDish(this.dish)
+      this.router.navigate(["editor"])
+
     }
 }

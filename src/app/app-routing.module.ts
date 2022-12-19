@@ -15,7 +15,7 @@ const routes: Routes = [
   {path: 'showOrders',component: ShowOrdersComponent},
   {path: 'register', component: RegisterComponent},
   {path: 'login', component: LoginComponent},
-  {path: 'editor', component: EditorComponent},  
+  {path: 'editor', component: EditorComponent},
   {path: '', redirectTo: '/home', pathMatch: 'full'},
   {path:'**',component: HomeComponent} //Este siempre al final de todo
 
