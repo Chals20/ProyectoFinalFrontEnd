@@ -19,10 +19,6 @@ export class PerfilComponent implements OnInit {
   ngOnInit(): void {
     const aux = JSON.parse(this.localStorage.getItem("user"));
     this.user = aux;
-    const date = new Date();
-    const sendDate = ""+ date.getFullYear() + "-" + (date.getMonth()+1) + "-" + (date.getDay()+7);
-    console.log(date + "-" + sendDate + "-" +aux.id + " " + date.getDay());
-
   }
 
   loadPedidos():void{
@@ -35,10 +31,23 @@ export class PerfilComponent implements OnInit {
       showConfirmButton: false,
       timer: 1000,
   }); 
-    this.connection.getOrderByUser(this.user.id,"2022-12-18").subscribe((res:any)  =>{
+
+    this.connection.getOrderByUser(this.user.id,this.dateToBack()).subscribe((res:any)  =>{
       this.loadJson(res);
   });
   }
+  
+  dateToBack():string{
+    const date = new Date();
+    const str = date.toLocaleString();
+    let day = "";
+    for (let index = 0; index < str.length; index++) {
+        if(str[index] != "/") day+=str[index];
+        else break;
+    } 
+    const result = date.getFullYear() + "-"+ (date.getMonth()+1) + "-"+ day;
+    return result; 
+}
 
   loadJson(res:any):void{
     if(res.length != 0){

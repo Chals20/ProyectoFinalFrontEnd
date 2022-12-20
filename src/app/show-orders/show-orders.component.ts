@@ -29,6 +29,7 @@ export class ShowOrdersComponent {
         confirmButtonText: 'Aceptar'
       })
     }else{
+      console.log(this.fecha);
       this.json=[];
       this.loadOrders();
     }
