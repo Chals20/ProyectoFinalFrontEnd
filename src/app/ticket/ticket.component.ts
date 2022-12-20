@@ -67,6 +67,7 @@ export class TicketComponent implements OnInit{
       Swal.fire({
         title: 'Ingrese una Fecha Posterior al Día de Hoy',
         icon: 'error',
+        confirmButtonColor: "#FEBA0B",
         confirmButtonText: 'Aceptar'
       })
     } 
@@ -79,6 +80,7 @@ export class TicketComponent implements OnInit{
         Swal.fire({
           title: 'Pedido Realizado Con Exito',
           icon: 'success',
+          confirmButtonColor: "#FEBA0B",
           confirmButtonText: 'Aceptar'
         });
       }else if(this.total == 0){
@@ -86,6 +88,7 @@ export class TicketComponent implements OnInit{
           title: 'Error!',
           text: 'No se puede realizar la compra si el carrito esta vacío',
           icon: 'error',
+          confirmButtonColor: "#FEBA0B",
           confirmButtonText: 'Aceptar'
         })
       }else {
@@ -93,6 +96,7 @@ export class TicketComponent implements OnInit{
           title: 'Error!',
           text: 'Corrobore los Datos',
           icon: 'error',
+          confirmButtonColor: "#FEBA0B",
           confirmButtonText: 'Aceptar'
         })
       }

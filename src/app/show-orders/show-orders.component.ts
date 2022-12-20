@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { waitForDebugger } from 'inspector';
 import { Dish } from '../models/Dish';
 import { Order } from '../models/Order';
 import { ConnectionService } from '../service/api/connection.service';
@@ -13,7 +14,6 @@ export class ShowOrdersComponent {
   constructor(private connection: ConnectionService){}
   fecha:any|string=null;
   json:Order[]= [];
-  response:any;
 
   SendDataonChange(event: any) {
     this.fecha=event.target.value;
@@ -25,32 +25,50 @@ export class ShowOrdersComponent {
       Swal.fire({
         title: 'Ingrese una Fecha para Realizar la Busqueda',
         icon: 'error',
+        confirmButtonColor: "#FEBA0B",
         confirmButtonText: 'Aceptar'
       })
     }else{
       this.json=[];
       this.loadOrders();
-      this.loadPedidos();
     }
   }
 
- loadOrders():void {
-  let aux : any;
-   this.connection.getOrderByDate(this.fecha).subscribe((res:any)  => {
-    this.response = res;
-   });
-    return aux;
+
+ loadOrders():void{
+  const Swal = require('sweetalert2');
+  Swal.fire({
+    title: 'Cargando Datos...',
+    allowEscapeKey: false,
+    allowOutsideClick: false,
+    background: '#19191a',
+    showConfirmButton: false,
+    timer: 1000,
+}); 
+    this.connection.getOrderByDate(this.fecha).subscribe((res:any)  => {
+      this.loadPedidos(res);
+     });
   }
 
-  loadPedidos = async() => {
-      this.response.forEach((e:any) => {
+  loadPedidos(res:any):void{
+    if(res.length != 0){
+      res.forEach((e:any) => {
         const order = new Order(e.id,this.chanceDate(e.date),e.hora,this.getDish(e.id),e.total);
         order.setUser(e.user.id,e.user.username,e.user.email);
        this.json.push(order);
-       });
-
-  }
-
+      });
+    }else{
+      const Swal = require('sweetalert2');
+      Swal.fire({
+        title: this.fecha,
+        text: "No hay pedidos",
+        confirmButtonColor: "#FEBA0B",
+        confirmButtonText: 'Aceptar'
+    });
+    }
+      
+}
+    
   getDish(id:number):Dish[]{
     let listDish: Dish[] = [];
     this.connection.getDishOrder(id).subscribe((res:any) => {
@@ -65,4 +83,19 @@ export class ShowOrdersComponent {
         let fecha: string = new Date(date).toLocaleDateString()
         return fecha;
       }
+
+      showDish(order:Order):void{
+        let show :string="";
+        order.listDish.forEach((e:Dish) => {
+          const string = `${e.name}: ${e.price}€ x ${e.amount} = ${(e.price * e.amount)} </br> `; 
+          show+=string;
+        });
+        const Swal = require('sweetalert2');
+        Swal.fire({
+          title: 'Pedido',
+          html:show,
+          confirmButtonColor: "#FEBA0B",
+          confirmButtonText: 'Aceptar'
+      });
+    }
 }

@@ -7,6 +7,8 @@ import { ShowOrdersComponent } from './show-orders/show-orders.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { TicketComponent } from './ticket/ticket.component';
+import { GraficasComponent } from './graficas/graficas.component';
+import { CrearPlatoComponent } from './crear-plato/crear-plato.component';
 
 const routes: Routes = [
   {path:'home', component: HomeComponent},
@@ -15,7 +17,9 @@ const routes: Routes = [
   {path: 'showOrders',component: ShowOrdersComponent},
   {path: 'register', component: RegisterComponent},
   {path: 'login', component: LoginComponent},
-  {path: 'editor', component: EditorComponent},  
+  {path: 'editor', component: EditorComponent},
+  {path: 'nuevoPlato',component: CrearPlatoComponent},
+  {path: 'graficas',component: GraficasComponent},
   {path: '', redirectTo: '/home', pathMatch: 'full'},
   {path:'**',component: HomeComponent} //Este siempre al final de todo
 

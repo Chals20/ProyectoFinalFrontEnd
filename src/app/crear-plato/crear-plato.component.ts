@@ -4,11 +4,11 @@ import { ConnectionService } from '../service/api/connection.service';
 import { EditDishService } from '../service/edit-dish.service';
 
 @Component({
-  selector: 'app-editor',
-  templateUrl: './editor.component.html',
-  styleUrls: ['./editor.component.css'],
+  selector: 'app-crear-plato',
+  templateUrl: './crear-plato.component.html',
+  styleUrls: ['./crear-plato.component.css']
 })
-export class EditorComponent implements OnInit {
+export class CrearPlatoComponent implements OnInit {
 
   id: String = '';
   img: String = '';
@@ -75,23 +75,20 @@ export class EditorComponent implements OnInit {
     else if (this.lacteo && !this.celiaco && this.vegano){
       this.alergeno = "6";
     }
-
     console.log("vegano " + this.vegano)
     console.log("celiaco " + this.celiaco)
     console.log("lacteo " + this.lacteo)
     console.log("alergeno " + this.alergeno)
   }
 
-  async update(form: any) {
+  async create(form: any) {
     const Swal = require('sweetalert2');
-    //Cambiar servicio (Introducir id de forma dinamica)
-    console.log(form);
-    this.connection.updateDishFromId(this.id,form).subscribe(
+    this.connection.postNewDish(form).subscribe(
       (res: any) => {
-        console.log('Esto es respuesta de updateDishFromId ' + res);
+        console.log('Esto es respuesta de postNewDish ' + res);
         Swal.fire({
           title: 'success',
-          text: 'Plato actualizado correctamente',
+          text: 'Plato creado correctamente',
           icon: 'success',
           confirmButtonText: 'Aceptar',
         });
@@ -106,33 +103,6 @@ export class EditorComponent implements OnInit {
       }
     );
   }
-
-
-  async eliminar() {
-    const Swal = require('sweetalert2');
-    //Cambiar servicio (Introducir id de forma dinamica)
-    this.connection.deleteDishFromId(this.id).subscribe(
-      (res: any) => {
-        console.log('Esto es respuesta de deleteDishFromId ' + res);
-        Swal.fire({
-          title: 'success',
-          text: 'Plato eliminado correctamente',
-          icon: 'success',
-          confirmButtonText: 'Aceptar',
-        });
-        this.router.navigate(['/home']);
-      },
-      (error: any) => {
-        console.log(error);
-        Swal.fire({
-          text: 'Fallo al conectar a la base de datos',
-          icon: 'error',
-        });
-      }
-    );
-  }
-
-
 
   async handleSubmit() {
     this.alergenos();
@@ -147,16 +117,11 @@ export class EditorComponent implements OnInit {
         id: this.alergeno,
       },
     };
-    await this.update(form);
-    //await this.create(form); //Funciona
+    console.log(form);
+    await this.create(form);
   }
 
   ngOnInit(): void {
-    this.id = this.dishService.dish.id;
-    this.img = this.dishService.dish.img;
-    this.name = this.dishService.dish.name;
-    this.price = this.dishService.dish.price;
-    this.category = this.dishService.dish.category;
     this.veg = 0;
     this.lac = 0;
     this.cel = 0;

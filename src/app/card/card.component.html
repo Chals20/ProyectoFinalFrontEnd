@@ -17,6 +17,6 @@
             <div class="foot">
                 <p><strong>{{dish.price}}€</strong></p>
                 <button class="btn btn-primary" (click)="addCarrito(dish)" *ngIf="!flagType">Añadir</button>
-                <button class="btn btn-danger" (click)="edit(dish)" *ngIf="flagType">Editar</button>
+                <button class="btn btn-danger" (click)="edit()" *ngIf="flagType">Editar</button>
             </div>
         </div>

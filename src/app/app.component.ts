@@ -9,13 +9,13 @@ import { LocalStorageService } from './service/local-storage.service';
 })
 export class AppComponent implements OnInit {
   title = 'Menjador';
- 
+
   constructor(private localstorage: LocalStorageService){}
 
   ngOnInit(): void {
-    this.localstorage.setItem("carrito",null);
-    const user : User = new User(2,"","","","ADMIN"); 
+    this.localstorage.setItem("carrito",[]);
+    const user : User = new User(0,"alvaro","@gmail.com","1234","USER"); 
     this.localstorage.setItem("user",user);
-    
+
   }
 }

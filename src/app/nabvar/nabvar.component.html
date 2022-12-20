@@ -1,8 +1,9 @@
-<header id="header">
+<header id="header" style="border: none;">
   <div class="container__header">
     <div class="logo">
       <!-- <input type="text" placeholder="Buscar" class="input-buscar" (click)="buscar()"> -->
-      <button class="btn btn-warning" (click)="buscar()">Filtrar</button>
+      <button class="btn btn-warning" (click)="buscar()"><img src="https://i.ibb.co/vJsWTVJ/image.png"
+        style="width: 50px;"   alt="image" border="0">Buscar</button>
       <div class="buscador" [ngClass]="{'disable':!flagBuscar}">
         <section style="display: flex; justify-content: space-around; margin-top: 20px;">
           <button style="background-color: #FEBA0B; border: none;">
@@ -42,20 +43,42 @@
             <input style="width: 100px;" id="pMax" type="number" min="0" placeholder="Pmax" [(ngModel)]="pMax">
           </section>
         </section>
+        <!--Buscador-->
         <button class="btn btn-primary btn-buscar" (click)="filtrarPlatos()">Buscar</button>
       </div>
     </div>
+    <!-- #region iconos navbar-->
     <div class="container__nav">
       <nav id="nav" [ngClass]="{'move_nav':flagMenu}">
         <ul>
-          <li><a routerLink="/home" class="select">Inicio</a></li>
+          <!-- Icon Home-->
+          <li><Button class="btn-Inicio" routerLink="/Home"><img src="https://i.ibb.co/d2Mswhr/home-regular-84.png"
+            width="50px" alt="home-regular-84" border="0"></Button></li>
+            <!-- Icon new Dish-->
+          <li><a routerLink="/nuevoPlato" [ngClass]="{'disable':!(flagTypeUser)}"><img src="https://i.ibb.co/DMgzXXk/image.png" 
+            width="50px" alt="image" border="0"></a></li>
+            <!-- Icon Chart-->
+          <li><a routerLink="/graficas" [ngClass]="{'disable':!(flagTypeUser)}"><img src="https://i.ibb.co/Byf8Q4X/image.png"
+            width="50px" alt="image" border="0"></a></li>
+            <!-- Icon LogIn-->
           <li [ngClass]="{'disable':(flagUser)}"><a routerLink="/login">Singin/Singup</a></li>
-          <li [ngClass]="{'disable':!(flagUser)}"><button style="border:none; background: transparent;"
+            <!-- Icon Perfil-->
+          <li [ngClass]="{'disable':!(flagPerfil)}">
+            <button style="border:none; background: transparent;"
             routerLink="/profile"><img style="width: 50px;"
                 src="https://i.ibb.co/4tSrt7F/image.png" alt="image" border="0"></button></li>
-          <li [ngClass]="{'disable':!(flagUser)}"> <button style="border:none; background: transparent;"><img
-                (click)="carrito()" style="width: 50px;" src="https://i.ibb.co/SNQkR6n/image.png" alt="image"
-                border="0"></button></li>
+            <!-- Icon showOrder-->
+            <li><a routerLink="/showOrders" [ngClass]="{'disable':!(flagTypeUser)}"><img src="https://i.ibb.co/xFPYsVk/image.png"
+              width="50px" alt="image" border="0"></a></li>
+            <!-- Icon showOrder-->
+            <li><a routerLink="/showOrders" [ngClass]="{'disable':!(flagTypeUser)}"><img src="https://i.ibb.co/hfwpByQ/help-circle-regular-84-removebg-preview.png" 
+              width="50px" alt="help-circle-regular-84-removebg-preview" border="0"></a></li>
+            <!-- Icon Carrito-->
+          <li [ngClass]="{'disable':!(flagUser)}" [ngClass]="{'disable':(flagTypeUser)}">
+             <button style="border:none; background: transparent;"><img (click)="carrito()" 
+              style="width: 50px;" src="https://i.ibb.co/SNQkR6n/image.png" alt="image"border="0">
+            </button></li>
+            <!-- Icon Carrito-->
           <div [ngClass]="{'disable':!flagCarrito}">
             <app-carrito></app-carrito>
           </div>
@@ -64,6 +87,7 @@
       <div class="btn__menu" [ngClass]="{'move_nav':flagMenu}" id="btn_menu" (click)="mostrarMenu()">
         <img src="https://i.ibb.co/t88SNPJ/image.png" alt="image" border="0" style="width:30px;">
       </div>
+      <!-- #region iconos navbar-->
     </div>
   </div>
 </header>
