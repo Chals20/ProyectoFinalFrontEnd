@@ -6,10 +6,9 @@ import { EditDishService } from '../service/edit-dish.service';
 @Component({
   selector: 'app-crear-plato',
   templateUrl: './crear-plato.component.html',
-  styleUrls: ['./crear-plato.component.css']
+  styleUrls: ['./crear-plato.component.css'],
 })
 export class CrearPlatoComponent implements OnInit {
-
   id: String = '';
   img: String = '';
   name: String = '';
@@ -31,54 +30,51 @@ export class CrearPlatoComponent implements OnInit {
     public dishService: EditDishService
   ) {}
 
-  cambioVariable(condicion:boolean): String{
-    return condicion ? '1' : '0'
+  cambioVariable(condicion: boolean): String {
+    return condicion ? '1' : '0';
   }
 
-  cambioVariableVeg(condicion:boolean): String{
-    return condicion ? '0' : '1'
+  cambioVariableVeg(condicion: boolean): String {
+    return condicion ? '0' : '1';
   }
-  cambioVegano(){
+  cambioVegano() {
     this.vegano = !this.vegano;
     this.veg = this.cambioVariableVeg(this.vegano);
-    console.log(this.vegano," bool vegano")
-    console.log(this.veg,"veg")
+    console.log(this.vegano, ' bool vegano');
+    console.log(this.veg, 'veg');
   }
 
-  cambioCeliaco(){
+  cambioCeliaco() {
     this.celiaco = !this.celiaco;
     this.cel = this.cambioVariable(this.celiaco);
   }
 
-  cambioLacteo(){
+  cambioLacteo() {
     this.lacteo = !this.lacteo;
     this.lac = this.cambioVariable(this.lacteo);
   }
 
-  alergenos(){
+  alergenos() {
     //alergenos(id,lacteos,gluten,vegan) values(1,1,1,1),(2,0,0,0),(3,0,1,0),(4,0,1,1),(5,0,0,1),(6,1,0,1);
-    if (this.lacteo && this.celiaco && this.vegano){
-      this.alergeno = "1";
+    if (this.lacteo && this.celiaco && this.vegano) {
+      this.alergeno = '1';
+    } else if (!this.lacteo && !this.celiaco && !this.vegano) {
+      this.alergeno = '2';
+    } else if (!this.lacteo && this.celiaco && !this.vegano) {
+      this.alergeno = '3';
+    } else if (!this.lacteo && this.celiaco && this.vegano) {
+      this.alergeno = '4';
+    } else if (!this.lacteo && !this.celiaco && this.vegano) {
+      this.alergeno = '5';
+    } else if (this.lacteo && !this.celiaco && this.vegano) {
+      this.alergeno = '6';
+    } else {
+      this.alergeno = 'error';
     }
-    else if (!this.lacteo && !this.celiaco && !this.vegano){
-      this.alergeno = "2";
-    }
-    else if (!this.lacteo && this.celiaco && !this.vegano){
-      this.alergeno = "3";
-    }
-    else if (!this.lacteo && this.celiaco && this.vegano){
-      this.alergeno = "4";
-    }
-    else if (!this.lacteo && !this.celiaco && this.vegano){
-      this.alergeno = "5";
-    }
-    else if (this.lacteo && !this.celiaco && this.vegano){
-      this.alergeno = "6";
-    }
-    console.log("vegano " + this.vegano)
-    console.log("celiaco " + this.celiaco)
-    console.log("lacteo " + this.lacteo)
-    console.log("alergeno " + this.alergeno)
+    console.log('vegano ' + this.vegano);
+    console.log('celiaco ' + this.celiaco);
+    console.log('lacteo ' + this.lacteo);
+    console.log('alergeno ' + this.alergeno);
   }
 
   async create(form: any) {
@@ -99,6 +95,7 @@ export class CrearPlatoComponent implements OnInit {
         Swal.fire({
           text: 'Fallo al conectar a la base de datos',
           icon: 'error',
+          confirmButtonText: 'Aceptar',
         });
       }
     );
@@ -117,8 +114,25 @@ export class CrearPlatoComponent implements OnInit {
         id: this.alergeno,
       },
     };
-    console.log(form);
-    await this.create(form);
+    const Swal = require('sweetalert2');
+    if (this.alergeno == 'error') {
+      Swal.fire({
+        text: 'La combinación de alergenos seleccionada no está contemplada.',
+        icon: 'error',
+        confirmButtonText: 'Aceptar',
+      });
+    }
+    else if(this.category == "1" || this.category == "2" || this.category == "3"){
+      await this.create(form);
+    }
+    else {
+      Swal.fire({
+        text: 'Relle la categoria del plato correctamente.',
+        icon: 'error',
+        confirmButtonText: 'Aceptar',
+      });
+    }
+
   }
 
   ngOnInit(): void {
