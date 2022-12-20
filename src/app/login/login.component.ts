@@ -60,8 +60,7 @@ export class LoginComponent {
               confirmButtonColor: '#FEBA0B',
               confirmButtonText: 'Aceptar',
             });
-          }
-          else{
+          } else {
             this.crearUserLocal();
           }
         }, 3000);
@@ -117,15 +116,15 @@ export class LoginComponent {
     setTimeout(() => {
       if (this.respuestaSearchEmail || this.respuestaSearchUser) {
         this.login(form);
-      }
-      else{
+      } else {
         const Swal = require('sweetalert2');
         Swal.fire({
           title: 'Credenciales erroneas',
           icon: 'error',
           confirmButtonColor: '#FEBA0B',
           confirmButtonText: 'Aceptar',
-        });      }
+        });
+      }
     }, 3500);
   }
 
@@ -135,15 +134,25 @@ export class LoginComponent {
       pass: this.pass,
     };
     const Swal = require('sweetalert2');
-    Swal.fire({
-      title: 'Cargando Datos...',
-      allowEscapeKey: false,
-      allowOutsideClick: false,
-      background: '#19191a',
-      showConfirmButton: false,
-      timer: 3000,
-    });
+    if (!this.email.includes('@')) {
+      const Swal = require('sweetalert2');
+      Swal.fire({
+        title: 'Correo electronico incorrecto',
+        icon: 'error',
+        confirmButtonColor: '#FEBA0B',
+        confirmButtonText: 'Aceptar',
+      });
+    } else {
+      Swal.fire({
+        title: 'Cargando Datos...',
+        allowEscapeKey: false,
+        allowOutsideClick: false,
+        background: '#19191a',
+        showConfirmButton: false,
+        timer: 3000,
+      });
 
-    await this.comprobacion(form);
+      await this.comprobacion(form);
+    }
   }
 }
