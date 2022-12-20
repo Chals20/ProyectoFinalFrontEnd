@@ -8,6 +8,7 @@
                     src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg">
                 <p>{{user.userName}}</p>
                 <p>{{user.rol}}</p>
+                <button class="btn btn-danger" (click)="logout()">Logout</button>
             </div>
         </div>
         <div class="col-md-5 border-right perfil">
@@ -39,7 +40,7 @@
                     <button class="btn btn-primary" style="margin: auto;" (click)="loadPedidos()">Ver pedidos</button>
                 </div>
                 <br>
-                <div class="col-md" style="overflow:scroll;height:500px;padding: 10px;" 
+                <div class="col-md" style="overflow:scroll;height:500px;padding: 10px;"
                     *ngIf="!(json.length == 0)">
                     <div class="cardPedido"  *ngFor="let order of json; let index">
                         <div class="card-body">

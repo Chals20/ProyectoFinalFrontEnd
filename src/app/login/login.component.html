@@ -13,7 +13,7 @@
 
     <!-- Password -->
     <div class="form-outline mb-4">
-      <input type="password" name="password" id="form2Example2" class="form-control" [(ngModel)]="pass" required=""
+      <input type="password" minlength="4" name="password" id="form2Example2" class="form-control" [(ngModel)]="pass" required=""
         value="password" />
       <label class="form-label" for="form2Example2">Contraseña</label>
     </div>
@@ -40,6 +40,7 @@
     <button type="submit" class="btn btn-primary btn-block mb-4" value="Sing in submit" [disabled]="!form.valid">Sign in</button>
 
   </form>
+  <app-footbar></app-footbar>
 
 </div>
 

@@ -4,20 +4,26 @@ import { Order } from '../models/Order';
 import { User } from '../models/User';
 import { ConnectionService } from '../service/api/connection.service';
 import { LocalStorageService } from '../service/local-storage.service';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-perfil',
   templateUrl: './perfil.component.html',
-  styleUrls: ['./perfil.component.css']
+  styleUrls: ['./perfil.component.css'],
 })
 export class PerfilComponent implements OnInit {
-  constructor(private connection: ConnectionService, private localStorage: LocalStorageService){}
-  user:User = new User(0,"","","","USER");
-  response:any;
-  json:Order[] = [];
+  constructor(
+    private connection: ConnectionService,
+    private localStorage: LocalStorageService,
+    public router: Router
+  ) {}
+  user: User = new User(0, '', '', '', 'USER');
+  response: any;
+  json: Order[] = [];
 
   ngOnInit(): void {
-    const aux = JSON.parse(this.localStorage.getItem("user"));
+    const aux = JSON.parse(this.localStorage.getItem('user'));
     this.user = aux;
   }
 
@@ -42,51 +48,86 @@ export class PerfilComponent implements OnInit {
     return result; 
 }
 
-  loadJson(res:any):void{
-    if(res.length != 0){
-      res.forEach((e:any) => {
-        this.json.push(new Order(e.id,this.chanceDate(e.date),e.hora,this.getDish(e.id),e.total));
-        });
-    }else{
+  loadJson(res: any): void {
+    if (res.length != 0) {
+      res.forEach((e: any) => {
+        this.json.push(
+          new Order(
+            e.id,
+            this.chanceDate(e.date),
+            e.hora,
+            this.getDish(e.id),
+            e.total
+          )
+        );
+      });
+    } else {
       const Swal = require('sweetalert2');
       Swal.fire({
-        title: "No hay pedidos",
-        icon: "error",
-        confirmButtonColor: "#FEBA0B",
-        confirmButtonText: 'Aceptar'
-    });
-    }}
+        title: 'No hay pedidos',
+        icon: 'error',
+        confirmButtonColor: '#FEBA0B',
+        confirmButtonText: 'Aceptar',
+      });
+    }
+  }
 
-  getDish(id:number):Dish[]{
+  getDish(id: number): Dish[] {
     let listDish: Dish[] = [];
-    this.connection.getDishOrder(id).subscribe((res:any) => {
-        res.forEach((e:any) => {
-            listDish.push(new Dish(e.id,e.name,e.img,e.price,null,null,e.amount));
-        });
+    this.connection.getDishOrder(id).subscribe((res: any) => {
+      res.forEach((e: any) => {
+        listDish.push(
+          new Dish(e.id, e.name, e.img, e.price, null, null, e.amount)
+        );
+      });
     });
     return listDish;
   }
 
-    //mod date of back
-  chanceDate(date:any):any{
-    let fecha: string = new Date(date).toLocaleDateString()
+  //mod date of back
+  chanceDate(date: any): any {
+    let fecha: string = new Date(date).toLocaleDateString();
     return fecha;
   }
 
-  showDish(order:Order):void{
-    let show = "";
-    order.listDish.forEach((e:Dish) => {
-      const string = `${e.name}: ${e.price}€ x ${e.amount} = ${(e.price * e.amount)} </br> `; 
-      show +=string +"\n";
+  showDish(order: Order): void {
+    let show = '';
+    order.listDish.forEach((e: Dish) => {
+      const string = `${e.name}: ${e.price}€ x ${e.amount} = ${
+        e.price * e.amount
+      } </br> `;
+      show += string + '\n';
     });
     const Swal = require('sweetalert2');
     Swal.fire({
       title: 'Pedido',
-      html:show,
-      confirmButtonColor: "#FEBA0B",
-      confirmButtonText: 'Aceptar'
-  });
-}
+      html: show,
+      confirmButtonColor: '#FEBA0B',
+      confirmButtonText: 'Aceptar',
+    });
+  }
+
+  logout(){
+    console.log("Bonton LogOut pulsado");
+    const Swal = require('sweetalert2');
+    Swal.fire({
+      title: 'Quieres cerrar sesión?',
+      showDenyButton: true,
+      confirmButtonText: 'Si',
+      customClass: {
+        actions: 'my-actions',
+        cancelButton: 'order-1 right-gap',
+        confirmButton: 'order-2',
+        denyButton: 'order-3',
+      }
+    }).then((result:any) => {
+      if (result.isConfirmed) {
+        this.localStorage.logOut('user');
+        this.router.navigate(['/home']);
+        Swal.fire('Hasta la próxima!', '', 'success')
+      }
+    })
+  }
 
 chancePassword(){
   const rol = {id:2,

@@ -30,7 +30,7 @@ export class RegisterComponent {
     private http: HttpClient,
     private storage: LocalStorageService,
     private connection: ConnectionService,
-    public router: Router,
+    public router: Router
   ) {}
 
   register(): void {
@@ -57,6 +57,15 @@ export class RegisterComponent {
     setTimeout(() => {
       if (!this.respuestaSearchUser && !this.respuestaSearchEmail) {
         this.registro(form);
+      }
+      else{
+        const Swal = require('sweetalert2');
+        Swal.fire({
+          title: 'Usuario ya existe',
+          icon: 'error',
+          confirmButtonColor: '#FEBA0B',
+          confirmButtonText: 'Aceptar',
+        });
       }
     }, 2000);
   }
@@ -126,9 +135,18 @@ export class RegisterComponent {
         id: 2,
       },
     };
-
-    await this.comprobacion(form);
-
+    const Swal = require('sweetalert2');
+    if (!this.email1.includes('@')) {
+      const Swal = require('sweetalert2');
+      Swal.fire({
+        title: 'Correo electronico incorrecto',
+        icon: 'error',
+        confirmButtonColor: '#FEBA0B',
+        confirmButtonText: 'Aceptar',
+      });
+    } else {
+      await this.comprobacion(form);
+    }
     //Si no ha encontrado NINGUNO de ellos significa que podemos crear el usuario nuevo
     // if (!this.respuestaSearchUser && !this.respuestaSearchEmail) {
     //   //Hacemos el post del nuevo usuario.
