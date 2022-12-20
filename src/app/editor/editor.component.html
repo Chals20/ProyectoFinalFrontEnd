@@ -29,8 +29,9 @@
         <!-- Categoria -->
         <div class="form-outline mb-4">
 
-          <select class="form-select" name="select" id="tipoPlato" style="width: 90%;" required [(ngModel)]="category">
-            <option value="1" selected>Entrante</option>
+          <select class="form-select" id="tipoPlato" style="width: 90%;" required [(ngModel)]="category">
+            <option selected>Seleccione tipo de plato</option>
+            <option value="1">Entrante</option>
             <option value="2">Principal</option>
             <option value="3">Postre</option>
           </select>

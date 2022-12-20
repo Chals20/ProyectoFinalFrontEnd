@@ -24,6 +24,18 @@ export class ConnectionService {
     return this.http.get<any>(send);
   }
 
+  //delete order
+  deleteOrder(id:number):Observable<any[]>{
+    const send = this.url + '/orders/delete/'+id;
+    return this.http.delete<any>(send);
+  }
+
+  //updatePassword
+  postUpdateUser(id:number,body:any):Observable<any[]>{
+    const send = this.url + `/user/update/`+id;
+    return this.http.put<any>(send,body);
+  }
+
   //buscador avanzado
   postSearch(body: any): Observable<any> {
     const send = this.url + '/dishes/buscador';

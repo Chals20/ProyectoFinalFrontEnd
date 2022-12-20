@@ -14,6 +14,7 @@ export class ShowOrdersComponent {
   constructor(private connection: ConnectionService){}
   fecha:any|string=null;
   json:Order[]= [];
+  flagSpinner:boolean = false;
 
   SendDataonChange(event: any) {
     this.fecha=event.target.value;
@@ -29,6 +30,7 @@ export class ShowOrdersComponent {
         confirmButtonText: 'Aceptar'
       })
     }else{
+      console.log(this.fecha);
       this.json=[];
       this.loadOrders();
     }
@@ -36,15 +38,7 @@ export class ShowOrdersComponent {
 
 
  loadOrders():void{
-  const Swal = require('sweetalert2');
-  Swal.fire({
-    title: 'Cargando Datos...',
-    allowEscapeKey: false,
-    allowOutsideClick: false,
-    background: '#19191a',
-    showConfirmButton: false,
-    timer: 1000,
-}); 
+  this.timeSpinner(1000);
     this.connection.getOrderByDate(this.fecha).subscribe((res:any)  => {
       this.loadPedidos(res);
      });
@@ -98,4 +92,12 @@ export class ShowOrdersComponent {
           confirmButtonText: 'Aceptar'
       });
     }
+    
+    timeSpinner(timer:number){
+      this.chanceFlagSpinner();
+      setTimeout(() => {
+        this.chanceFlagSpinner();
+      }, timer);
+    }
+    chanceFlagSpinner():void{this.flagSpinner = (this.flagSpinner)?false:true;}
 }
