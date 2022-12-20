@@ -22,17 +22,38 @@ export class PerfilComponent implements OnInit {
     const date = new Date();
     const sendDate = ""+ date.getFullYear() + "-" + (date.getMonth()+1) + "-" + (date.getDay()+7);
     console.log(date + "-" + sendDate + "-" +aux.id + " " + date.getDay());
-    this.connection.getOrderByUser(2,"2022-12-18").subscribe((res:any)  =>{
-        this.response = res;
-    });
-   console.log(this.response);
+
   }
 
   loadPedidos():void{
-    this.response.forEach((e:any) => {
-    this.json.push(new Order(e.id,this.chanceDate(e.date),e.hora,this.getDish(e.id),e.total));
-    });
+    const Swal = require('sweetalert2');
+    Swal.fire({
+      title: 'Cargando Datos...',
+      allowEscapeKey: false,
+      allowOutsideClick: false,
+      background: '#19191a',
+      showConfirmButton: false,
+      timer: 1000,
+  }); 
+    this.connection.getOrderByUser(2,"2022-12-18").subscribe((res:any)  =>{
+      this.loadJson(res);
+  });
   }
+
+  loadJson(res:any):void{
+    if(res.length != 0){
+      res.forEach((e:any) => {
+        this.json.push(new Order(e.id,this.chanceDate(e.date),e.hora,this.getDish(e.id),e.total));
+        });
+    }else{
+      const Swal = require('sweetalert2');
+      Swal.fire({
+        title: "No hay pedidos",
+        icon: "error",
+        confirmButtonColor: "#FEBA0B",
+        confirmButtonText: 'Aceptar'
+    });
+    }}
 
   getDish(id:number):Dish[]{
     let listDish: Dish[] = [];
@@ -49,6 +70,21 @@ export class PerfilComponent implements OnInit {
     let fecha: string = new Date(date).toLocaleDateString()
     return fecha;
   }
+
+  showDish(order:Order):void{
+    let show = "";
+    order.listDish.forEach((e:Dish) => {
+      const string = `${e.name}: ${e.price}€ x ${e.amount} = ${(e.price * e.amount)} </br> `; 
+      show +=string +"\n";
+    });
+    const Swal = require('sweetalert2');
+    Swal.fire({
+      title: 'Pedido',
+      html:show,
+      confirmButtonColor: "#FEBA0B",
+      confirmButtonText: 'Aceptar'
+  });
+}
 
  
 }

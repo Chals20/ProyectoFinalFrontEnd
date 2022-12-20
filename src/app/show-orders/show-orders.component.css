@@ -34,10 +34,12 @@ body {
 .cardPedido{
     border: 1px solid #2196f3;
     padding: 15px;
+    background-color: #2195f3e4;
     border-radius: 25px;
     text-align: center;
     height: max-content;
     width: max-content;
+    color: white;
 }
 
 .order-button {
@@ -49,7 +51,10 @@ body {
 .order-button:hover {
     background: #2196f3
 }
-
+button{
+    background-color: #FEBA0B;
+    color: black;
+}
 .no-border {
     border: 0;
     text-align: center;
