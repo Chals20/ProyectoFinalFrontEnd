@@ -29,12 +29,18 @@
         <!-- Categoria -->
         <div class="form-outline mb-4">
 
-          <select class="form-select" id="tipoPlato" style="width: 90%;" required [(ngModel)]="category">
+          <select class="form-select" name="select" id="tipoPlato" style="width: 90%;" required [(ngModel)]="category">
             <option selected>Seleccione tipo de plato</option>
             <option value="1">Entrante</option>
             <option value="2">Principal</option>
             <option value="3">Postre</option>
           </select>
+<!--
+          <select class="form-select" id="tipoPlato" style="width: 90%;" required [(ngModel)]="category">
+            <option value="1">Entrantes</option>
+            <option value="2">Principal</option>
+            <option value="3">Postre</option>
+          </select> -->
 
           <!-- <input type="text" name="category" id="category" class="form-control" [(ngModel)]="category" required />
           <label class="form-label" for="nombre">Categoria del plato</label> -->
@@ -61,8 +67,9 @@
 
           <button type="submit" class="btn btn-primary btn-block mb-4 mx-2" value="Confirmar"
             [disabled]="!form.valid">Confirmar</button>
-          <button type="button" class="btn btn-danger mb-4 mx-2" (click)="eliminar()">Eliminar</button>
-        </div>
+            <button type="button" class="btn btn-danger mb-4 mx-2" (click)="eliminar()">Eliminar</button>
+            <button type="button" class="btn btn-danger mb-4 mx-2" (click)="handleSubmit2()">consolelog</button>
+          </div>
 
 
       </form>

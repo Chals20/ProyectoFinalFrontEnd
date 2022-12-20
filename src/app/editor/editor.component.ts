@@ -127,9 +127,16 @@ export class EditorComponent implements OnInit {
     );
   }
 
+
+  handleSubmit2(){
+    console.log("Esta es la categoria:" + this.category);
+    console.log(this.category);
+    console.log("//////////////////////////")
+  }
+
+
   async handleSubmit() {
     this.alergenos();
-    console.log(this.category, ' Category');
     const form = {
       name: this.name,
       img: this.img,
@@ -141,6 +148,8 @@ export class EditorComponent implements OnInit {
         id: this.alergeno,
       },
     };
+    console.log("Esta es la categoria: nextline" + this.category);
+    console.log(this.category);
     const Swal = require('sweetalert2');
     if (this.alergeno == 'error') {
       Swal.fire({
@@ -155,7 +164,7 @@ export class EditorComponent implements OnInit {
 
     else {
       Swal.fire({
-        text: 'Relle la categoria del plato correctamente.',
+        text: 'Rellene la categoria del plato correctamente.',
         icon: 'error',
         confirmButtonText: 'Aceptar',
       });
