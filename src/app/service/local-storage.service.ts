@@ -1,9 +1,13 @@
 import { Injectable } from '@angular/core';
+import { User } from '../models/User';
 
 @Injectable({
   providedIn: 'root'
 })
 export class LocalStorageService {
+
+
+  user : User = new User(0,"","","","USER");
 
   constructor() {}
 
@@ -12,7 +16,11 @@ export class LocalStorageService {
   }
 
   getItem(key:string):any{
-    return  localStorage.getItem(key); 
+    return  localStorage.getItem(key);
   }
-  
+
+  logOut(key:string):void{
+    localStorage.setItem(key, JSON.stringify(this.user));
+  }
+
 }

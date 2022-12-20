@@ -19,7 +19,11 @@ import { TicketComponent } from './ticket/ticket.component';
 import { FormsModule } from '@angular/forms';
 import { AboutComponent } from './about/about.component';
 import { PerfilComponent } from './perfil/perfil.component';
+import { EditorComponent } from './editor/editor.component';
 import { ShowOrdersComponent } from './show-orders/show-orders.component';
+import { CrearPlatoComponent } from './crear-plato/crear-plato.component';
+import { SpinnerComponent } from './spinner/spinner.component';
+
 
 
 @NgModule({
@@ -38,7 +42,10 @@ import { ShowOrdersComponent } from './show-orders/show-orders.component';
     TicketComponent,
     AboutComponent,
     PerfilComponent,
-    ShowOrdersComponent
+    EditorComponent,
+    ShowOrdersComponent,
+    CrearPlatoComponent,
+    SpinnerComponent
   ],
   imports: [
     BrowserModule,

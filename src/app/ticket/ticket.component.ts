@@ -2,6 +2,7 @@ import { Component,OnInit } from '@angular/core';
 import { Pedido } from '../models/Pedido';
 import { LocalStorageService } from '../service/local-storage.service';
 import Swal  from 'sweetalert2';
+import { ConnectionService } from '../service/api/connection.service';
 
 @Component({
   selector: 'app-ticket',
@@ -14,14 +15,18 @@ export class TicketComponent implements OnInit{
   total:number = 0;
   time: number = 0;
   fecha:string = "";
+  id:number = 0;
   flagUser: boolean = false;
   jsonCarrito:any = [];
 
-  constructor(private localStorage: LocalStorageService){}
+  constructor(private localStorage: LocalStorageService,
+    private connection: ConnectionService){}
+   
   
-
   ngOnInit():void {
-   this.jsonCarrito = JSON.parse(this.localStorage.getItem("carrito"));
+    const user = JSON.parse(this.localStorage.getItem("user"));
+    this.id = user.id;
+    this.jsonCarrito = JSON.parse(this.localStorage.getItem("carrito"));
     this.jsonCarrito.forEach((element:any) => { this.total += (element.price* element.amount);});
     const aux = JSON.parse(this.localStorage.getItem("user"));
     this.flagUser = (aux.id == 0)?false:true;
@@ -63,6 +68,7 @@ export class TicketComponent implements OnInit{
       Swal.fire({
         title: 'Ingrese una Fecha Posterior al Día de Hoy',
         icon: 'error',
+        confirmButtonColor: "#FEBA0B",
         confirmButtonText: 'Aceptar'
       })
     } 
@@ -71,18 +77,19 @@ export class TicketComponent implements OnInit{
     makeOrder():void{
       const Swal = require('sweetalert2');
       if(this.fechaControl(new Date(this.fecha)) && this.time != 0 && this.total != 0){
-        const pedido: Pedido = new Pedido(1,this.time,this.total,1,this.jsonCarrito);
-        console.log(pedido);
+        this.sendOrder();
         Swal.fire({
           title: 'Pedido Realizado Con Exito',
           icon: 'success',
+          confirmButtonColor: "#FEBA0B",
           confirmButtonText: 'Aceptar'
-        })
+        });
       }else if(this.total == 0){
         Swal.fire({
           title: 'Error!',
           text: 'No se puede realizar la compra si el carrito esta vacío',
           icon: 'error',
+          confirmButtonColor: "#FEBA0B",
           confirmButtonText: 'Aceptar'
         })
       }else {
@@ -90,6 +97,7 @@ export class TicketComponent implements OnInit{
           title: 'Error!',
           text: 'Corrobore los Datos',
           icon: 'error',
+          confirmButtonColor: "#FEBA0B",
           confirmButtonText: 'Aceptar'
         })
       }
@@ -99,7 +107,26 @@ export class TicketComponent implements OnInit{
     fechaControl(fecha:Date):boolean{
        return (new Date() < fecha);
     }
-    
+
+    sendOrder():void{
+      const body ={
+        date: new Date(this.fecha),
+        user: {
+            id: this.id
+        },
+        hora: this.time,
+        total: this.total
+    }
+    this.connection.postNewOrder(body).subscribe((res:any) =>{
+      const body:any[]=[];
+      this.jsonCarrito.forEach((element:any) => {
+        const object ={"order": {"id": res.id },"dish": {"id": element.id},"amount": element.amount}
+        body.push(object);
+      });
+     this.connection.postNewListDishOrder(body).subscribe((res:any) =>{});
+    });
+    }
+
 }
 
 

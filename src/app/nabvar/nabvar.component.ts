@@ -18,10 +18,16 @@ flagMenu: boolean = false;
 flagUser: boolean = false;
 flagBuscar: boolean = false;
 flagCarrito: boolean = false;
-
+flagTypeUser:boolean = false;
+flagPerfil:boolean=false;
 ngOnInit(): void {
   const aux = JSON.parse(this.localstorage.getItem("user"));
+
   this.flagUser = (aux.id == 0)?false:true;
+
+  this.flagTypeUser = (aux.rol == "ADMIN")?true:false;
+
+  this.flagPerfil = (aux.id != 0 && aux.rol == "USER")?true:false;
   }
 
 
@@ -61,6 +67,15 @@ ngOnInit(): void {
 
 
   filtrarPlatos(): void {
+    const Swal = require('sweetalert2');
+    Swal.fire({
+      title: 'Cargando Datos...',
+      allowEscapeKey: false,
+      allowOutsideClick: false,
+      background: '#19191a',
+      showConfirmButton: false,
+      timer: 1000,
+  }); 
     const PMAX = (this.pMax == 0)?100:this.pMax;
     const busqueda: Search = new Search(this.tipoPlato,this.nombrePlato,this.pMin,PMAX,
     this.celiaco,this.lactosa,this.vegano);

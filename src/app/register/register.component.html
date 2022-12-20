@@ -44,7 +44,7 @@
         <i class="bi bi-lock" style="font-size:24px;"></i>
       </div>
       <div class="col-11">
-        <input type="password" id="password" class="form-control" placeholder="Contraseña" [(ngModel)]="pass1"
+        <input type="password" id="password" class="form-control" minlength="6" placeholder="Contraseña" [(ngModel)]="pass1"
           name="pass1" required />
       </div>
 
@@ -52,9 +52,10 @@
         <i class="bi bi-lock" style="font-size:24px;"></i>
       </div>
       <div class="col-11">
-        <input type="password" id="password2" class="form-control" placeholder="Repite contraseña" [(ngModel)]="pass2"
+        <input type="password" id="password2" class="form-control" minlength="6" placeholder="Repite contraseña" [(ngModel)]="pass2"
           name="pass2" required />
-        <p *ngIf="(pass1 !== pass2) && (pass2.length !== 0)" class="error-msn">La contraseña no coincide</p>
+          <p *ngIf="(pass1 !== pass2) && (pass2.length !== 0)" class="error-msn">La contraseña no coincide</p>
+          <p *ngIf="(pass2.length < 6 && pass2.length > 0)" class="error-msn">Longitud minima 6 caracteres</p>
 
       </div>
       <!--

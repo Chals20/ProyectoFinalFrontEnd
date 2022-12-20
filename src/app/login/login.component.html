@@ -1,7 +1,4 @@
 <app-nabvar></app-nabvar>
-<app-intro-index></app-intro-index>
-
-
 <div class="container containerGeneral">
 
   <form class="p-5 mb-5" #form="ngForm" (ngSubmit)="handleSubmit()">
@@ -16,7 +13,7 @@
 
     <!-- Password -->
     <div class="form-outline mb-4">
-      <input type="password" name="password" id="form2Example2" class="form-control" [(ngModel)]="pass" required=""
+      <input type="password" minlength="4" name="password" id="form2Example2" class="form-control" [(ngModel)]="pass" required=""
         value="password" />
       <label class="form-label" for="form2Example2">Contraseña</label>
     </div>
@@ -25,10 +22,10 @@
     <div class="row mb-4">
       <div class="col d-flex justify-content-center">
         <!-- Checkbox -->
-        <div class="form-check">
+        <!-- <div class="form-check">
           <input class="form-check-input" type="checkbox" value="" id="form2Example31" checked />
           <label class="form-check-label" for="form2Example31"> Remember me </label>
-        </div>
+        </div> -->
       </div>
 
       <div class="col">
@@ -39,15 +36,11 @@
 
     </div>
 
-
-    <button type="submit" class="btn btn-primary btn-block mb-4" value="Sing in submit" [disabled]="!form.valid">Prueba
-      submit</button>
     <!-- Submit button -->
-    <button type="button" class="btn btn-primary btn-block mb-4">Sign in</button>
+    <button type="submit" class="btn btn-primary btn-block mb-4" value="Sing in submit" [disabled]="!form.valid">Sign in</button>
 
   </form>
+  <app-footbar></app-footbar>
 
 </div>
 
-
-<app-footbar></app-footbar>
