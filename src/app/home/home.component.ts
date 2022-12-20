@@ -18,10 +18,8 @@ export class HomeComponent implements OnInit  {
       });  
       this.search.disparador.subscribe((data:any) => {
         const body = data.data;
-        console.log(body);
         this.connection.postSearch(body).subscribe((res:any) => {
           this.json = res;
-          console.log(res);
        });;
       });
     }

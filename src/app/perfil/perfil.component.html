@@ -1,3 +1,4 @@
+<app-spinner [ngClass]="{'disable':!(flagSpinner)}" ></app-spinner>
 <app-nabvar></app-nabvar>
 <div class="container rounded bg-white mt-5 mb-5">
     <div class="row">
@@ -28,7 +29,7 @@
                     <h4>Email: {{user.email}}</h4>
                 </div>
                 <div class="mt-4 text-center">
-                    <button class="btn btn-primary" type="button">Cambiar Contraseña</button>
+                    <button class="btn btn-primary" type="button" (click)="chancePassword()">Cambiar Contraseña</button>
                 </div>
             </div>
         </div>
@@ -46,7 +47,7 @@
                             <br>
                             <button class="btn btn-primary" (click)="showDish(order)">Ver Platos</button>
                             <h5><strong>Total: {{order.total}} €</strong></h5>
-                            <button class="btn btn-primary">Cancelar Pedido</button>
+                            <button class="btn btn-primary" (click)="deleteOrder(order.date,order.id)">Cancelar Pedido</button>
                         </div>
                     </div>
                 </div>

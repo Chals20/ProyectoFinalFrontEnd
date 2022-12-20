@@ -21,6 +21,7 @@ export class TicketComponent implements OnInit{
 
   constructor(private localStorage: LocalStorageService,
     private connection: ConnectionService){}
+   
   
   ngOnInit():void {
     const user = JSON.parse(this.localStorage.getItem("user"));
@@ -125,7 +126,7 @@ export class TicketComponent implements OnInit{
      this.connection.postNewListDishOrder(body).subscribe((res:any) =>{});
     });
     }
-    
+
 }
 
 
