@@ -42,4 +42,8 @@ color: #FEBA0B;
     .carrito{
         left:20px;
     }
+    .home{
+        background-color: #FEBA0B;
+        border-radius: 5px;
+    }
 }

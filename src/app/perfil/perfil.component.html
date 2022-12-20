@@ -20,17 +20,12 @@
                     <div class="col-md-6">
                         <h4>Username: {{user.userName}}</h4>
                     </div>
-                    <div class="col-md-6">
-                        <label class="labels">Contraseña</label>
-                        <input type="password" class="form-control" value="" placeholder="user.password"
-                            [(ngModel)]="user.password">
-                    </div>
                 </div>
                 <div class="row mt-3">
                     <h4>Email: {{user.email}}</h4>
                 </div>
                 <div class="mt-4 text-center">
-                    <button class="btn btn-primary" type="button" (click)="chancePassword()">Cambiar Contraseña</button>
+                    <button class="btn btn-primary disable" type="button" (click)="chancePassword()">Cambiar Contraseña</button>
                 </div>
             </div>
         </div>

@@ -50,16 +50,7 @@ export class PerfilComponent implements OnInit {
 
   loadJson(res: any): void {
     if (res.length != 0) {
-      res.forEach((e: any) => {
-        this.json.push(
-          new Order(
-            e.id,
-            this.chanceDate(e.date),
-            e.hora,
-            this.getDish(e.id),
-            e.total
-          )
-        );
+      res.forEach((e: any) => {this.json.push(new Order(e.id,this.chanceDate(e.date),e.hora,this.getDish(e.id),e.total));
       });
     } else {
       const Swal = require('sweetalert2');
@@ -76,9 +67,7 @@ export class PerfilComponent implements OnInit {
     let listDish: Dish[] = [];
     this.connection.getDishOrder(id).subscribe((res: any) => {
       res.forEach((e: any) => {
-        listDish.push(
-          new Dish(e.id, e.name, e.img, e.price, null, null, e.amount)
-        );
+        listDish.push(new Dish(e.id, e.name, e.img, e.price, null, null, e.amount));
       });
     });
     return listDish;
@@ -108,14 +97,15 @@ export class PerfilComponent implements OnInit {
   }
 
   logout(){
-    console.log("Bonton LogOut pulsado");
     const Swal = require('sweetalert2');
     Swal.fire({
       title: 'Quieres cerrar sesión?',
       showDenyButton: true,
+      confirmButtonColor: "#FEBA0B",
       confirmButtonText: 'Si',
       customClass: {
         actions: 'my-actions',
+        cancelButtonColor: '#C70039',
         cancelButton: 'order-1 right-gap',
         confirmButton: 'order-2',
         denyButton: 'order-3',
@@ -124,7 +114,11 @@ export class PerfilComponent implements OnInit {
       if (result.isConfirmed) {
         this.localStorage.logOut('user');
         this.router.navigate(['/home']);
-        Swal.fire('Hasta la próxima!', '', 'success')
+        Swal.fire({
+          title: 'Hasta la Próxima',
+          confirmButtonColor: "#FEBA0B",
+          confirmButtonText: 'Aceptar'
+      });
       }
     })
   }

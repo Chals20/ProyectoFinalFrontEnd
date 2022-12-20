@@ -1,4 +1,5 @@
 import { Component,OnInit } from '@angular/core';
+import { Router } from 'express';
 import { Search } from '../models/Search';
 import { CarritoserviceService } from '../service/carritoservice.service';
 import { LocalStorageService } from '../service/local-storage.service';
@@ -13,7 +14,7 @@ import { SearchService } from '../service/search.service';
 
 export class NabvarComponent implements OnInit{
 constructor( private localstorage: LocalStorageService,
-  private search: SearchService){}
+            private search: SearchService){}
 flagMenu: boolean = false;
 flagUser: boolean = false;
 flagBuscar: boolean = false;
@@ -67,6 +68,7 @@ ngOnInit(): void {
 
 
   filtrarPlatos(): void {
+    
     const Swal = require('sweetalert2');
     Swal.fire({
       title: 'Cargando Datos...',

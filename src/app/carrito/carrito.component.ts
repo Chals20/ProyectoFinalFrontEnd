@@ -15,7 +15,6 @@ export class CarritoComponent implements OnInit{
               private localStorage: LocalStorageService){}
   jsonCarrito: Dish[] = [];
   total: number = 0;
- 
   clientId: number = 0;
 
     //service transfer data from card inside carrito
@@ -26,14 +25,15 @@ export class CarritoComponent implements OnInit{
           this.total += (data.data.amount * data.data.price); 
         }
       });
-       this.updateCarrito();
+      // this.updateCarrito();
   }
   //control of exist a element inside carrito
   isExists(id:number){
     for (let index = 0; index < this.jsonCarrito.length; index++) {
       if(this.jsonCarrito[index].id == id){
         this.jsonCarrito[index].amount +=1;
-        this.total += this.jsonCarrito[index].price;
+        const n: number = this.total + this.jsonCarrito[index].price; 
+        this.total =parseFloat(n.toFixed(2));
         return true;
       }
       }
@@ -44,12 +44,12 @@ export class CarritoComponent implements OnInit{
   sum(id:number){
     this.jsonCarrito.forEach((e:any) => {
       if(e.id == id){
-        e.amount++; 
+        e.amount +=1; 
         const n: number = this.total + e.price; 
         this.total = parseFloat(n.toFixed(2));
       }
     });
-    this.updateCarrito();
+    //this.updateCarrito();
   }
 
   //decrement in 1 the amout of carrito;
@@ -63,7 +63,7 @@ export class CarritoComponent implements OnInit{
  // if(e.amout == 0) hay que utilizar el filter para que cuando llegue a 0 se elimine;
    this.jsonCarrito = this.jsonCarrito.filter((item:any) => item.amount !== 0);
     });
-    this.updateCarrito();
+    //this.updateCarrito();
   }
 
   //load transfer that as in carrito

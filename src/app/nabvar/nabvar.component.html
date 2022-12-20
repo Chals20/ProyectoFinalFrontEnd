@@ -52,7 +52,7 @@
       <nav id="nav" [ngClass]="{'move_nav':flagMenu}">
         <ul>
           <!-- Icon Home-->
-          <li><Button class="btn-Inicio" routerLink="/Home"><img src="https://i.ibb.co/d2Mswhr/home-regular-84.png"
+          <li><Button class="btn-Inicio home" routerLink="/Home"><img src="https://i.ibb.co/d2Mswhr/home-regular-84.png"
             width="50px" alt="home-regular-84" border="0"></Button></li>
             <!-- Icon new Dish-->
           <li><a routerLink="/nuevoPlato" [ngClass]="{'disable':!(flagTypeUser)}"><img src="https://i.ibb.co/DMgzXXk/image.png" 
@@ -63,7 +63,7 @@
             <!-- Icon LogIn-->
           <li [ngClass]="{'disable':(flagUser)}"><a routerLink="/login">Singin/Singup</a></li>
             <!-- Icon Perfil-->
-          <li [ngClass]="{'disable':!(flagPerfil)}">
+          <li [ngClass]="{'disable':!(flagUser)}">
             <button style="border:none; background: transparent;"
             routerLink="/profile"><img style="width: 50px;"
                 src="https://i.ibb.co/4tSrt7F/image.png" alt="image" border="0"></button></li>
