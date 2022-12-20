@@ -34,19 +34,38 @@ export class LoginComponent {
     private http: HttpClient,
     private localStorage: LocalStorageService,
     private connection: ConnectionService,
-    public router: Router,
+    public router: Router
   ) {}
 
   async login(form: any) {
+    const Swal = require('sweetalert2');
+    Swal.fire({
+      title: 'Comprobando datos...',
+      allowEscapeKey: false,
+      allowOutsideClick: false,
+      background: '#19191a',
+      showConfirmButton: false,
+      timer: 3500,
+    });
     this.connection
       .getUsernameLogin(form.email, form.pass)
       .subscribe((res: any) => {
         console.log('Esto es respuesta de getUsernameLogin(login) ' + res);
         this.respuestaLoginUser = res;
+        setTimeout(() => {
+          if (this.respuestaLoginUser == null) {
+            Swal.fire({
+              title: 'Credenciales erroneas',
+              icon: 'error',
+              confirmButtonColor: '#FEBA0B',
+              confirmButtonText: 'Aceptar',
+            });
+          }
+          else{
+            this.crearUserLocal();
+          }
+        }, 3000);
       });
-    setTimeout(() => {
-      this.crearUserLocal();
-    }, 3000);
   }
 
   //Usando respuestaLoginUser que previamente ha guardado el usuario creamos un User.
@@ -99,6 +118,14 @@ export class LoginComponent {
       if (this.respuestaSearchEmail || this.respuestaSearchUser) {
         this.login(form);
       }
+      else{
+        const Swal = require('sweetalert2');
+        Swal.fire({
+          title: 'Credenciales erroneas',
+          icon: 'error',
+          confirmButtonColor: '#FEBA0B',
+          confirmButtonText: 'Aceptar',
+        });      }
     }, 3500);
   }
 
@@ -107,6 +134,15 @@ export class LoginComponent {
       email: this.email,
       pass: this.pass,
     };
+    const Swal = require('sweetalert2');
+    Swal.fire({
+      title: 'Cargando Datos...',
+      allowEscapeKey: false,
+      allowOutsideClick: false,
+      background: '#19191a',
+      showConfirmButton: false,
+      timer: 3000,
+    });
 
     await this.comprobacion(form);
   }
