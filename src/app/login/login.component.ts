@@ -33,18 +33,20 @@ export class LoginComponent {
   constructor(
     private http: HttpClient,
     private localStorage: LocalStorageService,
-    private connection: ConnectionService
+    private connection: ConnectionService,
+    public router: Router,
   ) {}
 
   async login(form: any) {
-
     this.connection
       .getUsernameLogin(form.email, form.pass)
       .subscribe((res: any) => {
         console.log('Esto es respuesta de getUsernameLogin(login) ' + res);
         this.respuestaLoginUser = res;
       });
-
+    setTimeout(() => {
+      this.crearUserLocal();
+    }, 3000);
   }
 
   //Usando respuestaLoginUser que previamente ha guardado el usuario creamos un User.
@@ -67,7 +69,6 @@ export class LoginComponent {
     console.log('Este es el USER');
     console.log(user);
 
-
     this.localStorage.setItem('user', user);
     //Mostramos el SWAL con el check
     Swal.fire({
@@ -76,6 +77,7 @@ export class LoginComponent {
       icon: 'success',
       confirmButtonText: 'Aceptar',
     });
+    this.router.navigate(['/home']);
   }
 
   //Comprueba tanto si el email como el username estan cogidos
@@ -92,6 +94,12 @@ export class LoginComponent {
       console.log('Esto es respuesta de getIfExistsByUsername ' + res);
       this.respuestaSearchUser = res;
     });
+
+    setTimeout(() => {
+      if (this.respuestaSearchEmail || this.respuestaSearchUser) {
+        this.login(form);
+      }
+    }, 3500);
   }
 
   async handleSubmit() {
@@ -101,46 +109,5 @@ export class LoginComponent {
     };
 
     await this.comprobacion(form);
-
-    //Si hay algun fallo con la conexión a la base de datos (SWAL NEGATIVO)
-    const Swal = require('sweetalert2');
-    if (!this.respuestaSearchEmail && !this.respuestaSearchUser) {
-      Swal.fire({
-        title: 'Error!',
-        text: 'Datos aportados incorrectos.',
-        icon: 'error',
-        confirmButtonText: 'Aceptar',
-      });
-    }
-
-    //Si nos devuelve que es correcto
-    //NECESITAMOS ESTAR DE ACUERDO SI INICIAMOS SESION CON EL USERNAME O CON EL CORREO
-    else {
-      await this.login(form);
-
-      await this.crearUserLocal();
-    }
-
-    //Guardar objeto usuario con los datos devueltos por el backend
-
-    // this.connection.postUser(form);
-    // this.http.post(this.url2, form).toPromise().then((data:any) => {
-    //   console.log(data);
-    //   this.json = JSON.stringify(data.json);
-    //   console.log(this.json);
-    //   this.storage.setItem("username",this.username)
-    //   this.storage.setItem("email",this.email)
-    //   this.storage.setItem("password",this.pass)
-    //   console.log("Salimos de storage")
-    // })
-
-    // this.loginService.login(this.form.email, this.form.password).subscribe(
-    //   (data: any) => {
-    //     //window.location.reload();
-    //   },
-    //   (error:any) => {
-    //     console.log(error);
-    //   }
-    // );
   }
 }

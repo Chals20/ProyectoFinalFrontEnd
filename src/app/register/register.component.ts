@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { waitForAsync } from '@angular/core/testing';
+import { Router } from '@angular/router';
 import { delay } from 'rxjs';
 import { User } from '../models/User';
 import { ConnectionService } from '../service/api/connection.service';
@@ -28,7 +29,8 @@ export class RegisterComponent {
   constructor(
     private http: HttpClient,
     private storage: LocalStorageService,
-    private connection: ConnectionService
+    private connection: ConnectionService,
+    public router: Router,
   ) {}
 
   register(): void {
@@ -39,7 +41,6 @@ export class RegisterComponent {
 
   async comprobacion(form: any) {
     //Primero comprobamos si el email o el username estan cogidos:
-
     //Esta email?
     this.connection.getIfExistsByEmail(form.email).subscribe((res: any) => {
       console.log('Esto es respuesta de getIfExistsbyEmail ' + res);
@@ -52,13 +53,29 @@ export class RegisterComponent {
         console.log('Esto es respuesta de getIfExistsByUsername ' + res);
         this.respuestaSearchUser = res;
       });
+
+    setTimeout(() => {
+      if (!this.respuestaSearchUser && !this.respuestaSearchEmail) {
+        this.registro(form);
+      }
+    }, 2000);
   }
 
   async registro(form: any) {
+    const Swal = require('sweetalert2');
     this.connection.postUser(form).subscribe((res: any) => {
       console.log('Esto es la respuesta de postUser ' + res);
       this.respuestaPostUser = res;
     });
+    Swal.fire({
+      title: 'success',
+      text: 'Session iniciada correctamente',
+      icon: 'success',
+      confirmButtonText: 'Aceptar',
+    });
+    setTimeout(() => {
+      this.router.navigate(['/login']);
+    }, 2000);
   }
 
   async login(form: any) {
@@ -84,22 +101,20 @@ export class RegisterComponent {
     );
 
     await this.crearUserLocal();
-
   }
 
-  async crearUserLocal(){
-    console.log("Crear user Local");
+  async crearUserLocal() {
+    console.log('Crear user Local');
 
-      const user: User = new User(
-        this.respuestaSearchUser.id,
-        this.respuestaSearchUser.username,
-        this.respuestaSearchUser.email,
-        this.respuestaSearchUser.password,
-        this.respuestaSearchUser.rol.id
-      );
-      console.log('Este es el USER');
-      console.log(user);
-
+    const user: User = new User(
+      this.respuestaSearchUser.id,
+      this.respuestaSearchUser.username,
+      this.respuestaSearchUser.email,
+      this.respuestaSearchUser.password,
+      this.respuestaSearchUser.rol.id
+    );
+    console.log('Este es el USER');
+    console.log(user);
   }
 
   async handleSubmit() {
@@ -115,16 +130,13 @@ export class RegisterComponent {
     await this.comprobacion(form);
 
     //Si no ha encontrado NINGUNO de ellos significa que podemos crear el usuario nuevo
-    if (!this.respuestaSearchUser && !this.respuestaSearchEmail) {
-      //Hacemos el post del nuevo usuario.
-      await this.registro(form);
+    // if (!this.respuestaSearchUser && !this.respuestaSearchEmail) {
+    //   //Hacemos el post del nuevo usuario.
+    //   await this.registro(form);
 
-      //Volvemos a buscar el usuario que ahora si que estara en la base de datos para obtener todos los datos
-      //incluido el ID que depende del backend
-      await this.login(form);
-
-
-
-    }
+    //   //Volvemos a buscar el usuario que ahora si que estara en la base de datos para obtener todos los datos
+    //   //incluido el ID que depende del backend
+    //   await this.login(form);
+    // }
   }
 }
