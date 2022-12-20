@@ -63,7 +63,8 @@
             <!-- Icon LogIn-->
           <li [ngClass]="{'disable':(flagUser)}"><a routerLink="/login">Singin/Singup</a></li>
             <!-- Icon Perfil-->
-          <li [ngClass]="{'disable':!(flagUser)}" [ngClass]="{'disable':(flagTypeUser)}" ><button style="border:none; background: transparent;"
+          <li [ngClass]="{'disable':!(flagUser)}" [ngClass]="{'disable':(flagTypeUser)}" [ngClass]="{'disable':(flagUser0)}">
+            <button style="border:none; background: transparent;"
             routerLink="/profile"><img style="width: 50px;"
                 src="https://i.ibb.co/4tSrt7F/image.png" alt="image" border="0"></button></li>
             <!-- Icon showOrder-->

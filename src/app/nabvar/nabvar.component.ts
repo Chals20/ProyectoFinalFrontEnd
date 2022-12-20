@@ -19,11 +19,13 @@ flagUser: boolean = false;
 flagBuscar: boolean = false;
 flagCarrito: boolean = false;
 flagTypeUser:boolean = false;
+flagUser0:boolean = false;
 
 ngOnInit(): void {
   const aux = JSON.parse(this.localstorage.getItem("user"));
   this.flagUser = (aux.id == 0)?false:true;
   this.flagTypeUser = (aux.rol == "ADMIN")?true:false;
+  this.flagUser0 = (aux.id == 0)?true:false;
   }
 
 
