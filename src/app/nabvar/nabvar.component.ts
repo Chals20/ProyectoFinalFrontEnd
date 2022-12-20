@@ -67,6 +67,15 @@ ngOnInit(): void {
 
 
   filtrarPlatos(): void {
+    const Swal = require('sweetalert2');
+    Swal.fire({
+      title: 'Cargando Datos...',
+      allowEscapeKey: false,
+      allowOutsideClick: false,
+      background: '#19191a',
+      showConfirmButton: false,
+      timer: 1000,
+  }); 
     const PMAX = (this.pMax == 0)?100:this.pMax;
     const busqueda: Search = new Search(this.tipoPlato,this.nombrePlato,this.pMin,PMAX,
     this.celiaco,this.lactosa,this.vegano);

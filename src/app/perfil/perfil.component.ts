@@ -31,7 +31,6 @@ export class PerfilComponent implements OnInit {
       showConfirmButton: false,
       timer: 1000,
   }); 
-
     this.connection.getOrderByUser(this.user.id,this.dateToBack()).subscribe((res:any)  =>{
       this.loadJson(res);
   });
