@@ -1,0 +1,73 @@
+body {
+    background: #2196f3
+}
+.perfil{
+    margin-top: 50px;
+}
+.form-control:focus {
+    box-shadow: none;
+    border-color: #2196f3
+}
+.cardPedido{
+
+}
+.profile-button {
+    background: #47B39D;
+    box-shadow: none;
+    border: none
+}
+
+.profile-button:hover {
+    background: #2196f3
+}
+
+.profile-button:focus {
+    background: #47B39D;
+    box-shadow: none
+}
+
+.back:hover {
+    color: #2196f3;
+    cursor: pointer
+}
+
+.labels {
+    font-size: 11px
+}
+
+.cardPedido{
+    border: 1px solid #2195f3;
+    padding: 15px;
+    border-radius: 25px;
+    text-align: center;
+    background-color: #2195f3e4;
+    margin-top: 10px;
+    color: white;
+}
+
+.order-button {
+    background: #47B39D;
+    box-shadow: none;
+    border: none
+}
+
+.order-button:hover {
+    background: #2196f3
+}
+
+.no-border {
+    border: 0;
+    text-align: center;
+}
+button{
+    background-color: #FEBA0B;
+    color: black;
+}
+@media screen and (max-width: 760px){
+    .cardPedido{
+        width: 300px;
+    }
+    .perfil{
+        margin-top: 0px;
+    }
+}

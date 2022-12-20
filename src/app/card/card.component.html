@@ -1,0 +1,22 @@
+
+        <div class="tarjeta">
+            <p class="plato"><strong>{{dish.name}}</strong></p>
+            <div class="images">
+                <section class="alergenos">
+                    <img class="alergeno" *ngIf="dish.alergeno.gluten == 1" src="https://i.ibb.co/SQVHcGg/image.png"
+                    alt="image" border="0" style="background-color: white; border: solid; border-radius: 50%;">
+                <img class="alergeno" *ngIf="dish.alergeno.vegan == 0" src="https://i.ibb.co/9gVXgd1/vegano.png"
+                    alt="vegano" border="0">
+                <img class="alergeno" *ngIf="dish.alergeno.lacteos == 1" src="https://i.ibb.co/tzPS5s9/leche.png"
+                    alt="leche" border="0">
+                </section>
+                <section class="photo">
+                    <img src="{{dish.img}}" alt="">
+                </section>
+            </div>
+            <div class="foot">
+                <p><strong>{{dish.price}}€</strong></p>
+                <button class="btn btn-primary" (click)="addCarrito(dish)" *ngIf="!flagType">Añadir</button>
+                <button class="btn btn-danger" (click)="edit()" *ngIf="flagType">Editar</button>
+            </div>
+        </div>

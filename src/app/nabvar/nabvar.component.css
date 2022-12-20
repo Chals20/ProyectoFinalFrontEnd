@@ -1,3 +1,49 @@
-.disable{
-    display: none;
+.disable{display: none;}
+.btn-Inicio{
+    border: none;
+    background-color: transparent;
+    color: white;
+    font-size: 20px;
+}
+.buscador{
+    z-index: 1;
+    position: fixed;
+    border: solid;
+    width: 300px;
+    height: max-content;
+    left: 150px;
+    top: 90px;
+    background-color: #FEBA0B;
+    text-align: center;
+    border-radius: 5px;
+    padding: 10px;
+}
+.input-buscar{
+background-color: white;
+border-radius: 5px;
+color: #FEBA0B;
+}
+.input-buscar2{
+  background-color: white;
+  text-align: center;
+  border-radius: 6px;
+  color: black;
+  width: 70%;
+  }
+
+.btn-buscar{
+    background-color: #2196f3;
+}
+
+@media screen and (max-width: 760px){
+    .buscador{
+        left: 20px;
+    }
+    .carrito{
+        left:20px;
+    }
+    .home{
+        background-color: #FEBA0B;
+        border-radius: 5px;
+    }
 }

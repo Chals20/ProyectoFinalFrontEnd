@@ -1,0 +1,37 @@
+.containerGeneral {
+  background-image: url("../../images/hand-painted-watercolor-background-with-sky-and-clouds-shape.jpg");
+  background-repeat: repeat;
+  margin-top: 150px;
+}
+
+.form-control{
+  width: 300px;
+}
+
+
+.container{
+  background-color: rgb(144, 213, 245);
+  width: 600px;
+  border-radius: 2rem;
+}
+
+
+
+.btn-primary{
+  background-color: #FEBA0B;
+  color: black;
+}
+
+.btn-primary:hover{
+  background-color: #a27400;
+}
+
+@media (max-width: 600px) {
+  .container{
+    width: 90%;
+  }
+
+  .form-control{
+    width: 90%;
+  }
+}

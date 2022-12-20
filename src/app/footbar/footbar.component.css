@@ -1,4 +1,44 @@
-p{
-    margin: 0px;
-    text-align: center;
+.developers p{
+width: max-content;
+margin: 0px;
+text-align: center;
+font-size: 12px;
+}
+footer {
+    width: 100%;
+    position: absolute;
+    left: 0;
+    display: flex;
+    justify-content: space-evenly;
+    border-top: solid;
+    max-height: 70px;
+    background-color: white;
+   
+}
+.juntos{
+    margin-right: 200px;
+}
+a{
+    text-decoration: none;
+}
+@media screen and (max-width: 760px){
+    footer{
+        display: block;
+        border-top: solid;
+        max-height: max-content;
+        position: relative;
+    }
+    .imgFooter{
+        width: 70%;
+        margin: 0px auto;
+        text-align: center;
+    }
+    .developers{
+        width: 70%;
+        margin: auto;
+        text-align: center;
+    }
+    .juntos{
+        margin-right: 5px;
+    }
 }

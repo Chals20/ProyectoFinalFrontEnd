@@ -1,0 +1,108 @@
+<app-nabvar></app-nabvar>
+<!-- <div class="container containerGeneral "> -->
+<div class="container containerGeneral .container-fluid">
+
+  <div class="row justify-content-center align-items-center g-2">
+    <div class="col">
+      <form class="p-5 mb-5" #form="ngForm" (ngSubmit)="handleSubmit()">
+
+        <h1>Añadir un plato:</h1>
+
+        <!-- Url Imagen -->
+        <div class="form-outline mb-4 my-5">
+          <input type="text" name="url" id="url" class="form-control" [(ngModel)]="img" value="img" required />
+          <label class="form-label" for="formEmail">Url Imagen</label>
+        </div>
+
+        <!-- Nombre plato -->
+        <div class="form-outline mb-4">
+          <input type="text" name="nombre" id="nombre" class="form-control" [(ngModel)]="name" required />
+          <label class="form-label" for="nombre">Nombre del plato</label>
+        </div>
+
+        <!-- Precio -->
+        <div class="form-outline mb-4">
+          <input type="number" name="precio" id="precio" class="form-control" min="0" max="50" [(ngModel)]="price"
+            required />
+          <label class="form-label" for="nombre">Precio del plato</label>
+        </div>
+
+        <!-- Categoria -->
+        <div class="form-outline mb-4">
+
+          <select class="form-select" name="select" id="tipoPlato" style="width: 90%;" required [(ngModel)]="category">
+            <option selected>Seleccione tipo de plato</option>
+            <option value="1">Entrante</option>
+            <option value="2">Principal</option>
+            <option value="3">Postre</option>
+          </select>
+
+          <!-- <input type="text" name="category" id="category" class="form-control" [(ngModel)]="category" required />
+            <label class="form-label" for="nombre">Categoria del plato</label> -->
+        </div>
+
+
+        <!-- Alergeno -->
+        <div class="form-outline mb-4">
+          <input type="checkbox" class="btn-check" id="toggleVegano" (click)="cambioVegano()">
+          <label for="toggleVegano" class="btn btn-outline-primary mx-2">Vegano</label>
+          <input type="checkbox" class="btn-check" id="toggleCeliaco" (click)="cambioCeliaco()">
+          <label for="toggleCeliaco" class="btn btn-outline-primary mx-2">Gluten</label>
+          <input type="checkbox" class="btn-check" id="toggleLacteo" (click)="cambioLacteo()">
+          <label for="toggleLacteo" class="btn btn-outline-primary mx-2">Lacteo</label>
+        </div>
+
+
+        <!-- RANGE que no funciona -->
+        <!-- <div class="form-outline mb-4">
+            <label for="formControlRange">{{price}}</label>
+            <input type="range" class="form-control-range" id="formControlRange" min="0" max="40" [(ngModel)]="price">
+          </div> -->
+
+        <div class="form-outline mb-4">
+
+          <button type="submit" class="btn btn-primary btn-block mb-4 mx-2" value="Confirmar"
+            [disabled]="!form.valid">Crear Plato</button>
+        </div>
+
+
+      </form>
+
+
+    </div>
+    <div class="col">
+
+
+      <div class="tarjeta">
+        <p class="plato"><strong>{{name}}</strong></p>
+        <div class="images">
+          <section class="alergenos">
+            <img class="alergeno" *ngIf="cel == 1" src="https://i.ibb.co/SQVHcGg/image.png" alt="image" border="0"
+              style="background-color: white; border: solid; border-radius: 50%;">
+            <img class="alergeno" *ngIf="veg == 1" src="https://i.ibb.co/9gVXgd1/vegano.png" alt="vegano" border="0">
+            <img class="alergeno" *ngIf="lac == 1" src="https://i.ibb.co/tzPS5s9/leche.png" alt="leche" border="0">
+          </section>
+          <section class="photo">
+            <img src="{{img}}" alt="">
+          </section>
+        </div>
+        <div class="foot">
+          <p><strong>{{price}}€</strong></p>
+        </div>
+      </div>
+
+
+
+
+
+
+
+
+
+
+
+    </div>
+  </div>
+
+
+</div>

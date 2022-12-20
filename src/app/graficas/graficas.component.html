@@ -1,0 +1,18 @@
+<app-nabvar></app-nabvar>
+<div class="container" style="margin-top: 100px; width: 800px;">
+    <h1>Ventas</h1>
+    <div style="display: flex;">
+    <button (click)="init()" class="btn btn-primary">Todos</button>
+    </div>
+    <div style="background-color: white;">
+        <h2>{{tipoGrafica[0]}}</h2>
+        <canvas id="todos">{{chart}}</canvas>
+        <h2>{{tipoGrafica[1]}}</h2>
+        <canvas id="principal">{{chart}}</canvas>
+        <h2>{{tipoGrafica[2]}}</h2>
+        <canvas id="entrantes">{{chart}}</canvas>
+        <h2>{{tipoGrafica[3]}}</h2>
+        <canvas id="postres">{{chart}}</canvas>
+    </div>
+
+    </div>
