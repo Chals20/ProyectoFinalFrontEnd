@@ -9,7 +9,6 @@ import { EditDishService } from '../service/edit-dish.service';
   styleUrls: ['./editor.component.css'],
 })
 export class EditorComponent implements OnInit {
-
   id: String = '';
   img: String = '';
   name: String = '';
@@ -31,62 +30,59 @@ export class EditorComponent implements OnInit {
     public dishService: EditDishService
   ) {}
 
-  cambioVariable(condicion:boolean): String{
-    return condicion ? '1' : '0'
+  cambioVariable(condicion: boolean): String {
+    return condicion ? '1' : '0';
   }
 
-  cambioVariableVeg(condicion:boolean): String{
-    return condicion ? '0' : '1'
+  cambioVariableVeg(condicion: boolean): String {
+    return condicion ? '0' : '1';
   }
-  cambioVegano(){
+  cambioVegano() {
     this.vegano = !this.vegano;
     this.veg = this.cambioVariableVeg(this.vegano);
-    console.log(this.vegano," bool vegano")
-    console.log(this.veg,"veg")
+    console.log(this.vegano, ' bool vegano');
+    console.log(this.veg, 'veg');
   }
 
-  cambioCeliaco(){
+  cambioCeliaco() {
     this.celiaco = !this.celiaco;
     this.cel = this.cambioVariable(this.celiaco);
   }
 
-  cambioLacteo(){
+  cambioLacteo() {
     this.lacteo = !this.lacteo;
     this.lac = this.cambioVariable(this.lacteo);
   }
 
-  alergenos(){
+  alergenos() {
     //alergenos(id,lacteos,gluten,vegan) values(1,1,1,1),(2,0,0,0),(3,0,1,0),(4,0,1,1),(5,0,0,1),(6,1,0,1);
-    if (this.lacteo && this.celiaco && this.vegano){
-      this.alergeno = "1";
-    }
-    else if (!this.lacteo && !this.celiaco && !this.vegano){
-      this.alergeno = "2";
-    }
-    else if (!this.lacteo && this.celiaco && !this.vegano){
-      this.alergeno = "3";
-    }
-    else if (!this.lacteo && this.celiaco && this.vegano){
-      this.alergeno = "4";
-    }
-    else if (!this.lacteo && !this.celiaco && this.vegano){
-      this.alergeno = "5";
-    }
-    else if (this.lacteo && !this.celiaco && this.vegano){
-      this.alergeno = "6";
+    if (this.lacteo && this.celiaco && this.vegano) {
+      this.alergeno = '1';
+    } else if (!this.lacteo && !this.celiaco && !this.vegano) {
+      this.alergeno = '2';
+    } else if (!this.lacteo && this.celiaco && !this.vegano) {
+      this.alergeno = '3';
+    } else if (!this.lacteo && this.celiaco && this.vegano) {
+      this.alergeno = '4';
+    } else if (!this.lacteo && !this.celiaco && this.vegano) {
+      this.alergeno = '5';
+    } else if (this.lacteo && !this.celiaco && this.vegano) {
+      this.alergeno = '6';
+    } else {
+      this.alergeno = 'error';
     }
 
-    console.log("vegano " + this.vegano)
-    console.log("celiaco " + this.celiaco)
-    console.log("lacteo " + this.lacteo)
-    console.log("alergeno " + this.alergeno)
+    console.log('vegano ' + this.vegano);
+    console.log('celiaco ' + this.celiaco);
+    console.log('lacteo ' + this.lacteo);
+    console.log('alergeno ' + this.alergeno);
   }
 
   async update(form: any) {
     const Swal = require('sweetalert2');
     //Cambiar servicio (Introducir id de forma dinamica)
     console.log(form);
-    this.connection.updateDishFromId(this.id,form).subscribe(
+    this.connection.updateDishFromId(this.id, form).subscribe(
       (res: any) => {
         console.log('Esto es respuesta de updateDishFromId ' + res);
         Swal.fire({
@@ -106,7 +102,6 @@ export class EditorComponent implements OnInit {
       }
     );
   }
-
 
   async eliminar() {
     const Swal = require('sweetalert2');
@@ -132,10 +127,9 @@ export class EditorComponent implements OnInit {
     );
   }
 
-
-
   async handleSubmit() {
     this.alergenos();
+    console.log(this.category, ' Category');
     const form = {
       name: this.name,
       img: this.img,
@@ -147,7 +141,26 @@ export class EditorComponent implements OnInit {
         id: this.alergeno,
       },
     };
-    await this.update(form);
+    const Swal = require('sweetalert2');
+    if (this.alergeno == 'error') {
+      Swal.fire({
+        text: 'La combinación de alergenos seleccionada no está contemplada.',
+        icon: 'error',
+        confirmButtonText: 'Aceptar',
+      });
+    }
+    else if(this.category == "1" || this.category == "2" || this.category == "3"){
+      await this.update(form);
+    }
+
+    else {
+      Swal.fire({
+        text: 'Relle la categoria del plato correctamente.',
+        icon: 'error',
+        confirmButtonText: 'Aceptar',
+      });
+    }
+
     //await this.create(form); //Funciona
   }
 
