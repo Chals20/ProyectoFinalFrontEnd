@@ -37,6 +37,7 @@ ngOnInit(): void {
           title: 'Error!',
           text: 'Inicie Sesión para Agregar ítems al Carro',
           icon: 'question',
+          confirmButtonColor: "#FEBA0B",
           confirmButtonText: 'Aceptar'
         })
       }

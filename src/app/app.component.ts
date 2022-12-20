@@ -14,8 +14,7 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     this.localstorage.setItem("carrito",null);
-    //const user : User = new User(2,"","","","USER");
-    const user : User = new User(2,"","","","ADMIN");
+    const user : User = new User(0,"alvaro","@gmail.com","1234","USER"); 
     this.localstorage.setItem("user",user);
 
   }

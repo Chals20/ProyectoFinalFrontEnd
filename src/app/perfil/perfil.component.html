@@ -38,18 +38,15 @@
                     <button class="btn btn-primary" style="margin: auto;" (click)="loadPedidos()">Ver pedidos</button>
                 </div>
                 <br>
-                <div class="col-md" style="overflow:scroll;height:400px;padding: 10px;" 
+                <div class="col-md" style="overflow:scroll;height:500px;padding: 10px;" 
                     *ngIf="!(json.length == 0)">
                     <div class="cardPedido"  *ngFor="let order of json; let index">
                         <div class="card-body">
                             <h5 class="card-title"><strong>Fecha: {{order.date}} <br> Hora: {{order.hora}} </strong></h5>
                             <br>
-                            <ul type="A" class="listaPlatos">
-                                <li *ngFor="let p of order.listDish"><strong>{{p.name}} - {{p.price}}€ x{{p.amount}}
-                                    = {{p.price*p.amount}}€ </strong></li>
-                            </ul>
+                            <button class="btn btn-primary" (click)="showDish(order)">Ver Platos</button>
                             <h5><strong>Total: {{order.total}} €</strong></h5>
-                            <a href="#" class="btn btn-primary">Repetir pedido</a>
+                            <button class="btn btn-primary">Cancelar Pedido</button>
                         </div>
                     </div>
                 </div>

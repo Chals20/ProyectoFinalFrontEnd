@@ -9,8 +9,7 @@ body {
     border-color: #2196f3
 }
 .cardPedido{
-    background-color: hsla(43, 99%, 52%, 0.897);
-    margin-top: 10px;
+
 }
 .profile-button {
     background: #47B39D;
@@ -37,10 +36,13 @@ body {
 }
 
 .cardPedido{
-    border: 1px solid #2196f3;
+    border: 1px solid #2195f3;
     padding: 15px;
     border-radius: 25px;
     text-align: center;
+    background-color: #2195f3e4;
+    margin-top: 10px;
+    color: white;
 }
 
 .order-button {
@@ -56,6 +58,10 @@ body {
 .no-border {
     border: 0;
     text-align: center;
+}
+button{
+    background-color: #FEBA0B;
+    color: black;
 }
 @media screen and (max-width: 760px){
     .cardPedido{
