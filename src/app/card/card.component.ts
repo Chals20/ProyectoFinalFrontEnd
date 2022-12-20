@@ -46,6 +46,5 @@ ngOnInit(): void {
     edit(){
       this.dishService.setDish(this.dish)
       this.router.navigate(["editor"])
-
     }
 }

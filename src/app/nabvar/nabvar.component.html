@@ -55,7 +55,7 @@
           <li><Button class="btn-Inicio" routerLink="/Home"><img src="https://i.ibb.co/d2Mswhr/home-regular-84.png"
             width="50px" alt="home-regular-84" border="0"></Button></li>
             <!-- Icon new Dish-->
-          <li><a routerLink="/editor" [ngClass]="{'disable':!(flagTypeUser)}"><img src="https://i.ibb.co/DMgzXXk/image.png" 
+          <li><a routerLink="/nuevoPlato" [ngClass]="{'disable':!(flagTypeUser)}"><img src="https://i.ibb.co/DMgzXXk/image.png" 
             width="50px" alt="image" border="0"></a></li>
             <!-- Icon Chart-->
           <li><a routerLink="/graficas" [ngClass]="{'disable':!(flagTypeUser)}"><img src="https://i.ibb.co/Byf8Q4X/image.png"
@@ -63,7 +63,7 @@
             <!-- Icon LogIn-->
           <li [ngClass]="{'disable':(flagUser)}"><a routerLink="/login">Singin/Singup</a></li>
             <!-- Icon Perfil-->
-          <li [ngClass]="{'disable':!(flagUser)}" [ngClass]="{'disable':(flagTypeUser)}" [ngClass]="{'disable':(flagUser0)}">
+          <li [ngClass]="{'disable':!(flagPerfil)}">
             <button style="border:none; background: transparent;"
             routerLink="/profile"><img style="width: 50px;"
                 src="https://i.ibb.co/4tSrt7F/image.png" alt="image" border="0"></button></li>
