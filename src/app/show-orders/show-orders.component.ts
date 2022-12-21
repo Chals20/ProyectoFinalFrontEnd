@@ -18,7 +18,6 @@ export class ShowOrdersComponent {
 
   SendDataonChange(event: any) {
     this.fecha=event.target.value;
-    console.log(this.fecha);
     }
 
   search():void{
@@ -31,7 +30,6 @@ export class ShowOrdersComponent {
         confirmButtonText: 'Aceptar'
       })
     }else{
-      console.log(this.fecha);
       this.json=[];
       this.loadOrders();
     }

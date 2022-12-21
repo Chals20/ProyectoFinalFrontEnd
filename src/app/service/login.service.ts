@@ -17,7 +17,6 @@ export class LoginService {
   constructor( private http: HttpClient) { }
 
   login(username:string, password:string): any{
-    console.log(username + " +  "  + password)
     return this.http.post(AUTH_URL + 'login', {
       username,
       password

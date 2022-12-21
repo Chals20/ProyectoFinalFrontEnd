@@ -160,7 +160,6 @@ chancePassword(){
 
 deleteOrder(time:any,id:number):void{
 
-  console.log(new Date("22/12/2022") + "---" +new Date());
  // if(new Date(time) < new Date()){
     this.connection.deleteOrder(id).subscribe((res:any) => {
       this.loadPedidos();

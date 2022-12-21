@@ -50,7 +50,6 @@ export class LoginComponent {
     this.connection
       .getUsernameLogin(form.email, form.pass)
       .subscribe((res: any) => {
-        console.log('Esto es respuesta de getUsernameLogin(login) ' + res);
         this.respuestaLoginUser = res;
         setTimeout(() => {
           if (this.respuestaLoginUser == null) {
@@ -70,13 +69,6 @@ export class LoginComponent {
   //Usando respuestaLoginUser que previamente ha guardado el usuario creamos un User.
   async crearUserLocal() {
     const Swal = require('sweetalert2');
-    console.log('Crear user Local + datos a continuacion');
-    console.log(this.respuestaLoginUser.id);
-    console.log(this.respuestaLoginUser.username);
-    console.log(this.respuestaLoginUser.email);
-    console.log(this.respuestaLoginUser.password);
-    console.log(this.respuestaLoginUser.rol.name);
-
     const user: User = new User(
       this.respuestaLoginUser.id,
       this.respuestaLoginUser.username,
@@ -84,9 +76,6 @@ export class LoginComponent {
       this.respuestaLoginUser.password,
       this.respuestaLoginUser.rol.name
     );
-    console.log('Este es el USER');
-    console.log(user);
-
     this.localStorage.setItem('user', user);
     //Mostramos el SWAL con el check
     Swal.fire({
@@ -104,13 +93,11 @@ export class LoginComponent {
     //Primero comprobamos si el email o el username estan cogidos:
     //Esta email?
     this.connection.getIfExistsByEmail(form.email).subscribe((res: any) => {
-      console.log('Esto es respuesta de getIfExistsbyEmail ' + res);
       this.respuestaSearchEmail = res;
     });
 
     //Damos la opcion al usuario de usar tambien el Username
     this.connection.getIfExistsByUsername(form.email).subscribe((res: any) => {
-      console.log('Esto es respuesta de getIfExistsByUsername ' + res);
       this.respuestaSearchUser = res;
     });
 
