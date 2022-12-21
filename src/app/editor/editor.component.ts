@@ -89,7 +89,7 @@ export class EditorComponent implements OnInit {
           title: 'success',
           text: 'Plato actualizado correctamente',
           icon: 'success',
-          confirmButtonColor: "#FEBA0B",
+          confirmButtonColor: '#FEBA0B',
           confirmButtonText: 'Aceptar',
         });
         this.router.navigate(['/home']);
@@ -106,36 +106,31 @@ export class EditorComponent implements OnInit {
 
   async eliminar() {
     const Swal = require('sweetalert2');
-    //Cambiar servicio (Introducir id de forma dinamica)
-    this.connection.deleteDishFromId(this.id).subscribe(
-      (res: any) => {
-        console.log('Esto es respuesta de deleteDishFromId ' + res);
-        Swal.fire({
-          title: 'success',
-          text: 'Plato eliminado correctamente',
-          icon: 'success',
-          confirmButtonColor: "#FEBA0B",
-          confirmButtonText: 'Aceptar',
-        });
-        this.router.navigate(['/home']);
+    Swal.fire({
+      title: '¿Seguro que quieres eliminar el plato?',
+      showDenyButton: true,
+      confirmButtonColor: '#FEBA0B',
+      confirmButtonText: 'Si',
+      customClass: {
+        actions: 'my-actions',
+        cancelButtonColor: '#C70039',
+        cancelButton: 'order-1 right-gap',
+        confirmButton: 'order-2',
+        denyButton: 'order-3',
       },
-      (error: any) => {
-        console.log(error);
-        Swal.fire({
-          text: 'Fallo al conectar a la base de datos',
-          icon: 'error',
+    }).then((result: any) => {
+      if (result.isConfirmed) {
+        this.connection.deleteDishFromId(this.id).subscribe((res: any) => {
+          Swal.fire({
+            title: 'Plato eliminado con exito',
+            confirmButtonColor: '#FEBA0B',
+            confirmButtonText: 'Aceptar',
+          });
+          this.router.navigate(['/home']);
         });
       }
-    );
+    });
   }
-
-
-  handleSubmit2(){
-    console.log("Esta es la categoria:" + this.category);
-    console.log(this.category);
-    console.log("//////////////////////////")
-  }
-
 
   async handleSubmit() {
     this.alergenos();
@@ -150,26 +145,27 @@ export class EditorComponent implements OnInit {
         id: this.alergeno,
       },
     };
-    console.log("Esta es la categoria: nextline" + this.category);
+    console.log('Esta es la categoria: nextline' + this.category);
     console.log(this.category);
     const Swal = require('sweetalert2');
     if (this.alergeno == 'error') {
       Swal.fire({
         text: 'La combinación de alergenos seleccionada no está contemplada.',
         icon: 'error',
-        confirmButtonColor: "#FEBA0B",
+        confirmButtonColor: '#FEBA0B',
         confirmButtonText: 'Aceptar',
       });
-    }
-    else if(this.category == "1" || this.category == "2" || this.category == "3"){
+    } else if (
+      this.category == '1' ||
+      this.category == '2' ||
+      this.category == '3'
+    ) {
       await this.update(form);
-    }
-
-    else {
+    } else {
       Swal.fire({
         text: 'Rellene la categoria del plato correctamente.',
         icon: 'error',
-        confirmButtonColor: "#FEBA0B",
+        confirmButtonColor: '#FEBA0B',
         confirmButtonText: 'Aceptar',
       });
     }
