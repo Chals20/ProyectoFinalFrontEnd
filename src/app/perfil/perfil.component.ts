@@ -50,7 +50,8 @@ export class PerfilComponent implements OnInit {
 
   loadJson(res: any): void {
     if (res.length != 0) {
-      res.forEach((e: any) => {this.json.push(new Order(e.id,this.chanceDate(e.date),e.hora,this.getDish(e.id),e.total));
+      res.forEach((e: any) => {this.json.push(new Order(e.id,this.chanceDate(e.date),
+       this.chanceHora(e.hora),this.getDish(e.id),e.total));
       });
     } else {
       const Swal = require('sweetalert2');
@@ -122,6 +123,15 @@ export class PerfilComponent implements OnInit {
       }
     })
   }
+
+  // formatea la hora para mostrarla
+  chanceHora(hora:number):string{
+    const aux = String(hora);
+    let result:string = aux;
+     if(aux.length == 2) result = aux+".00";
+    else if(aux.length == 4)result = aux+"0";
+    return result;
+}
 
 chancePassword(){
   const rol = {id:2,

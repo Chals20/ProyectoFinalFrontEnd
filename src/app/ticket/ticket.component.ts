@@ -3,6 +3,8 @@ import { Pedido } from '../models/Pedido';
 import { LocalStorageService } from '../service/local-storage.service';
 import Swal  from 'sweetalert2';
 import { ConnectionService } from '../service/api/connection.service';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-ticket',
@@ -20,9 +22,10 @@ export class TicketComponent implements OnInit{
   jsonCarrito:any = [];
 
   constructor(private localStorage: LocalStorageService,
+    public router: Router,
     private connection: ConnectionService){}
-   
-  
+
+
   ngOnInit():void {
     const user = JSON.parse(this.localStorage.getItem("user"));
     this.id = user.id;
@@ -35,8 +38,8 @@ export class TicketComponent implements OnInit{
   sum(id:number){
     this.jsonCarrito.forEach((e:any) => {
       if(e.id == id){
-        e.amount++; 
-        const n: number = this.total + e.price; 
+        e.amount++;
+        const n: number = this.total + e.price;
         this.total = parseFloat(n.toFixed(2));
       }
     });
@@ -48,7 +51,7 @@ export class TicketComponent implements OnInit{
       if(e.id == id){
         if(e.amount != 0){
           e.amount--;
-          const n: number = this.total - e.price; 
+          const n: number = this.total - e.price;
           this.total = parseFloat(n.toFixed(2));
       }
     }
@@ -71,7 +74,7 @@ export class TicketComponent implements OnInit{
         confirmButtonColor: "#FEBA0B",
         confirmButtonText: 'Aceptar'
       })
-    } 
+    }
     }
 
     makeOrder():void{
@@ -84,6 +87,7 @@ export class TicketComponent implements OnInit{
           confirmButtonColor: "#FEBA0B",
           confirmButtonText: 'Aceptar'
         });
+        this.router.navigate(['/home']);
       }else if(this.total == 0){
         Swal.fire({
           title: 'Error!',

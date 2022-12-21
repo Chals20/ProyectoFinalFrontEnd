@@ -18,6 +18,7 @@ export class ShowOrdersComponent {
 
   SendDataonChange(event: any) {
     this.fecha=event.target.value;
+    console.log(this.fecha);
     }
 
   search():void{
@@ -47,7 +48,8 @@ export class ShowOrdersComponent {
   loadPedidos(res:any):void{
     if(res.length != 0){
       res.forEach((e:any) => {
-        const order = new Order(e.id,this.chanceDate(e.date),e.hora,this.getDish(e.id),e.total);
+        const order = new Order(e.id,this.chanceDate(e.date),
+        this.chanceHora( e.hora),this.getDish(e.id),e.total);
         order.setUser(e.user.id,e.user.username,e.user.email);
        this.json.push(order);
       });
@@ -60,9 +62,9 @@ export class ShowOrdersComponent {
         confirmButtonText: 'Aceptar'
     });
     }
-      
+
 }
-    
+
   getDish(id:number):Dish[]{
     let listDish: Dish[] = [];
     this.connection.getDishOrder(id).subscribe((res:any) => {
@@ -81,7 +83,7 @@ export class ShowOrdersComponent {
       showDish(order:Order):void{
         let show :string="";
         order.listDish.forEach((e:Dish) => {
-          const string = `${e.name}: ${e.price}€ x ${e.amount} = ${(e.price * e.amount)} </br> `; 
+          const string = `${e.name}: ${e.price}€ x ${e.amount} = ${(e.price * e.amount)} </br> `;
           show+=string;
         });
         const Swal = require('sweetalert2');
@@ -92,7 +94,15 @@ export class ShowOrdersComponent {
           confirmButtonText: 'Aceptar'
       });
     }
-    
+
+    chanceHora(hora:number):string{
+      const aux = String(hora);
+      let result:string = aux;
+       if(aux.length == 2) result = aux+".00";
+      else if(aux.length == 4)result = aux+"0";
+      return result;
+  }
+
     timeSpinner(timer:number){
       this.chanceFlagSpinner();
       setTimeout(() => {
