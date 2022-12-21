@@ -13,9 +13,14 @@ export class AppComponent implements OnInit {
   constructor(private localstorage: LocalStorageService){}
 
   ngOnInit(): void {
+
+    // Patron Singleton
+    if (this.localstorage.getItem("user") == null){
+      const user : User = new User(0,"","","","USER");
+      this.localstorage.setItem("user",user);
+    }
+
     this.localstorage.setItem("carrito",[]);
-    const user : User = new User(2,"","","","USER"); 
-    this.localstorage.setItem("user",user);
 
   }
 }
