@@ -3,12 +3,12 @@ import { Dish } from "./Dish";
 export class Order{
     id: number;
     date: string;
-    hora: number;
+    hora: number|string;
     listDish: Dish[];
     total:number;
     user:any|null;
 
-    constructor(id:number,date:string,hora:number,listDish:Dish[],total:number,
+    constructor(id:number,date:string,hora:number|string,listDish:Dish[],total:number,
         ){
         this.id = id,
         this.date = date,
@@ -18,7 +18,7 @@ export class Order{
         this.user
         this.user = null;
     }
-    
+
     setUser(id:number|null,name:string|null,email:string|null){
         this.user = {id,name,email};
     }

@@ -93,6 +93,7 @@ export class LoginComponent {
       title: 'success',
       text: 'Session iniciada correctamente',
       icon: 'success',
+      confirmButtonColor: "#FEBA0B",
       confirmButtonText: 'Aceptar',
     });
     this.router.navigate(['/home']);

@@ -34,7 +34,7 @@ export class PerfilComponent implements OnInit {
       this.loadJson(res);
   });
   }
-  
+
   //transforma el formato dia como el back end lo acepta;
   dateToBack():string{
     const date = new Date();
@@ -43,14 +43,15 @@ export class PerfilComponent implements OnInit {
     for (let index = 0; index < str.length; index++) {
         if(str[index] != "/") day+=str[index];
         else break;
-    } 
+    }
     const result = date.getFullYear() + "-"+ (date.getMonth()+1) + "-"+ day;
-    return result; 
+    return result;
 }
 
   loadJson(res: any): void {
     if (res.length != 0) {
-      res.forEach((e: any) => {this.json.push(new Order(e.id,this.chanceDate(e.date),e.hora,this.getDish(e.id),e.total));
+      res.forEach((e: any) => {this.json.push(new Order(e.id,this.chanceDate(e.date),
+       this.chanceHora(e.hora),this.getDish(e.id),e.total));
       });
     } else {
       const Swal = require('sweetalert2');
@@ -123,6 +124,15 @@ export class PerfilComponent implements OnInit {
     })
   }
 
+  // formatea la hora para mostrarla
+  chanceHora(hora:number):string{
+    const aux = String(hora);
+    let result:string = aux;
+     if(aux.length == 2) result = aux+".00";
+    else if(aux.length == 4)result = aux+"0";
+    return result;
+}
+
 chancePassword(){
   const rol = {id:2,
               name:"USER"}
@@ -141,13 +151,13 @@ chancePassword(){
 }
 
 deleteOrder(time:any,id:number):void{
-  
+
   console.log(new Date("22/12/2022") + "---" +new Date());
  // if(new Date(time) < new Date()){
     this.connection.deleteOrder(id).subscribe((res:any) => {
       this.loadPedidos();
     });
-    
+
   //}else{
     /*
     const Swal = require('sweetalert2');

@@ -15,7 +15,8 @@ const HttpOptions = {
   providedIn: 'root',
 })
 export class ConnectionService {
-  url: string = 'https://proyectofinalbackend-production.up.railway.app';
+//url: string = 'https://proyectofinalbackend-production.up.railway.app';
+  url: string = 'https://proyectofinalbackend-production-40d1.up.railway.app';
 
   constructor(private http: HttpClient) {}
   //retorna los primeros platos del home
