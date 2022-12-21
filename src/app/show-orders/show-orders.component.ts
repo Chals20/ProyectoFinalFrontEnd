@@ -39,7 +39,15 @@ export class ShowOrdersComponent {
 
 
  loadOrders():void{
-  this.timeSpinner(1000);
+  const Swal = require('sweetalert2');
+  Swal.fire({
+    title: 'Cargando Datos...',
+    allowEscapeKey: false,
+    allowOutsideClick: false,
+    background: '#19191a',
+    showConfirmButton: false,
+    timer: 1000,
+  });
     this.connection.getOrderByDate(this.fecha).subscribe((res:any)  => {
       this.loadPedidos(res);
      });
@@ -103,6 +111,7 @@ export class ShowOrdersComponent {
       return result;
   }
 
+  //spinner
     timeSpinner(timer:number){
       this.chanceFlagSpinner();
       setTimeout(() => {

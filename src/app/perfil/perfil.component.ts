@@ -29,7 +29,15 @@ export class PerfilComponent implements OnInit {
 
   loadPedidos():void{
     this.json=[];
-    this.timeSpinner(1500);
+    const Swal = require('sweetalert2');
+    Swal.fire({
+      title: 'Cargando Datos...',
+      allowEscapeKey: false,
+      allowOutsideClick: false,
+      background: '#19191a',
+      showConfirmButton: false,
+      timer: 1000,
+    });
     this.connection.getOrderByUser(this.user.id,this.dateToBack()).subscribe((res:any)  =>{
       this.loadJson(res);
   });
