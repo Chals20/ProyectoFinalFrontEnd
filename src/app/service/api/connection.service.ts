@@ -31,6 +31,11 @@ export class ConnectionService {
     return this.http.delete<any>(send);
   }
 
+  getSalesAll():Observable<any[]>{
+    const send = this.url + "/data/salesAll";
+    return this.http.get<any>(send);
+  }
+
   //updatePassword
   postUpdateUser(id:number,body:any):Observable<any[]>{
     const send = this.url + `/user/update/`+id;
