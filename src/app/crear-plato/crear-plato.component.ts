@@ -86,6 +86,7 @@ export class CrearPlatoComponent implements OnInit {
           title: 'success',
           text: 'Plato creado correctamente',
           icon: 'success',
+          confirmButtonColor: "#FEBA0B",
           confirmButtonText: 'Aceptar',
         });
         this.router.navigate(['/home']);
@@ -95,6 +96,7 @@ export class CrearPlatoComponent implements OnInit {
         Swal.fire({
           text: 'Fallo al conectar a la base de datos',
           icon: 'error',
+          confirmButtonColor: "#FEBA0B",
           confirmButtonText: 'Aceptar',
         });
       }
@@ -119,6 +121,7 @@ export class CrearPlatoComponent implements OnInit {
       Swal.fire({
         text: 'La combinación de alergenos seleccionada no está contemplada.',
         icon: 'error',
+        confirmButtonColor: "#FEBA0B",
         confirmButtonText: 'Aceptar',
       });
     }
@@ -129,6 +132,7 @@ export class CrearPlatoComponent implements OnInit {
       Swal.fire({
         text: 'Relle la categoria del plato correctamente.',
         icon: 'error',
+        confirmButtonColor: "#FEBA0B",
         confirmButtonText: 'Aceptar',
       });
     }

@@ -89,6 +89,7 @@ export class EditorComponent implements OnInit {
           title: 'success',
           text: 'Plato actualizado correctamente',
           icon: 'success',
+          confirmButtonColor: "#FEBA0B",
           confirmButtonText: 'Aceptar',
         });
         this.router.navigate(['/home']);
@@ -113,6 +114,7 @@ export class EditorComponent implements OnInit {
           title: 'success',
           text: 'Plato eliminado correctamente',
           icon: 'success',
+          confirmButtonColor: "#FEBA0B",
           confirmButtonText: 'Aceptar',
         });
         this.router.navigate(['/home']);
@@ -155,6 +157,7 @@ export class EditorComponent implements OnInit {
       Swal.fire({
         text: 'La combinación de alergenos seleccionada no está contemplada.',
         icon: 'error',
+        confirmButtonColor: "#FEBA0B",
         confirmButtonText: 'Aceptar',
       });
     }
@@ -166,6 +169,7 @@ export class EditorComponent implements OnInit {
       Swal.fire({
         text: 'Rellene la categoria del plato correctamente.',
         icon: 'error',
+        confirmButtonColor: "#FEBA0B",
         confirmButtonText: 'Aceptar',
       });
     }

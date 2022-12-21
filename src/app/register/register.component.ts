@@ -57,8 +57,7 @@ export class RegisterComponent {
     setTimeout(() => {
       if (!this.respuestaSearchUser && !this.respuestaSearchEmail) {
         this.registro(form);
-      }
-      else{
+      } else {
         const Swal = require('sweetalert2');
         Swal.fire({
           title: 'Usuario ya existe',
@@ -78,8 +77,9 @@ export class RegisterComponent {
     });
     Swal.fire({
       title: 'success',
-      text: 'Session iniciada correctamente',
+      text: 'Usuario registrado correctamente',
       icon: 'success',
+      confirmButtonColor: "#FEBA0B",
       confirmButtonText: 'Aceptar',
     });
     setTimeout(() => {
@@ -97,6 +97,7 @@ export class RegisterComponent {
           title: 'success',
           text: 'Session iniciada correctamente',
           icon: 'success',
+          confirmButtonColor: "#FEBA0B",
           confirmButtonText: 'Aceptar',
         });
       },
@@ -145,6 +146,15 @@ export class RegisterComponent {
         confirmButtonText: 'Aceptar',
       });
     } else {
+      const Swal = require('sweetalert2');
+      Swal.fire({
+        title: 'Comprobando datos...',
+        allowEscapeKey: false,
+        allowOutsideClick: false,
+        background: '#19191a',
+        showConfirmButton: false,
+        timer: 2000,
+      });
       await this.comprobacion(form);
     }
     //Si no ha encontrado NINGUNO de ellos significa que podemos crear el usuario nuevo
