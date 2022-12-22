@@ -33,24 +33,16 @@ export class RegisterComponent {
     public router: Router
   ) {}
 
-  register(): void {
-    console.log(
-      this.username + '\n' + this.email1 + '\n' + this.pass1 + '\n' + this.phone
-    );
-  }
-
   async comprobacion(form: any) {
     //Primero comprobamos si el email o el username estan cogidos:
     //Esta email?
     this.connection.getIfExistsByEmail(form.email).subscribe((res: any) => {
-      console.log('Esto es respuesta de getIfExistsbyEmail ' + res);
       this.respuestaSearchEmail = res;
     });
 
     this.connection
       .getIfExistsByUsername(form.username)
       .subscribe((res: any) => {
-        console.log('Esto es respuesta de getIfExistsByUsername ' + res);
         this.respuestaSearchUser = res;
       });
 
@@ -72,7 +64,6 @@ export class RegisterComponent {
   async registro(form: any) {
     const Swal = require('sweetalert2');
     this.connection.postUser(form).subscribe((res: any) => {
-      console.log('Esto es la respuesta de postUser ' + res);
       this.respuestaPostUser = res;
     });
     Swal.fire({
@@ -91,7 +82,6 @@ export class RegisterComponent {
     const Swal = require('sweetalert2');
     this.connection.getIfExistsByUsername(form.username).subscribe(
       (res: any) => {
-        console.log('Esto es respuesta de getIfExistsByUsername ' + res);
         this.respuestaSearchUser = res;
         Swal.fire({
           title: 'success',
@@ -102,7 +92,6 @@ export class RegisterComponent {
         });
       },
       (error: any) => {
-        console.log(error);
         Swal.fire({
           text: 'Login incorrecto',
           icon: 'error',
@@ -114,8 +103,6 @@ export class RegisterComponent {
   }
 
   async crearUserLocal() {
-    console.log('Crear user Local');
-
     const user: User = new User(
       this.respuestaSearchUser.id,
       this.respuestaSearchUser.username,
@@ -123,8 +110,6 @@ export class RegisterComponent {
       this.respuestaSearchUser.password,
       this.respuestaSearchUser.rol.id
     );
-    console.log('Este es el USER');
-    console.log(user);
   }
 
   async handleSubmit() {

@@ -40,8 +40,6 @@ export class CrearPlatoComponent implements OnInit {
   cambioVegano() {
     this.vegano = !this.vegano;
     this.veg = this.cambioVariableVeg(this.vegano);
-    console.log(this.vegano, ' bool vegano');
-    console.log(this.veg, 'veg');
   }
 
   cambioCeliaco() {
@@ -71,17 +69,12 @@ export class CrearPlatoComponent implements OnInit {
     } else {
       this.alergeno = 'error';
     }
-    console.log('vegano ' + this.vegano);
-    console.log('celiaco ' + this.celiaco);
-    console.log('lacteo ' + this.lacteo);
-    console.log('alergeno ' + this.alergeno);
   }
 
   async create(form: any) {
     const Swal = require('sweetalert2');
     this.connection.postNewDish(form).subscribe(
       (res: any) => {
-        console.log('Esto es respuesta de postNewDish ' + res);
         Swal.fire({
           title: 'success',
           text: 'Plato creado correctamente',
@@ -92,7 +85,6 @@ export class CrearPlatoComponent implements OnInit {
         this.router.navigate(['/home']);
       },
       (error: any) => {
-        console.log(error);
         Swal.fire({
           text: 'Fallo al conectar a la base de datos',
           icon: 'error',
