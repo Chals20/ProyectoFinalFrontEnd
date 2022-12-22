@@ -40,8 +40,6 @@ export class EditorComponent implements OnInit {
   cambioVegano() {
     this.vegano = !this.vegano;
     this.veg = this.cambioVariableVeg(this.vegano);
-    console.log(this.vegano, ' bool vegano');
-    console.log(this.veg, 'veg');
   }
 
   cambioCeliaco() {
@@ -71,20 +69,12 @@ export class EditorComponent implements OnInit {
     } else {
       this.alergeno = 'error';
     }
-
-    console.log('vegano ' + this.vegano);
-    console.log('celiaco ' + this.celiaco);
-    console.log('lacteo ' + this.lacteo);
-    console.log('alergeno ' + this.alergeno);
   }
 
   async update(form: any) {
     const Swal = require('sweetalert2');
-    //Cambiar servicio (Introducir id de forma dinamica)
-    console.log(form);
     this.connection.updateDishFromId(this.id, form).subscribe(
       (res: any) => {
-        console.log('Esto es respuesta de updateDishFromId ' + res);
         Swal.fire({
           title: 'success',
           text: 'Plato actualizado correctamente',
@@ -95,7 +85,6 @@ export class EditorComponent implements OnInit {
         this.router.navigate(['/home']);
       },
       (error: any) => {
-        console.log(error);
         Swal.fire({
           text: 'Fallo al conectar a la base de datos',
           icon: 'error',
@@ -145,8 +134,6 @@ export class EditorComponent implements OnInit {
         id: this.alergeno,
       },
     };
-    console.log('Esta es la categoria: nextline' + this.category);
-    console.log(this.category);
     const Swal = require('sweetalert2');
     if (this.alergeno == 'error') {
       Swal.fire({

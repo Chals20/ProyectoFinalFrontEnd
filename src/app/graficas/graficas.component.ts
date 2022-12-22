@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import {Chart,registerables} from 'node_modules/chart.js';
+import { ConnectionService } from '../service/api/connection.service';
 Chart.register(...registerables);
 
 @Component({
@@ -10,6 +11,7 @@ Chart.register(...registerables);
 
 export class GraficasComponent {
 
+  constructor(private connection: ConnectionService){}
   tipoGrafica:any = "";
   jsonLabels: String[] = [];
   jsonData: number[] = [];
@@ -18,10 +20,7 @@ export class GraficasComponent {
   id: string = "";
   
   init():void{
-    this.allData();
-    this.PrincipalData();
-    this.EntrantesData();
-    this.PostresData();
+    this.loadInfo();
     this.tipoGrafica = ["Todos los Productos","Platos Principales","Entrantes","Postres"];
   }
  
@@ -57,17 +56,24 @@ export class GraficasComponent {
     });
   }
 
-  allData(){
-    this.json.forEach(e => {
+  loadInfo():void{
+    this.connection.getSalesAll().subscribe((res:any) =>{
+      this.allData(res);
+    });
+  }
+
+  allData(res:any){
+    res.forEach((e:any) => {
       this.jsonLabels.push(e.name);
       this.jsonData.push(e.count);
     });
     this.id = "todos";
     this.RenderChart();
+    this.PostresData(res);
   }
-  PostresData(){
+  PostresData(res:any){
     this.clearJson();
-    this.json.forEach(e => {
+    res.forEach((e:any)  => {
       if(e.type == "Postre"){
         this.jsonLabels.push(e.name);
         this.jsonData.push(e.count);
@@ -75,10 +81,11 @@ export class GraficasComponent {
     });
     this.id = "postres";
     this.RenderChart();
+    this.PrincipalData(res);
   }
-  PrincipalData(){
+  PrincipalData(res:any){
     this.clearJson();
-    this.json.forEach(e => {
+    res.forEach((e:any)  => {
       if(e.type == "Principal"){
         this.jsonLabels.push(e.name);
         this.jsonData.push(e.count);
@@ -86,10 +93,11 @@ export class GraficasComponent {
     });
     this.id = "principal";
     this.RenderChart();
+    this.EntrantesData(res);
   }
-  EntrantesData(){
+  EntrantesData(res:any){
     this.clearJson();
-    this.json.forEach(e => {
+    res.forEach((e:any)  => {
       if(e.type == "Entrantes"){
         this.jsonLabels.push(e.name);
         this.jsonData.push(e.count);
@@ -103,77 +111,5 @@ export class GraficasComponent {
     this.jsonLabels = [];
   }
 
-  json = [
-    {
-        "name": "Arroz con Pollo",
-        "count": 3,
-        "type": "Principal"
-    },
-    {
-        "name": "Patatas Bravas",
-        "count": 5,
-        "type": "Entrantes"
-    },
-    {
-        "name": "Pan con Alioli",
-        "count": 4,
-        "type": "Entrantes"
-    },
-    {
-        "name": "Aceitunas",
-        "count": 2,
-        "type": "Entrantes"
-    },
-    {
-        "name": "Pizza Margarita",
-        "count": 3,
-        "type": "Principal"
-    },
-    {
-        "name": "Pizza 4 Quesos",
-        "count": 1,
-        "type": "Principal"
-    },
-    {
-        "name": "Pizza Vegana",
-        "count": 0,
-        "type": "Principal"
-    },
-    {
-        "name": "Pizza Sin Glutten",
-        "count": 1,
-        "type": "Principal"
-    },
-    {
-        "name": "Empanda Jamon y Queso",
-        "count": 1,
-        "type": "Entrantes"
-    },
-    {
-        "name": "Empanda de Carne",
-        "count": 1,
-        "type": "Entrantes"
-    },
-    {
-        "name": "Empanda Vegana",
-        "count": 2,
-        "type": ""
-    },
-    {
-        "name": "ChesseCake",
-        "count": 2,
-        "type": "Postre"
-    },
-    {
-        "name": "Helado de Vainilla",
-        "count": 1,
-        "type": "Postre"
-    },
-    {
-        "name": "Tiramizu vegano",
-        "count": 1,
-        "type": "Postre"
-    }
-]
 
 }
